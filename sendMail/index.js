@@ -9,17 +9,17 @@ async function sendMail() {
     let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         secure: true,  //다른 포트를 사용해야 되면 false값을 주어야 합니다.
-        port: 465,   //구글 메일서버 포2
+        port: 465,   //구글 메일서버 포트
         auth: {
-            user: mailAddress,
-            pass: mailPassword
+            user: properties.mailAddress,
+            pass: properties.mailPassword
         }
     })
 
     //#3. 메일 전송, 결과는 info 변수에 담아 집니다.
     let info = await transporter.sendMail({
-        from: `"박지원" <raipen@knu.ac.kr>`,
-        to: 'caciopeaa@naver.com',
+        from: `"knulocker" <`+properties.mailAddress+`>`,
+        to: '',//여기에 테스트로 받을 이메일 넣어봐
         subject: '테스트 메일제목입니다.',
         text:
         `
@@ -39,7 +39,7 @@ async function sendMail() {
 module.exports ={
   main:function(request,response){
     console.log(properties.mailAddress);
-    //sendMail();
+    sendMail();
     response.writeHead(302, {'Location': '/apply/'});
     response.end();
   }

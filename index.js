@@ -16,7 +16,6 @@ module.exports ={
       <title>KNU CSE 사물함</title>
       <meta charset="utf-8">
       <link rel="stylesheet" type="text/css" href="/css/top.css"/>
-      <link rel="stylesheet" type="text/css" href="/css/main.css"/>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
