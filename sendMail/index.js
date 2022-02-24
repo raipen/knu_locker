@@ -3,8 +3,9 @@ var url = require('url');
 var qs = require('querystring');
 const nodemailer = require('nodemailer');
 const properties = require('/web/properties.js');
-async function sendMail() {
+const crypto = require('crypto');
 
+async function sendMail() {
     //#1. Transporter 객체 생성
     let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
@@ -38,8 +39,13 @@ async function sendMail() {
 
 module.exports ={
   main:function(request,response){
-    console.log(properties.mailAddress);
-    sendMail();
+
+    const salt = crypto.randomBytes(64).toString('base64');
+    const hashPassword = crypto.createHash('sha512').update("raipen@knu.ac.kr" + salt).digest('hex');
+    console.log(salt);
+    console.log(crypto.createHash('sha512').update("raipen@knu.ac.kr" + salt).digest('base64'));
+    console.log(hashPassword);
+    //sendMail();
     response.writeHead(302, {'Location': '/apply/'});
     response.end();
   }

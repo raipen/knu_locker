@@ -1,0 +1,11 @@
+form{
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  display: inline;
+  transform: translate(-50%,0);
+  min-width: 260px;
+}
+fieldset{
+  display: inline;
+}

@@ -1,4 +1,4 @@
-<form id="apply" action="/sendMail/" method="post">
+<form id="apply" action="/sendMail/" method="post" onsubmit="return check();">
   <label>이름</label><input type="text" id="name" name="name" placeholder="ex)홍길동"/>
   <br>
   <label>학번</label><input type="text" id="number" name="number" placeholder="ex)2022123456"/>
@@ -36,3 +36,4 @@
   </fieldset>
   <p><input type="submit" value="제출"></p>
 </form>
+<div id="comment"></div>
