@@ -12,6 +12,6 @@ module.exports ={
       return;
     }
     response.writeHead(200);
-    response.end(template.result_html("",fs.readFileSync("./index.html")));
+    response.end(template.result_html(`<link rel="stylesheet" type="text/css" href="/css/apply.css"/>`,fs.readFileSync("./index.html")));
   }
 }
