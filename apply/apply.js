@@ -3,7 +3,7 @@ function check(){
   var data = $("#apply").serialize();
   var result=false;
   $.ajax({
-    url:'/checkStudent/',
+    url:'/API/checkStudent/',
     type:'GET',
     async: false,
     data:{name:data.name,number:data.number}
