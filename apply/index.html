@@ -1,9 +1,11 @@
-<form  action="/sendMail/" method="post" onsubmit="return check();">
+<form id="apply" action="/API/sendMail/" method="post" onsubmit="return check();">
   <label>이름</label><input type="text" id="name" name="name" placeholder="ex)홍길동"/>
   <br>
   <label>학번</label><input type="text" id="number" name="number" placeholder="ex)2022123456"/>
   <br>
-  <label>학교 이메일</label><input type="email" id="number" name="number" placeholder="ex)aaaa@knu.ac.kr"/>
+  <label>학교 이메일</label><input type="email" id="email" name="email" placeholder="ex)aaaa@knu.ac.kr"/>
+  <br>
+  <label>전화번호</label><input type="text" id="phone_number" name="phone_number" placeholder="ex)aaaa@knu.ac.kr"/>
   <br>
   <fieldset>
     <legend>1순위</legend>

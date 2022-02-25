@@ -3,12 +3,12 @@ function check(){
   var data = $("#apply").serialize();
   var result=false;
   $.ajax({
-    url:'/API/checkStudent/',
+    url:'/API/checkStudent/?'+data,
     type:'GET',
-    async: false,
-    data:{name:data.name,number:data.number}
+    async: false
   }).done(function(data){
     data = JSON.parse(data);
+    console.log(data);
     if(data.success){
       if(data.isStudent) result = true;
       else{

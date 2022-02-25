@@ -33,5 +33,6 @@ module.exports ={
           response.writeHead(200);
           response.end(JSON.stringify(temp));
         });
+    connection.end();
   }
 }

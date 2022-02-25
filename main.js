@@ -10,7 +10,7 @@ var app = http.createServer(function(request,response){
     var pathname = url.parse(_url, true).pathname;
     pathname = pathname.substr(0,pathname.lastIndexOf('/')+1);
     fs.exists("."+pathname+"index.js",function(exists){
-      console.log(exists);
+      console.log("exist: "+exists);
       if(exists){
         var main_module = require("."+pathname+"index.js");
         main_module.main(request,response);
