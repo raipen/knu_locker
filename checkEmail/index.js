@@ -16,7 +16,6 @@ module.exports = {
       database : properties.DBdatabase,
       multipleStatements:true
     });
-    connection.connect();
 
     var query = `SELECT * FROM dbraipen.applicant where token = ? and student_id = ?;`;
     connection.query(query,[queryData.id,queryData.number],
@@ -26,15 +25,19 @@ module.exports = {
       }
       console.log(results);
       if(results.length==1){
-        var header = `<style>${fs.readFileSync(__dirname+"/index.css")}</style>`;
-        response.writeHead(200);
-        response.end(template.result_html(header,fs.readFileSync(__dirname+"/index1.html")));
+        connection.query("UPDATE apply_info SET verify = '1' WHERE (student_id = ?);",queryData.number,
+          function(error,results,fields){
+            var header = `<style>${fs.readFileSync(__dirname+"/index.css")}</style>`;
+            response.writeHead(200);
+            response.end(template.result_html(header,fs.readFileSync(__dirname+"/index1.html")));
+            connection.end();
+          });
       }else{
         var header = `<style>${fs.readFileSync(__dirname+"/index.css")}</style>`;
         response.writeHead(200);
         response.end(template.result_html(header,fs.readFileSync(__dirname+"/index2.html")));
+        connection.end();
       }
     });
-    connection.end();
   }
 }

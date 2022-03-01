@@ -9,6 +9,7 @@ module.exports = {
       <meta charset="utf-8">
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       ${head}
+      <link rel="stylesheet" type="text/css" href="/css/top.css"/>
     </head>
     <body>
       ${fs.readFileSync("./template/top.html")}
