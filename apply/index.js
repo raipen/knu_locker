@@ -10,13 +10,6 @@ module.exports = {
     var header = `<script type="text/javascript">
     ${fs.readFileSync(__dirname+"/apply.js")}
     </script>
-    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/contents.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/default.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/reset.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/table.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/font.css"/>
     <style>${fs.readFileSync(__dirname+"/index.css")}</style>`;
     response.end(template.result_html(header,fs.readFileSync(__dirname+"/index.html")));
   }
