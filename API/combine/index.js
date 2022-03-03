@@ -51,6 +51,9 @@ module.exports ={
     request.on('end', function () {
       var post = qs.parse(body);
       var queryData = qs.parse(body);
+
+
+      //mysql 연결
       var connection = mysql.createConnection({
         host     : properties.DBaddress,
         port     : properties.DBport,

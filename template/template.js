@@ -19,7 +19,9 @@ module.exports = {
     </head>
     <body>
       ${fs.readFileSync("./template/top.html")}
-      ${body}
+      <div id="main_container">
+        ${body}
+      </div>
     </body>
     </html>`;
   }

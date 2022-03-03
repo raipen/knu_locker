@@ -15,7 +15,7 @@ var app = http.createServer(function(request,response){
         var main_module = require("."+pathname+"index.js");
         main_module.main(request,response);
       }else{
-        response.writeHead(200);
+        response.writeHead(404);
         response.end('404 Not found');
       }
     });

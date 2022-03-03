@@ -161,12 +161,10 @@ button{cursor:pointer;}
   position: absolute;
 }
 #main_container{
-  width:1320px;
   height: calc(100% - 50px);
   position: relative;
   top: 50px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  background-color: #ffffff;
   left:50%;
   transform:translateX(-50%);
   overflow:scroll;
