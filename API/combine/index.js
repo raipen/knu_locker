@@ -62,13 +62,14 @@ module.exports ={
         database : properties.DBdatabase,
         multipleStatements:true
       });
-      var temp = {success:true};
+      var temp = {success:false};
       var query1 = mysql.format(`select * from student_list where name= ? and student_id = ?;`,[queryData.name,queryData.number]);
       var query2 = mysql.format(`select * from student_list where name= ? and student_id is NULL;`,[queryData.name]);
       connection.query(query1+query2,
           function(error,results,fields){
             console.log("results");
             console.log(results);
+            temp.success = true;
             if(error){
               console.log(error);
               temp.success = false;
@@ -108,11 +109,13 @@ module.exports ={
                       temp.error = error;
                       console.log(error);
                     }
-                    console.log("results");
-                    console.log(results);
-                    sendMail(post.email,post.number,hashPassword);
-                    response.writeHead(200);
-                    response.end(JSON.stringify(temp));
+                    else{
+                      console.log("results");
+                      console.log(results);
+                      sendMail(post.email,post.number,hashPassword);
+                      response.writeHead(200);
+                      response.end(JSON.stringify(temp));
+                    }
                   });
             }
 

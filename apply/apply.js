@@ -3,6 +3,7 @@ jQuery.fn.serializeObject = function() { var obj = null; try { if(this[0].tagNam
 
 function sendMail(){
   $("#email").val($("#email1").val()+"@"+$("#email2").val());
+  $("#phone_number").val($("#phone_number1").val()+"-"+$("#phone_number2").val()+"-"+$("#phone_number3").val());
   var data = $("#apply").serializeObject();
   $.ajax({
     url:'/API/combine/',

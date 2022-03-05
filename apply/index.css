@@ -1,3 +1,7 @@
 fieldset{
   display: inline;
 }
+
+.division.membership2 .tablewrite > li > dl > dd .inpbox.phoneinp{
+  width:90px;
+}

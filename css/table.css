@@ -1,0 +1,860 @@
+@charset "utf-8";
+@import url("font.css");
+/* style reset */
+
+/*라디오박스*/
+.radio_box {overflow: hidden; position: relative; display: inline-block;}
+input[type=radio] + label,
+input[type=checkbox] + label {display:inline-block;line-height:0;vertical-align:middle}
+input[type=radio],
+input[type=checkbox] {border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:0}
+.radio_box input[type=radio] + label {position:relative;display:inline-block;padding:0 0 0 25px; margin-right: 15px; min-height:20px; line-height:19px; background-image:url("/static/sw/images/icon_radio2_off.png"); background-position: left center; background-repeat: no-repeat; cursor:pointer;}
+.radio_box input[type=radio]:focus + label {outline: 2px solid #8fb1e8;}
+.radio_box input[type=radio] + label.on, .radio_box input[type=radio]:checked  + label {background-image:url("/static/sw/images/icon_radio2_on.png");}
+.radio_box input[type=radio] + label.disable,
+.radio_box input[type=radio]:disabled + label {background-image:url("/static/sw/images/icon_radio2_off.png");}
+.radio_box input[type=radio] + label.disable,
+.radio_box input[type=radio]:disabled + label.disableOn {background-image:url("/static/sw/images/icon_radio2_on.png");}
+
+/*기본 blue color*/
+.radio_box2 input[type=radio] + label {position:relative;float: left; padding-left: 45px; margin: 5px 15px 5px 0; width: 140px; line-height:46px;background-image:url("/static/sw/images/icon_radio_off.png"); background-position: 14px center; background-repeat: no-repeat; cursor:pointer;color:#fff; background-color: #9e9e9e; border-radius: 3px;}
+.radio_box2 input[type=radio] + label:last-child {margin-right: 0;}
+.radio_box2 input[type=radio]:focus + label {outline: 2px solid #8fb1e8;}
+.radio_box2 input[type=radio] + label.disable,
+.radio_box2 input[type=radio]:disabled + label {background-image:url("/static/sw/images/icon_radio_off.png");}
+.radio_box2 input[type=radio] + label.on,
+.radio_box2 input[type=radio]:checked  + label,
+.radio_box2 input[type=radio] + label.disable,
+.radio_box2 input[type=radio]:disabled + label.disableOn {background-image:url("/static/sw/images/icon_radio_on_blue.png"); background-color: #006eb7;}
+/*green color*/
+.radio_box2.green input[type=radio] + label.on,
+.radio_box2.green input[type=radio]:checked  + label,
+.radio_box2.green input[type=radio] + label.disable,
+.radio_box2.green input[type=radio]:disabled + label.disableOn {background-image:url("/static/sw/images/icon_radio_on_green.png"); background-color: #649d59;}
+/*pink color*/
+.radio_box2.pink input[type=radio] + label.on,
+.radio_box2.pink input[type=radio]:checked  + label,
+.radio_box2.pink input[type=radio] + label.disable,
+.radio_box2.pink input[type=radio]:disabled + label.disableOn {background-image:url("/static/sw/images/icon_radio_on_pink.png"); background-color: #cb5d8a;}
+
+/*체크박스*/
+.check_box input[type=checkbox] + label {position:relative; display:inline-block; padding:0 2px 0 40px; margin-right: 15px; min-height:20px; color: #525252; line-height:31px;background:url("/static/sw/images/icon_check_off.png") no-repeat;cursor:pointer}
+.check_box input[type=checkbox] + label:last-child {margin-right: 0;}
+.check_box input[type=checkbox]:focus + label {outline: 2px solid #8fb1e8;}
+.check_box input[type=checkbox] + label.on, .check_box input[type=checkbox]:checked  + label {background:url("/static/sw/images/icon_check_on.png") no-repeat}
+.check_box input[type=checkbox] + label.disable, .check_box input[type=checkbox]:disabled + label {background:url("/static/sw/images/icon_check_off.png") no-repeat}
+ {background:url("/static/sw/images/icon_check_off.png") no-repeat;cursor:default}
+.check_box.blue input[type=checkbox] + label.on, .check_box.blue input[type=checkbox]:checked  + label {background:url("/static/sw/images/icon_check2_on.png") no-repeat}
+
+.inpbox {float: left; border: 1px solid #d0d0d0;}
+.inpbox input.txt:disabled {background: #e9e9e9;}
+.inpbox input.txt:disabled::-webkit-input-placeholder {color:#252525 !important; font-size: 18px;}
+.inpbox input.txt:disabled:-moz-placeholder {color:#252525 !important; font-size: 18px;}
+.inpbox input.txt:disabled::-moz-placeholder {color:#252525 !important; font-size: 18px;}
+.inpbox input.txt:disabled:-ms-input-placeholder {color:#252525 !important; font-size: 18px;}
+.optionbox {float: left; border: 1px solid #d0d0d0;}
+.optionbox select {color: #525252; background: url('/static/sw/images/icon_arrow4.png') right 10px center no-repeat #fff;}
+textarea {padding: 15px; width: 100%; border: 1px solid #d0d0d0;}
+
+/*일반게시판 검색바*/
+.board_top {overflow: hidden;}
+.board_top .totalcnt {position: relative; overflow: hidden; float: left; top: 15px; color:#777;}
+.board_top .totalcnt span {color: #000; font-weight: 600;}
+.board_top .boardsch {float: right; padding-bottom: 20px;}
+
+.boardlist_top {margin-bottom: 30px; border-top:1px solid #252525; border-bottom: 1px solid #c9d3d5; background: #e4f6fa; text-align: center;}
+.boardlist_top fieldset {overflow: hidden; display: inline-block; padding: 25px 15px; text-align: center;}
+.boardlist_top fieldset .inpbox {margin-right: 15px; width: 380px; height: 44px;}
+.boardlist_top fieldset .optionbox {margin-right: 15px; width: 180px; height: 44px;}
+.boardlist_top fieldset button {float: left; width: 120px; line-height: 44px; font-size: 16px; font-weight: 600; border-radius: 3px;}
+
+/*게시판 상단 카테고리 분류*/
+.boardlist_category {display: table; margin-bottom: 30px; table-layout: fixed; width: 100%; border: 1px solid #ddd;}
+.boardlist_category li {display: table-cell; border-right: 1px solid #ddd;}
+.boardlist_category li:last-child {border-right: 0;}
+.boardlist_category li button {width: 100%; height: 80px; color: #999; font-size: 20px;}
+.boardlist_category li.active {background: #006eb7;}
+.boardlist_category li.active button {color: #fff;}
+/*게시판(공지사항) 리스트 타입1*/
+.boardlist {clear:both; overflow:hidden; width: 100%; border-top:1px solid #252525;}
+.boardlist .new {float: left; margin-left: 15px; width: 60px; line-height: 30px; color: #fff; font-size: 12px; font-weight: 600; text-align: center; background: #252525; border-radius: 3px; text-transform: uppercase;}
+.boardlist .notice {display: inline-block; width: 60px; line-height: 30px; color: #fff; font-size: 14px; text-align: center; background: #006eb7; border-radius: 3px;}
+.boardlist .comment {display: inline-block; margin-left: 5px; color: #999;}
+.boardlist table {width:100%; table-layout:fixed;}
+.boardlist table thead th {position: relative; padding:0 5px; height: 100px; font-weight: 600; text-align: center; background: #f6f6f6;}
+.boardlist table tr {border-bottom:1px solid #d0d0d0; }
+.boardlist table tbody tr:hover {background: #f8fafb;}
+.boardlist table tbody td {position: relative; padding: 6px 5px; height: 80px; text-align:center;}
+.boardlist table tbody td.title {overflow:hidden; text-align: left;}
+.boardlist table tbody td.title a {overflow:hidden; display: block; float: left; max-width: calc(100% - 75px); font-size: 18px; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; vertical-align: middle; border-bottom: 1px solid #252525;}
+.boardlist table tbody td.date {font-size: 16px;}
+.boardlist table tbody .notice td {font-weight: 600;}
+.boardlist > ul.list {display: none;}
+.boardlist > ul.list > li {padding: 10px 0; border-bottom:1px solid #d0d0d0;}
+.boardlist > ul.list > li a {overflow: hidden; display: block;}
+.boardlist > ul.list > li .title {overflow: hidden; width: 100%;}
+.boardlist > ul.list > li .title p {overflow: hidden; float: left; max-width: calc(100% - 35px); text-overflow: ellipsis; white-space: nowrap;}
+.boardlist > ul.list > li .title .new {margin-left: 5px; width: 30px; line-height: 16px; font-size: 8px;}
+.boardlist > ul.list > li.notice_area .notice {float: left; margin-right: 5px; width: 40px; line-height: 20px; font-size: 11px;}
+.boardlist > ul.list > li.notice_area .title {float: left; width: calc(100% - 45px);}
+.boardlist > ul.list > li.notice_area .title p {max-width: 100%; font-weight: 600;}
+.boardlist > ul.list > li .subdivide {overflow: hidden; clear: both;}
+.boardlist > ul.list > li .subdivide li {float: left; margin-right: 10px; color: #525252; font-size: 11px;}
+.boardlist > ul.list > li .subdivide li:last-child {margin-right: 0;}
+
+/*댓글목록*/
+.commentlist {border-top: 1px solid #252525;}
+.commentlist .comment_write {overflow: hidden; padding: 10px 0; border-bottom: 1px solid #d0d0d0;}
+.commentlist .comment_write textarea {float: left; width: calc(100% - 140px); height: 90px;}
+.commentlist .comment_write button {float: left; margin-left: 10px; width: 130px; height: 90px; font-size: 16px; border-radius: 3px;}
+.commentlist table {position: relative; table-layout: fixed; width: 100%;}
+.commentlist table thead {position: absolute; width: 0; height: 0; font-size: 0; line-height: 0;}
+.commentlist table tr {border-bottom: 1px solid #d0d0d0;}
+.commentlist table tr td {padding: 10px; min-height: 64px; font-size: 16px; text-align: center;}
+.commentlist table tr td a {border-bottom: 1px solid #737373;}
+.commentlist table tr td .btn3 {width: 120px;}
+
+/*페이징*/
+.paging {overflow:hidden; margin-top:30px; text-align:center;}
+.paging .box {overflow:hidden; display: inline-block;}
+.paging .box span {overflow: hidden; float: left; display: block;}
+.paging .box span a {float: left; margin: 0 1px; width: 40px; height: 40px; color: #999; text-align:center; line-height: 37px; font-weight: 500; border: 1px solid #d0d0d0;}
+.paging .box span a:hover, .paging .box span a.on {color: #fff; background-color: #525252; border: 1px solid #525252;}
+.paging .box button {float: left; width: 40px; height: 40px; border: 1px solid #ccc; text-indent:-999px; font-size:0; background-repeat: no-repeat; background-position: 50%;}
+.paging .box button.btn-paging-first {margin-right: 5px; background-image:url('/static/sw/images/paging_first.png');}
+.paging .box button.btn-paging-pre {margin-right: 10px; background-image: url('/static/sw/images/paging_prev.png');}
+.paging .box button.btn-paging-next {margin-left: 10px; background-image: url('/static/sw/images/paging_next.png');}
+.paging .box button.btn-paging-last {margin-left: 5px; background-image: url('/static/sw/images/paging_last.png');}
+
+/*게시판 글쓰기*/
+.tablewrite {overflow: hidden;  border-top: 1px solid #252525;}
+.tablewrite.type2 {border-top: 1px solid #d0d0d0;}
+.tablewrite > li {overflow: hidden; border-bottom: 1px solid #d0d0d0; width: 100%}
+.tablewrite > li.half {width: 50%;float: left;}
+.tablewrite > li > dl {display: table; width: 100%; height: 100%; height: 60px;}
+.tablewrite > li > dl > dt, .tablewrite > li > dl > dd {overflow: hidden; display: table-cell; vertical-align: middle;}
+.tablewrite > li > dl > dt {padding: 10px 20px; width: 220px; font-weight: 600; background: #f6f6f6;}
+.tablewrite > li > dl > dt.bg {background: #e4f6fa;}
+.tablewrite > li > dl > dt span {padding-left: 15px; display: inline-block;}
+.tablewrite > li > dl > dt .point {position: relative; word-break: keep-all;}
+.tablewrite > li > dl > dt .point::after {content: '*'; position: absolute; top: 3px; left: 0; color: #e41741; font-weight: 400;}
+.tablewrite > li > dl > dt .ex {padding-left: 0; font-weight: 400;}
+.tablewrite > li > dl > dd {padding: 10px 20px;}
+
+.tablewrite > li > dl > dd#techMent,
+.tablewrite > li > dl > dd#nonTechMent{width:400px;}
+.tablewrite > li > dl > dd .inpbox {width: 100%; height: 44px;}
+.tablewrite > li > dl > dt .optionbox, .tablewrite > li > dl > dd .optionbox {width: 280px; max-width: 100%; height: 44px;}
+.tablewrite > li > dl > dd .text {display: block; float: left; margin: 0 10px; line-height: 44px;}
+.tablewrite > li > dl > dd .ex {display: block; float: left; margin-left: 15px; color: #999; font-size: 16px; line-height: 44px;}
+.tablewrite > li > dl > dd textarea {height: 150px;}
+.tablewrite > li > dl > dd select{border:1px solid #ccc; width:240px; height:42px; padding:0 10px; appearance:auto;}
+
+/*게시판 글쓰기*/
+.tablewrite > li > form > dl {display: table; table-layout: fixed; width: 100%; height: 100%; min-height: 60px;}
+.tablewrite > li > form > dl.type2_dl {height: auto;}
+.tablewrite > li > form > dl > dt, .tablewrite > li > form > dl > dd {overflow: hidden; display: table-cell; vertical-align: middle;}
+.tablewrite > li > form > dl > dt {padding: 10px 20px; width: 220px; font-weight: 600; background: #f6f6f6;}
+.tablewrite > li > form > dl > dt.bg {background: #e4f6fa;}
+.tablewrite > li > form > dl > dt span {padding-left: 15px; display: inline-block;}
+.tablewrite > li > form > dl > dt .point {position: relative;}
+.tablewrite > li > form > dl > dt .point::after {content: '*'; position: absolute; top: 3px; left: 0; color: #e41741; font-weight: 400;}
+.tablewrite > li > form > dl > dt .ex {padding-left: 0; font-weight: 400;}
+.tablewrite > li > form > dl > dd {padding: 10px 20px;}
+.tablewrite > li > form > dl > dd .inpbox {width: 100%; height: 44px;}
+.tablewrite > li > form > dl > dt .optionbox, .tablewrite > li > form > dl > dd .optionbox {width: 220px; max-width: 100%; height: 44px;}
+.tablewrite > li > form > dl > dd .text {display: block; float: left; margin: 0 10px; line-height: 44px;}
+.tablewrite > li > form > dl > dd .ex {display: block; float: left; margin-left: 15px; color: #999; font-size: 16px; line-height: 44px;}
+.tablewrite > li > form > dl > dd textarea {height: 150px;}
+/*우편번호*/
+.tablewrite > li > dl > dd .postcode {margin-bottom: 15px;}
+.tablewrite > li > dl > dd .postcode .inpbox {width: 230px;}
+.tablewrite > li > dl > dd .postcode button {margin-left: 15px;}
+.tablewrite > li > dl > dd .address {overflow: hidden;}
+.tablewrite > li > dl > dd .address .inpbox {margin-right: 15px; width: 320px;}
+.tablewrite > li > dl > dd .address .inpbox:last-child {margin-right: 0;}
+/*학교명검색*/
+.tablewrite > li > dl > dd .search {overflow: hidden; position: relative; float: left; width: 220px; max-width: 100%;}
+.tablewrite > li > dl > dd .search .inpbox input.txt {padding: 0 45px 0 15px;}
+.tablewrite > li > dl > dd .search .inpbox input.txt:disabled {background: #fff;}
+.tablewrite > li > dl > dd .search .btn_search {position: absolute; z-index: 10; right: 0; top: 0; width: 44px; height: 44px; border: 1px solid #d0d0d0; background: url('/static/sw/images/icon_search.png') center center no-repeat #f6f6f6;}
+/*학교명검색 기타 입력폼 포함*/
+.tablewrite > li > dl > dd.school .check_box {position: relative; float: left; margin: 0 15px 0 25px; top: 5px;}
+.tablewrite > li > dl > dd.school .inpbox {width: 220px;}
+/*달력*/
+.tablewrite > li > dl > dd .calendar {overflow: hidden;}
+.tablewrite > li > dl > dd .calendar .inpbox {position: relative; width: 180px;}
+.tablewrite > li > dl > dd .calendar .inpbox .ui-datepicker-trigger {position: absolute; right: -1px; top: -1px; width: 44px; height: 44px; border: 1px solid #d0d0d0; background: #f6f6f6;}
+.tablewrite > li > dl > dd .calendar.type2 {float: left;}
+.tablewrite > li > dl > dd .calendar.type2 .inpbox {width: 215px;}
+/*이메일*/
+.tablewrite > li > dl > dd .email {overflow: hidden;}
+.tablewrite > li > dl > dd .email .text {margin: 0 15px;}
+.tablewrite > li > dl > dd .email button {margin-left: 15px;}
+.tablewrite > li > dl > dd .email .optionbox {margin-left: 15px;}
+/*생년월일*/
+.tablewrite > li > dl > dd .birthday {overflow: hidden;}
+.tablewrite > li > dl > dd .birthday .optionbox.year {width: 100px;}
+.tablewrite > li > dl > dd .birthday .optionbox {width: 80px;}
+.tablewrite > li > dl > dd .birthday .text {margin: 0 15px 0 8px;}
+.tablewrite > li > dl > dd .birthday button {margin-left: 15px;}
+/*가입구분*/
+.tablewrite > li > dl > dd .type {overflow: hidden;}
+.tablewrite > li > dl > dd .type .radio_box {float: left;}
+.tablewrite > li > dl > dd .type .radio_box input[type=radio] + label {float: left; line-height: 44px;}
+.tablewrite > li > dl > dd .type .radio_box .optionbox {margin-right: 15px; width: 90px;}
+/*핸드폰인증*/
+.tablewrite > li > dl > dd .phon .inpbox {width: 230px;}
+.tablewrite > li > dl > dd .phon button {margin-left: 15px;}
+/*관심기술*/
+.tablewrite > li > dl > dd.technology {padding: 0;}
+.tablewrite > li > dl > dd.technology .list {padding: 12px 0 12px 20px; display: table; table-layout: fixed; width: 100%; border-bottom: 1px solid #d0d0d0;}
+.tablewrite > li > dl > dd.technology .list:last-child {border-bottom: 0;}
+.tablewrite > li > dl > dd.technology .list dt {display: table-cell; padding: 0 5px; width: 90px; color: #fff; font-size: 14px; font-weight: 600; text-align: center; vertical-align: middle; background: #00b4eb;}
+.tablewrite > li > dl > dd.technology .list dd {display: table-cell; padding-left: 25px;}
+.tablewrite > li > dl > dd.technology .list dd .check_box input[type=checkbox] + label {padding:0 2px 0 42px; margin: 6px 20px 6px 0;}
+/*연간매출*/
+.tablewrite > li > dl > dd .sales > li {overflow: hidden; margin-bottom: 20px;}
+.tablewrite > li > dl > dd .sales.txt > li {margin-bottom: 10px;}
+.tablewrite > li > dl > dd .sales > li:last-child {margin-bottom: 0;}
+.tablewrite > li > dl > dd .sales > li .optionbox, .tablewrite > li > dl > dd .sales > li .inpbox {width: 200px;}
+.tablewrite > li > dl > dd .sales > li .optionbox {margin-right: 20px;}
+.tablewrite > li > dl > dd .sales > li .inpbox input {text-align: right;}
+/*추가삭제*/
+.tablewrite > li > dl dd .btn_box button {position: relative; float: left; margin-left: 15px; width: 42px; height: 42px; border-radius: 3px; background-repeat: no-repeat; background-position: center center;}
+.tablewrite > li > dl dd .btn_box button.minus {border: 1px solid #525252}
+.tablewrite > li > dl dd .btn_box button.minus::after {content: ''; position: absolute; left: calc(50% - 12.5px); top: calc(50% - 1.5px); width: 25px; height: 3px; background: #525252;}
+.tablewrite > li > dl dd .btn_box button.plus {background-image: url('/static/sw/images/icon_plus.png'); background-color: #525252;}
+.tablewrite > li > dl dd .box {overflow: hidden;}
+.tablewrite > li > dl dd .box1 .inpbox {width: 70px;}
+.tablewrite > li > dl dd .box1 .inpbox.name {width: calc(100% - 110px);}
+.tablewrite > li > dl dd .box1 .text {margin: 0 10px;}
+.tablewrite > li > dl dd .box2 .optionbox {margin-right: 10px; width: 130px;}
+.tablewrite > li > dl dd .file {overflow: hidden; margin-bottom: 10px;}
+.tablewrite > li > dl dd .file:last-child {margin-bottom: 0;}
+.tablewrite > li > dl dd .file dt {float: left; width: 85px; line-height: 38px;}
+.tablewrite > li > dl dd .file dd {padding: 0; float: left; width: calc(100% - 85px);}
+.tablewrite > li > dl dd .file dd .text {line-height: 38px;}
+.tablewrite > li > dl dd .file dd button {top: 13px;}
+/*사진 첨부*/
+.tablewrite > li > dl dd.picture .file {overflow: hidden; margin-bottom: 0; float: left; width: 60%;}
+.tablewrite > li > dl dd.picture .file .btn_file {float: left; top: 3px;}
+.tablewrite > li > dl dd.picture .file .text {overflow: hidden; padding: 0 0 0 20px; float: left; width: calc(100% - 150px); white-space: nowrap; text-overflow: ellipsis;}
+.tablewrite > li > dl dd.picture .file .inpbox {float: left; width: calc(100% - 150px); border: 0;}
+.tablewrite > li > dl dd.picture .file .inpbox input {font-size: 16px;}
+.tablewrite > li > dl dd.picture .file .inpbox input:disabled {background: #fff;}
+.tablewrite > li > dl dd.picture .file .inpbox input::-webkit-input-placeholder {color:#999 !important; font-size: 16px;}
+.tablewrite > li > dl dd.picture .file .inpbox input:-moz-placeholder {color:#999 !important; font-size: 16px;}
+.tablewrite > li > dl dd.picture .file .inpbox input::-moz-placeholder {color:#999 !important; font-size: 16px;}
+.tablewrite > li > dl dd.picture .file .inpbox input:-ms-input-placeholder {color:#999 !important; font-size: 16px;}
+.tablewrite > li > dl dd.picture .file .btn_delete3 {position: relative; top: 5px;}
+.tablewrite > li > dl dd.picture .inpbox {width: 40%;}
+.tablewrite > li > dl dd.picture .btn_box {float: right;}
+/*이름입력*/
+.tablewrite > li > dl dd .name .inpbox {margin-right: 15px; width: 210px;}
+.tablewrite > li > dl dd .name .inpbox:last-child {margin-right: 0;}
+/*회원가입 입력*/
+.division.membership2 .tablewrite > li > dl > dd .inpbox {width: 230px;}
+
+/*연수생지원 서류첨부 상단 테이블*/
+.tablewrite > li > form > dl.type2 dt {width: 300px;}
+.tablewrite > li > form > dl.type2 dt .optionbox {width: 100%;}
+.tablewrite > li > form > dl.type2 dd .inpbox {width: calc(100% - 424px);}
+.tablewrite > li > form > dl.type2 dd .optionbox {margin-left: 15px; width: 140px;}
+.tablewrite > li > form > dl.type2 dd .btn_box {overflow: hidden; float: left;}
+.tablewrite > li > form > dl.type2 dd .btn_box button {position: relative; float: left; margin-left: 15px; width: 42px; height: 42px; border-radius: 3px; background-repeat: no-repeat; background-position: center center;}
+
+/* .tablewrite > li > form > dl.type2 dd .btn_box button {float: left; margin-left: 15px; width: 42px; height: 42px; border-radius: 3px; background-repeat: no-repeat; background-position: center center;} */
+.tablewrite > li > form > dl.type2 dd .btn_box button.minus {border: 1px solid #006eb7;}
+.tablewrite > li > form > dl.type2 dd .btn_box button.minus::after {background: #006eb7;}
+.tablewrite > li > form > dl.type2 dd .btn_box button.minus::after {content: ''; position: absolute; left: calc(50% - 12.5px); top: calc(50% - 1.5px); width: 25px; height: 3px; background: #006eb7;}
+.tablewrite > li > form > dl.type2 dd .btn_box button.plus {background-color: #006eb7;}
+.tablewrite > li > form > dl.type2 dd .btn_box button.plus {background-image: url('/static/sw/images/icon_plus.png'); background-color: #525252;}
+/*팀원조회 조회 입력폼*/
+.tablewrite > li > dl.type3 dt {background: #e4f6fa;}
+
+/*일반게시판 상세*/
+.board_detail {display: block; position: relative; width: 100%; overflow: hidden;}
+.board_detail .title_box {padding-bottom: 30px; text-align: center;}
+.board_detail .title_box h3 {margin-bottom: 25px; font-size: 24px; font-weight: 600;}
+.board_detail .title_box .list {overflow: hidden; display: inline-block;}
+.board_detail .title_box .list li {float: left; color: #999; font-size: 14px;}
+.board_detail .title_box .list li.line {margin: 0 25px; font-size: 12px;}
+.board_detail .title_box .select_text {display: inline-block; margin-right: 15px; color: #525252;}
+.board_detail .title_box .dropdown {display: inline-block;}
+.board_detail .write, .board_detail .detail {border-top: 1px solid #252525;}
+.board_detail .content, .board_detail .edit, .board_detail .write > li, .board_detail .file > li {border-bottom: 1px solid #d0d0d0;}
+.board_detail .state {margin-bottom: 10px; text-align: right;}
+.board_detail .state .btn7 {display: inline-block;}
+.board_detail .content {padding: 30px 30px 80px 30px;}
+.board_detail .content img {display: block; max-width: 100%; margin-left: auto; margin-right: auto;}
+.board_detail .content .thumbnail_box {margin-bottom: 30px; text-align: center;}
+.board_detail .content .thumbnail_box img {display: inline-block;}
+.board_detail .file li {overflow: hidden; padding: 20px; line-height: 36px;}
+.board_detail .file dd {overflow: hidden; line-height: 36px;}
+.board_detail .file .text {font-size: 16px;}
+.board_detail .file .text span {display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.board_detail .file a {overflow: hidden; display: inline-block; max-width: 100%; line-height: 26px; border-bottom: 1px solid #252525; text-overflow: ellipsis; white-space: nowrap;}
+.board_detail .file.list {background: #f9f9f9;}
+.board_detail .file.attach .btn_file {margin-right: 20px; float: left;}
+.board_detail .file.attach .text {float: left; max-width: calc(100% - 163px);}
+.board_detail .file.attach button {position: relative; float: left; margin-left: 10px; top: 12px;}
+.board_detail .comment {display: table; table-layout: fixed; width: 100%; border-bottom: 1px solid #d0d0d0;}
+.board_detail .comment dt {display: table-cell; width: 70px; text-align: center; font-weight: 600; vertical-align: middle;}
+.board_detail .comment dd {display: table-cell; padding: 20px 0; vertical-align: middle;}
+.board_detail .comment dd .inpbox {width: 100%; height: 44px;}
+.board_detail .comment dd .delete {padding-right: 25px; color: #525252; font-size: 16px; background: url('/static/sw/images/icon_delete.png') right 0 center no-repeat;}
+.board_detail .comment dd .btn3 {width: 120px;}
+.board_detail .comment dd.text {padding-left: 30px;}
+.board_detail .comment dd.button {width: 155px; text-align: center;}
+/*일반게시판 상세 입력폼*/
+.board_detail .write > li {overflow: hidden; padding: 15px 20px;}
+.board_detail .write > li .inpbox, .board_detail .write > li .optionbox {width: 100%; height: 44px;}
+.board_detail .write > li .box {overflow: hidden; }
+.board_detail .write > li .box .inpbox {position: relative; width: calc(100% - 200px);}
+.board_detail .write > li .box .inpbox.calendar {margin-left: 20px; width: 180px;}
+.board_detail .write > li .box .inpbox.calendar .ui-datepicker-trigger {position: absolute; right: -1px; top: -1px; width: 44px; height: 44px; border: 1px solid #d0d0d0; background-color: #f6f6f6; background-repeat: no-repeat; background-position: center center; background-image: url('/static/sw/images/icon_calendar.png');}
+.board_detail .edit {padding: 15px 20px;}
+.board_detail .btn_bottom p {display: inline-block; color: #999; font-size: 16px;}
+/*회의실 예약*/
+.board_detail .write > li.title label {float: left; width: 60px; color: #006eb7; font-weight: 600; line-height: 44px;}
+.board_detail .write > li.title .inpbox, .board_detail .write > li.title textarea {float: left; width: calc(100% - 60px);}
+.board_detail .write > li.booking {padding: 0;}
+.board_detail .write > li.booking > dl {overflow: hidden; display:flex; display:-webkit-flex;flex-wrap:wrap;-webkit-flex-wrap:wrap; width: 100%;}
+.board_detail .write > li.booking > dl > .calendar_area {padding: 40px 20px 0; float: left; width: 40%;}
+.board_detail .write > li.booking > dl > .calendar_area h3 {color: #006eb7; font-weight: 600; font-size: 18px;}
+.board_detail .write > li.booking > dl > .calendar_area .month {padding: 30px 0; text-align: right;}
+.board_detail .write > li.booking > dl > .calendar_area .month h4 {display: inline-block; width: 160px; font-size: 28px; text-align: center;}
+.board_detail .write > li.booking > dl > .calendar_area .month button {position: relative; display: inline-block; top: -5px; width: 20px; height: 30px; background-repeat: no-repeat; background-position: center center;}
+.board_detail .write > li.booking > dl > .calendar_area .month button.prev {background-image: url('/static/sw/images/arrow_prev3.png');}
+.board_detail .write > li.booking > dl > .calendar_area .month button.next {background-image: url('/static/sw/images/arrow_next3.png');}
+.board_detail .write > li.booking > dl > .calendar_area .calendar_box li.week {height: 40px;}
+.board_detail .write > li.booking > dl > .calendar_area .calendar_box li .box {height: 70px; cursor: pointer;}
+.board_detail .write > li.booking > dl > .calendar_area .calendar_box li.disabled .box {cursor: inherit;}
+.board_detail .write > li.booking > dl > .calendar_area .calendar_box li.choice .box {border: 3px solid #00b4eb;}
+.board_detail .write > li.booking > dl > dd {padding: 30px 15px; float: left; width: 60%; background: #f7fafb; border-left: 1px solid #d0d0d0;}
+.board_detail .write > li.booking > dl > dd > dl {overflow: hidden;}
+.board_detail .write > li.booking > dl > dd > dl dt {margin-bottom: 10px; color: #006eb7; font-weight: 600;}
+.board_detail .write > li.booking > dl > dd > dl dt span {margin-left: 5px; color: #525252; font-size: 16px; font-weight: 500;}
+.board_detail .write > li.booking > dl > dd > dl.time {margin-bottom: 30px; line-height: 44px;}
+.board_detail .write > li.booking > dl > dd > dl.time dt {margin-bottom: 0; float: left; width: 110px;}
+.board_detail .write > li.booking > dl > dd > dl.time dd {float: left; width: calc(100% - 110px);}
+.board_detail .write > li.booking > dl > dd > dl.time dd .optionbox {margin-right: 10px; width: 78px;}
+.board_detail .write > li.booking > dl > dd > dl.time dd .text {float: left; margin-right: 10px;}
+.board_detail .write > li.booking > dl > dd > dl.time dd .btn3 {float: left;}
+.board_detail .write > li.booking > dl > dd > dl dd .room_list {overflow: hidden; margin-bottom: 12px; width: 100%; border-left: 1px solid #d0d0d0;}
+.board_detail .write > li.booking > dl > dd > dl dd .room_list li {float: left; width: 9.091%; height: 60px; border-right: 1px solid #d0d0d0; background: #fff; border-right: 1px solid #d0d0d0; border-bottom: 1px solid #d0d0d0;  border-top: 1px solid #d0d0d0; border-top: 1px solid #d0d0d0;}
+.board_detail .write > li.booking > dl > dd > dl dd .room_list li:nth-last-child(-n+6) {border-top: 0;}
+.board_detail .write > li.booking > dl > dd > dl dd .room_list li button {width: 100%; height: 100%; color: #999; font-size: 16px; line-height: 20px;}
+.board_detail .write > li.booking > dl > dd > dl dd .room_list li.possible button {color: #fff; background: #00b4eb;}
+.board_detail .write > li.booking > dl > dd > dl dd .room_list li.disabled button {background: #e9e9e9;}
+.board_detail .write > li.booking > dl > dd > dl dd .room_list li.disabled button:disabled {border: 0;}
+.board_detail .write > li.booking > dl > dd > dl dd .dropdown {display: none; width: 100%; margin-bottom: 10px;}
+.board_detail .write > li.booking > dl > dd > dl dd .dropdown > button {padding: 0 10px; height: 40px; background-color: #fff; background-image: url('/static/sw/images/icon_arrow4.png'); background-position: right 10px center;}
+.board_detail .write > li.booking > dl > dd > dl dd .dropdown > button span {font-size: 14px;}
+.board_detail .write > li.booking > dl > dd > dl dd .dropdown .dropdown-menu {top: 39px;}
+.board_detail .write > li.booking > dl > dd > dl dd .dropdown .dropdown-menu li button {display: block; padding: 0 10px; width: 100%; line-height: 40px; text-align: left;}
+.board_detail .write > li.booking > dl > dd > dl dd .dropdown .dropdown-menu li.possible button {color: #fff; background: #00b4eb;}
+.board_detail .write > li.booking > dl > dd > dl dd .dropdown .dropdown-menu li.disabled button {color: #999; background: #e9e9e9;}
+.board_detail .write > li.booking > dl > dd > dl dd .minute {overflow: hidden; margin-bottom: 20px;}
+.board_detail .write > li.booking > dl > dd > dl dd .minute li {position: relative; float: left; width: calc(20% - 16px); margin: 8px 0;}
+.board_detail .write > li.booking > dl > dd > dl dd .minute li:nth-child(6n) {width: 80px;}
+.board_detail .write > li.booking > dl > dd > dl dd .minute li button {width: 80px; height: 30px; font-size: 14px; font-weight: 500; border-radius: 3px; border-width: 1px; border-style: solid; border-color: #999;}
+.board_detail .write > li.booking > dl > dd > dl dd .minute li.disabled button:disabled {color: #999; background-color: transparent;}
+.board_detail .write > li.booking > dl > dd > dl dd .minute li.choice button {color: #d03473; border-color: #d03473;}
+.board_detail .write > li.booking > dl > dd > dl dd .completion {padding: 10px 20px; font-size: 16px; background: #e9e9e9;}
+.board_detail .write > li.booking > dl > dd > dl dd .ex {padding-top: 10px; padding-left: 15px; color: #006eb7; font-size: 14px; text-indent: -15px; word-break: keep-all;}
+.board_detail .byte {text-align: right; color: #999; font-size: 14px;}
+
+/*갤러리형 게시판*/
+.gallaylist {overflow: hidden; display:flex; display:-webkit-flex;flex-wrap:wrap;-webkit-flex-wrap:wrap; width: 100%;}
+.gallaylist > li {overflow: hidden; position: relative; float: left; margin: 20px 27px 20px 0; width: calc(25% - 20.25px);}
+.gallaylist > li:nth-child(4n) {margin-right: 0;}
+.gallaylist > li a {display: block;}
+.gallaylist > li a .img_box {overflow: hidden; position: relative; margin-bottom: 15px; width: 340px; height: 340px; border: 1px solid #d0d0d0;}
+.gallaylist > li a .img_box img {position: absolute; left: 50%; transform: translateX(-50%); top: 0; width: auto; height: auto; max-height: 100%;}
+.gallaylist > li a h3 {overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; margin-bottom: 15px; height: 60px; -webkit-line-clamp: 2; line-height: 30px;}
+.gallaylist > li a .date {color: #999; font-size: 16px;}
+
+/*상세보기 일반 테이블 기본*/
+.tablebasic {clear:both; overflow:hidden; border-top: 1px solid #252525;}
+.tablebasic table {width:100%; table-layout:fixed;}
+.tablebasic table tr {border-bottom: 1px solid #d0d0d0;}
+.tablebasic table th, .tablebasic table td {text-align: center; line-height: 26px;}
+.tablebasic table th {padding: 15px 10px; background: #f6f6f6;}
+.tablebasic table td {padding: 15px 10px;}
+/*상세보기 일반 테이블 기본 (세로)*/
+.tablebasic {clear:both; overflow:hidden; border-top: 1px solid #252525;}
+.tablebasic table.vertical_type {width:100%; table-layout:fixed; border-bottom: 1px solid #cecece;}
+.tablebasic table.vertical_type tr {border-bottom: 1px solid #d0d0d0;border-bottom: 1px solid #d0d0d0;}
+.tablebasic table.vertical_type th, .tablebasic table.vertical_type td {text-align: left;}
+.tablebasic table.vertical_type th {padding: 15px 10px 15px 20px; width: 200px;}
+.tablebasic table.vertical_type td {padding: 15px 20px;}
+.tablebasic table td .box_type h4 {color: #006eb7}
+.tablebasic table td .box_type .list_type > li {font-size: 16px;}
+.tablebasic table tr th.point {background-color: #cddfec; border: 3px solid #f1a0ab; border-bottom: 0;}
+.tablebasic table tr td.point {background-color: #e8f5fe; border-left: 3px solid #f1a0ab; border-right: 3px solid #f1a0ab;}
+.tablebasic table tr td.point.state {color: #e41741; font-weight: 600;}
+.tablebasic table tr:last-child td.point {border-bottom: 3px solid #f1a0ab;}
+.tablebasic.mobile_only {border-top: 0;}
+.tablebasic.mobile_only .list_type dl dt {float: none; width: 100%; letter-spacing: 0 !important;}
+.tablebasic.mobile_only .list_type dl dt::after {display: none;}
+.tablebasic.mobile_only .list_type dl dd {float: none; padding-left: 0; width: 100%;}
+.tablebasic.mobile_only .list_type li.point {padding-left: 20px; border: 3px solid #f1a0ab; background: #e8f5fe;}
+.tablebasic.mobile_only .list_type li.point::after {left: 10px;}
+.tablebasic.mobile_only .list_type li.point dl dt span {color: #e41741; font-weight: 600;}
+
+
+/*상단버튼*/
+.btn_top {margin: 0 0 20px; height: 50px;}
+.btn_top::before {content: ''; display: block; clear: both;}
+.btn_top .left {float: left;}
+.btn_top .left .dropdown, .dropup {width: 220px;}
+.btn_top .left .dropdown > button {background: url('/static/sw/images/icon_arrow4.png') right 15px center no-repeat;}
+.btn_top .left .dropdown:hover > button {border: 1px solid #d0d0d0;}
+.btn_top .left .dropdown-menu {border: 1px solid #d0d0d0;}
+.btn_top .left .dropdown-menu > li {border-bottom: 0;}
+.btn_top .left .dropdown-menu > li > a {line-height: 40px;}
+.btn_top .right {float: right;}
+.btn_top button {margin-left: 15px;}
+.btn_top button:first-child {margin-left: 0;}
+/*하단버튼*/
+.btn_bottom {overflow: hidden; margin: 15px 0 20px;}
+.division > .btn_bottom {margin-top: 50px;}
+.btn_bottom .left {overflow: hidden; float: left;}
+.btn_bottom .left button.nav {float: left; width: 100px; height: 80px; border: 1px solid #252525; background-position: center center; background-repeat: no-repeat;}
+.btn_bottom .right {float: right;}
+.btn_bottom button {margin-left: 15px;}
+.btn_bottom button:first-child {margin-left: 0;}
+.btn_bottom .text {margin-top: 20px; color: #ea5b25; font-size: 14px; text-align: center;}
+
+@media screen and (max-width:1200px) {
+	/*게시판 글쓰기*/
+    .tablewrite > li > dl > dt {padding: 20px 10px; width: 140px;}
+    .tablewrite > li > dl > dd {padding: 20px;}
+    .tablewrite > li > dl > dt .ex {padding-left: 15px;}
+    .membership2 .tablewrite > li > dl > dd .email .inpbox, .tablewrite > li > dl > dd .email .optionbox {width: 190px;}
+
+    /*갤러리형 게시판*/
+    .gallaylist > li {margin: 20px 0; width: 33.33%;}
+    .gallaylist > li a {padding: 0 10px;}
+    .gallaylist > li a .img_box {margin: 0 auto 15px;}
+}
+@media screen and (max-width:1024px) {
+    /*셀렉박스가 하나 더 있는 경우*/
+    .boardlist_top fieldset.type2 {display: block;}
+    .boardlist_top fieldset.type2 .inpbox {width: calc(100% - 135px);}
+    .boardlist_top fieldset.type2 .optionbox {margin-bottom: 15px; width: calc(50% - 7.5px);}
+    .boardlist_top fieldset.type2 .optionbox:nth-child(2) {margin-right: 0;}
+
+    /*일반게시판 상세*/
+    .board_detail .title_box {padding-bottom: 20px;}
+    .board_detail .content {padding: 30px 30px 80px 30px;}
+    /*달력*/
+    .tablewrite > li > dl > dd .calendar .inpbox {position: relative; width: 160px;}
+    .tablewrite > li > dl > dd .calendar .text {margin: 0 10px;}
+    .tablewrite > li > dl > dd .calendar .optionbox {margin-left: 5px; width: 92px;}
+    /*회의실 예약*/
+    .board_detail .write > li.booking > dl > .calendar_area {padding: 20px 0; float: none; width: 100%;}
+    .board_detail .write > li.booking > dl > .calendar_area .month {padding: 20px 0;}
+    .board_detail .write > li.booking > dl > dd {padding: 20px 10px; float: none; width: 100%; border-top: 1px solid #d0d0d0; border-left: 0;}
+
+    /*댓글목록*/
+    .commentlist table tr td .btn3 {width: 80px;}
+    /*게시판 글쓰기*/
+    .tablewrite > li > dl > dd .ex {clear: both; float: none; margin-left: 0; padding-top: 10px; line-height: 20px;}
+    /*우편번호*/
+    .tablewrite > li > dl > dd .address .inpbox {margin-right: 15px; width: calc(50% - 8px);}
+    /*이메일*/
+    .tablewrite > li > dl > dd .email .text {margin: 0 10px;}
+    .tablewrite > li > dl > dd .email button {margin-left: 0; width: 100%;}
+    .tablewrite > li > dl > dd .email .inpbox {width: calc(50% - 18.6px) !important;}
+    .tablewrite > li > dl > dd .email .optionbox {margin: 10px 0; width: 100%;}
+    .tablewrite > li > dl dd .box2 .optionbox {margin-right: 0; margin-bottom: 10px; width: 100%;}
+    .tablewrite > li > dl dd .box2 button {width: 100%;}
+    /*학교명검색 기타 입력폼 포함*/
+    .tablewrite > li > dl > dd.school > .inpbox {width: calc(100% - 370px);}
+    /*연수생지원 서류첨부 상단 테이블*/
+    .tablewrite > li > dl.type2 dt {width: 200px;}
+    .tablewrite > li > dl.type2 dd .inpbox {margin-bottom: 10px; width: 100%;}
+    .tablewrite > li > dl.type2 dd .optionbox {margin-left: 10px; width: calc(50% - 57px);}
+    .tablewrite > li > dl.type2 dd .optionbox:nth-child(2) {margin-left: 0;}
+    .tablewrite > li > dl.type2 dd .btn_box button {margin-left: 10px;}
+    /*사진 첨부*/
+    .tablewrite > li > dl dd.picture {position: relative;}
+    .tablewrite > li > dl dd.picture .file {margin-bottom: 10px; float: none; width: 100%;}
+    .tablewrite > li > dl dd.picture .file .btn_file {top: 0;}
+    .tablewrite > li > dl dd.picture .file .inpbox {height: 38px;}
+    .tablewrite > li > dl dd.picture .file .btn_delete3 {top: 2px;}
+    .tablewrite > li > dl dd.picture .inpbox {width: 100%;}
+    .tablewrite > li > dl dd.picture .btn_box {position: absolute; float: none; right: 0; top: 50%; transform: translateY(-50%); width: 42px;}
+    .tablewrite > li > dl dd.picture .btn_box button {margin-left: 0; margin-bottom: 10px;}
+    .tablewrite > li > dl dd.picture .btn_box button:last-child {margin-bottom: 0;}
+    /*이름입력*/
+    .tablewrite > li > dl dd .name .inpbox {width: 145px;}
+
+    /*상세보기 일반 테이블 기본 (세로)*/
+    .tablebasic table.vertical_type th {padding:20px 10px; width: 220px;}
+    .tablebasic table.vertical_type td {padding:20px 10px;}
+
+    /*하단버튼*/
+    .btn_bottom .left button {width: 70px; height: 55px;}
+
+    /*갤러리형 게시판*/
+    .gallaylist > li a .img_box {width: 200px; height: 200px;}
+
+}
+@media screen and (min-width:320px) and (max-width:784px){
+  .tablewrite > li > dl > dd select{width:100px;}
+	.inpbox input.txt:disabled::-webkit-input-placeholder {font-size: 16px;}
+    .inpbox input.txt:disabled:-moz-placeholder {font-size: 16px;}
+    .inpbox input.txt:disabled::-moz-placeholder {font-size: 16px;}
+    .inpbox input.txt:disabled:-ms-input-placeholder {font-size: 16px;}
+
+    /*기본 blue color*/
+    .radio_box2 input[type=radio] + label {padding-left: 30px; margin: 5px 10px 5px 0; width: 90px; font-size: 14px; line-height:35px; background-position: 10px center;}
+
+    /*체크박스*/
+    .check_box input[type=checkbox] + label {padding:0 2px 0 30px; line-height:20px; background-size: 20px;}
+    .check_box input[type=checkbox] + label.on, .check_box input[type=checkbox]:checked  + label {background-size: 20px;}
+    .check_box.blue input[type=checkbox] + label.on, .check_box.blue input[type=checkbox]:checked  + label {background-size: 20px;}
+
+    .boardlist_top {margin-bottom: 20px;}
+    .boardlist_top fieldset {width: 100%;}
+    .boardlist_top fieldset .inpbox {margin-right: 10px; width: calc(100% - 200px); height: 44px;}
+    .boardlist_top fieldset .optionbox {margin-right: 10px; width: 120px;}
+    .boardlist_top fieldset button {width: 60px;}
+    /*셀렉박스가 하나 더 있는 경우*/
+    .boardlist_top fieldset.type2 .inpbox {width: calc(100% - 70px);}
+    .boardlist_top fieldset.type2 .optionbox {margin-bottom: 10px; width: calc(50% - 5px);}
+
+    /*게시판 상단 카테고리 분류*/
+    .boardlist_category li button {height: 50px;}
+
+    /*게시판(공지사항) 리스트 타입1*/
+    .boardlist table {display: none;}
+    .boardlist > ul.list {display: block;}
+
+    /*댓글목록*/
+    .commentlist table tr td {min-height: 44px; font-size: 14px; line-height: 18px;}
+    .commentlist table tr td a {font-size: 14px;}
+    .commentlist table tr td .btn3 {width: 60px;}
+
+
+    /*게시판 글쓰기*/
+    .tablewrite.mb50 {margin-bottom: 30px !important;}
+    .tablewrite > li > dl {min-height: auto;}
+    .tablewrite > li > dl > dt {padding: 10px; width: 120px;}
+    .tablewrite > li > dl > dt .point {margin-right: 2px;}
+    .tablewrite > li > dl > dd {padding: 10px;}
+    .tablewrite > li > dl > dd .inpbox {height: 35px;width: calc(50% - 17px);}
+    .division.membership2 .tablewrite > li > dl > dd .inpbox {height: 35px;width: calc(50% - 17px);}
+    .tablewrite > li > dl > dt .optionbox, .tablewrite > li > dl > dd .optionbox {height: 35px;}
+    .tablewrite > li > dl > dd .text {line-height: 35px;}
+    .tablewrite > li > dl > dd .ex {padding-top: 5px; font-size: 13px;}
+    /*우편번호*/
+    .tablewrite > li > dl > dd .postcode {margin-bottom: 10px;}
+    .tablewrite > li > dl > dd .postcode button {margin-left: 10px;}
+    .tablewrite > li > dl > dd .address .inpbox {margin-right: 10px; width: calc(50% - 5px);}
+    /*학교명검색*/
+    .tablewrite > li > dl > dd .search .inpbox input.txt {padding: 0 35px 0 10px;}
+    .tablewrite > li > dl > dd .search .btn_search {width: 35px; height: 35px; background-size: 18px;}
+    /*달력*/
+    .tablewrite > li > dl > dd .calendar .inpbox .ui-datepicker-trigger {width: 35px; height: 35px;}
+    .tablewrite > li > dl > dd .calendar .inpbox .ui-datepicker-trigger img {width: 19px;}
+    .tablewrite > li > dl > dd .calendar .text {margin: 0 10px;}
+    .tablewrite > li > dl > dd .calendar.type2 {width: calc(50% - 15px);}
+    .tablewrite > li > dl > dd .calendar.type2 .inpbox {width: 100%;}
+    /*가입구분*/
+    .tablewrite > li > dl > dd .type .radio_box input[type=radio] + label {margin-right: 10px; line-height: 35px;}
+    .tablewrite > li > dl > dd .type .radio_box .optionbox {margin-right: 10px; width: 90px;}
+    /*관심기술*/
+    .tablewrite > li > dl > dd.technology .list {padding: 12px 0 12px 10px;}
+    .tablewrite > li > dl > dd.technology .list dd {padding-left: 10px;}
+    .tablewrite > li > dl > dd.technology .list dd .check_box input[type=checkbox] + label {padding:0 2px 0 30px; margin: 6px 10px 6px 0; font-size: 15px;}
+    /*연간매출*/
+    .tablewrite > li > dl > dd .sales > li {margin-bottom: 10px;}
+    .tablewrite > li > dl > dd .sales > li .optionbox, .tablewrite > li > dl > dd .sales > li .inpbox {width: 175px;}
+    .tablewrite > li > dl > dd .sales > li .optionbox {margin-right: 10px;}
+    /*추가삭제*/
+    .tablewrite > li > dl dd .btn_box button {margin-left: 10px; width: 35px; height: 35px;}
+    /*연수생지원 서류첨부 상단 테이블*/
+    .tablewrite > li > dl.type2 dd .optionbox {width: calc(50% - 50px);}
+    .tablewrite > li > dl.type2 dd .btn_box button {width: 35px; height: 35px; background-size: 20px;}
+    .tablewrite > li > dl.type2 dd .btn_box button.minus::after {width: 20px; height: 2px; left: calc(50% - 10px);}
+    /*사진 첨부*/
+    .tablewrite > li > dl dd.picture .file .btn_delete3 {top: 5px;}
+
+    .board_detail .comment dt {width: 50px;}
+    .board_detail .comment dd {padding: 10px 0;}
+    .board_detail .comment dd .inpbox {height: 35px;}
+    .board_detail .comment dd .delete {padding-right: 20px;}
+    .board_detail .comment dd .btn3 {width: 60px;}
+    .board_detail .comment dd.text {padding-left: 10px;}
+    .board_detail .comment dd.button {width: 70px;}
+
+    /*일반게시판 상세 입력폼*/
+    .board_detail .write > li .inpbox, .board_detail .write > li .optionbox {height: 35px;}
+    .board_detail .write > li .box .inpbox {position: relative; width: calc(100% - 200px);}
+    .board_detail .write > li .box .inpbox.calendar {margin-left: 20px; width: 180px;}
+    .board_detail .write > li .box .inpbox.calendar .ui-datepicker-trigger {width: 35px; height: 35px;}
+
+    /*회의실 예약*/
+    .board_detail .write > li.title label {width: 40px; line-height: 35px;}
+    .board_detail .write > li.title .inpbox, .board_detail .write > li.title textarea {width: calc(100% - 40px);}
+    .board_detail .write > li.booking > dl > dd > dl dt span {margin-left: 5px; font-size: 14px;}
+    .board_detail .write > li.booking > dl > dd > dl.time {margin-bottom: 20px; line-height: 35px;}
+    .board_detail .write > li.booking > dl > dd > dl.time dt {width: 90px;}
+    .board_detail .write > li.booking > dl > dd > dl.time dd {width: calc(100% - 90px);}
+    .board_detail .write > li.booking > dl > dd > dl dd .room_list li {height: 40px;}
+    .board_detail .write > li.booking > dl > dd > dl dd .room_list li button {font-size: 13px; line-height: 16px;}
+    .board_detail .write > li.booking > dl > dd > dl dd .minute {margin-bottom: 10px;}
+    .board_detail .write > li.booking > dl > dd > dl dd .minute li {margin: 5px 0;}
+    .board_detail .write > li.booking > dl > dd > dl dd .minute li button {font-size: 13px;}
+    .board_detail .write > li.booking > dl > dd > dl dd .completion {padding: 10px; font-size: 13px;}
+
+    /*상세보기 일반 테이블 기본 (세로)*/
+    .tablebasic table.vertical_type th {width: 130px;}
+
+    /*상단버튼*/
+    .btn_top {margin: 0 0 10px; height: 40px;}
+    .btn_top .left .dropdown > button {height: 40px}
+    .btn_top .left .dropdown-menu {top: 39px;}
+    .btn_top .left .dropdown-menu > li > a {line-height: 30px;}
+    .btn_top button {margin-left: 5px;}
+    /*하단버튼*/
+    .btn_bottom button {margin-left: 2px;}
+
+    /*갤러리형 게시판*/
+    .gallaylist > li {width: 50%;}
+}
+@media screen and (min-width:320px) and (max-width:640px){
+    input.txt, .optionbox select {padding: 0 5px;}
+    .optionbox select {background-size: 10px; background-position: right 5px center;}
+
+    .boardlist_top fieldset {padding: 15px 10px;}
+    .boardlist_top fieldset .inpbox {width: calc(100% - 140px); height: 30px;}
+    .boardlist_top fieldset .optionbox {width: 80px; height: 30px;}
+    .boardlist_top fieldset button {width: 40px; height: 30px; line-height: 30px; font-size: 12px;}
+    /*셀렉박스가 하나 더 있는 경우*/
+    .boardlist_top fieldset.type2 .inpbox {width: calc(100% - 50px);}
+
+    /*게시판 상단 카테고리 분류*/
+    .boardlist_category {margin-bottom: 20px;}
+    .boardlist_category li button {font-size: 16px;}
+
+    /*페이징*/
+    .paging {margin-top:20px;}
+    .paging .box span a {width: 28px; height: 28px; line-height: 25px;}
+    .paging .box button {width: 28px; height: 28px;}
+    .paging .box button.btn-paging-first {margin-right: 2px;}
+    .paging .box button.btn-paging-pre {margin-right: 5px;}
+    .paging .box button.btn-paging-next {margin-left: 5px;}
+    .paging .box button.btn-paging-last {margin-left: 2px;}
+
+    .division > .btn_bottom {margin-top: 30px;}
+
+    /*우편번호*/
+    .tablewrite > li.half {width: 100%;}
+    .tablewrite > li > dl > dd .postcode .inpbox {width: 140px;}
+    .tablewrite > li > dl > dd .address .inpbox {margin-right: 0; margin-bottom: 10px; width: 100%;}
+    .tablewrite > li > dl > dd .address .inpbox:last-child {margin-bottom: 0;}
+    /*달력*/
+    .tablewrite > li > dl > dd .calendar .inpbox {width: calc(50% - 10px);}
+    .tablewrite > li > dl > dd .calendar .text {margin: 0 5px;}
+    .tablewrite > li > dl > dd .calendar.type2 {width: calc(100% - 30px);}
+    .tablewrite > li > dl > dd .calendar.type2:first-child .inpbox {margin-bottom: 10px;}
+    /*생년월일*/
+    .tablewrite > li > dl > dd .birthday .optionbox.year {width: 60px;}
+    .tablewrite > li > dl > dd .birthday .optionbox {width: 43px;}
+    .tablewrite > li > dl > dd .birthday .text {margin: 0 5px;}
+    .tablewrite > li > dl > dd .birthday .text:last-child {margin: 0 0 0 5px;}
+    /*가입구분*/
+    .tablewrite > li > dl > dd .type .radio_box .optionbox {width: 55px;}
+    /*이메일*/
+    .tablewrite > li > dl > dd .email .text {margin: 0 4px;}
+    .tablewrite > li > dl > dd .email .inpbox {width: calc(50% - 12.2px) !important;}
+    .tablewrite > li > dl > dd .email .optionbox {margin: 5px 0;}
+    /*핸드폰인증*/
+    .tablewrite > li > dl > dd .phon .inpbox {width: 140px;}
+    .tablewrite > li > dl > dd .phon button {margin-left: 10px;}
+    /*핸드폰인증*/
+    .division.membership2 .tablewrite > li > dl > dd .phon .inpbox {width: calc(100% - 98px);}
+    /*관심기술*/
+    .tablewrite > li > dl > dd.technology .list {display: block;}
+    .tablewrite > li > dl > dd.technology .list dt {display: block; padding: 3px 5px; margin-bottom: 5px; width: 100%; font-size: 12px;}
+    .tablewrite > li > dl > dd.technology .list dd {display: block; padding-left: 0;}
+    .tablewrite > li > dl > dd.technology .list dd .check_box input[type=checkbox] + label {padding:0 2px 0 25px; margin: 3px 10px 3px 0; font-size: 12px;}
+    /*연간매출*/
+    .tablewrite > li > dl > dd .sales > li {position: relative;}
+    .tablewrite > li > dl > dd .sales > li .optionbox, .tablewrite > li > dl > dd .sales > li .inpbox {float: none; width: calc(100% - 40px);}
+    .tablewrite > li > dl > dd .sales > li .optionbox {margin-right: 0; margin-bottom: 5px;}
+    .tablewrite > li > dl > dd .sales > li .btn_box {position: absolute; right: 0; top: 0; width: 35px;}
+    .tablewrite > li > dl > dd .sales > li .btn_box button {float: none; margin-left: 0; margin-bottom: 5px; background-size: 18px;}
+    .tablewrite > li > dl > dd .sales > li .btn_box button.minus {margin-bottom: 0;}
+    .tablewrite > li > dl > dd .sales > li .btn_box button.minus::after {left: calc(50% - 9px); top: calc(50% - 1px); width: 18px; height: 2px;}
+    .tablewrite > li > dl dd .file {overflow: hidden; margin-bottom: 5px;}
+    .tablewrite > li > dl dd .file dt {float: none; width: 100%; line-height: 26px;}
+    .tablewrite > li > dl dd .file dd {float: none; width: 100%;}
+    .tablewrite > li > dl dd .file dd a.text {line-height: 22px;}
+    /*사진 첨부*/
+    .tablewrite > li > dl dd.picture .file .btn_file {float: none; clear: both; margin-bottom: 5px;}
+    .tablewrite > li > dl dd.picture .file .inpbox {width: calc(100% - 15px); height: 27px;}
+    .tablewrite > li > dl dd.picture .file .inpbox input {font-size: 13px;}
+    .tablewrite > li > dl dd.picture .file .inpbox input::-webkit-input-placeholder {font-size: 13px;}
+    .tablewrite > li > dl dd.picture .file .inpbox input:-moz-placeholder {font-size: 13px;}
+    .tablewrite > li > dl dd.picture .file .inpbox input::-moz-placeholder {font-size: 13px;}
+    .tablewrite > li > dl dd.picture .file .inpbox input:-ms-input-placeholder {font-size: 13px;}
+    .tablewrite > li > dl dd.picture .file .btn_delete3 {top: 3px;}
+    .tablewrite > li > dl dd.picture .btn_box {width: 25px;}
+    .tablewrite > li > dl dd.picture .btn_box button {margin-bottom: 5px; width: 25px; height: 25px;}
+    .tablewrite > li > dl dd.picture .btn_box button.plus {background-size: 15px;}
+    .tablewrite > li > dl dd.picture .btn_box button.minus::after {left: calc(50% - 7.5px); top: calc(50% - 1px); width: 15px; height: 2px; }
+    /*이름입력*/
+    .tablewrite > li > dl dd .name .inpbox {margin-right: 5px; width: calc(33.33% - 3.6px);}
+
+    /*일반게시판 상세*/
+    .board_detail .title_box {padding-bottom: 30px;}
+    .board_detail .title_box h3 {margin-bottom: 10px; font-size: 18px;}
+    .board_detail .title_box .list li {font-size: 12px;}
+    .board_detail .title_box .list li.line {margin: 0 10px; font-size: 10px;}
+    .board_detail .title_box .select_text {display: block; margin-right: 0; margin-bottom: 10px;}
+    .board_detail .content {padding: 20px 0;}
+    .board_detail .file li {padding: 10px;}
+    .board_detail .file .text {font-size: 13px;}
+    .board_detail .file.attach .btn_file {margin-right: 5px;}
+    .board_detail .file.attach .text {float: left; max-width: calc(100% - 103px); line-height: 25px !important;}
+    .board_detail .file.attach button {top: 6px !important;}
+    /*일반게시판 상세 입력폼*/
+    .board_detail .write > li {padding: 10px;}
+    .board_detail .write > li .box .inpbox {width: calc(100% - 135px);}
+    .board_detail .write > li .box .inpbox.calendar {margin-left: 10px; width: 125px;}
+    .board_detail .edit {padding: 10px;}
+    .board_detail .btn_bottom p {font-size: 12px;}
+    /*회의실 예약*/
+    .board_detail .write > li.booking > dl > .calendar_area {overflow: hidden;}
+    .board_detail .write > li.booking > dl > .calendar_area h3 {float: left; font-size: 14px;}
+    .board_detail .write > li.booking > dl > .calendar_area .month {float: right; padding: 0;}
+    .board_detail .write > li.booking > dl > .calendar_area .month h4 {width: 80px; font-size: 16px;}
+    .board_detail .write > li.booking > dl > .calendar_area .month button {top: -2px; height: 20px; background-size: 8px;}
+    .board_detail .write > li.booking > dl > .calendar_area .calendar_box {clear: both;}
+    .board_detail .write > li.booking > dl > .calendar_area .calendar_box li.week {height: 30px; line-height: 30px;}
+    .board_detail .write > li.booking > dl > .calendar_area .calendar_box li .box {height: 40px;}
+    .board_detail .write > li.booking > dl > dd {padding: 10px 10px 20px;}
+    .board_detail .write > li.booking > dl > dd > dl dt span {font-size: 12px;}
+    .board_detail .write > li.booking > dl > dd > dl.time dt {float: none; width: 100%;}
+    .board_detail .write > li.booking > dl > dd > dl.time dd {float: none; width: 100%;}
+    .board_detail .write > li.booking > dl > dd > dl.time dd .optionbox {margin-right: 5px;}
+    .board_detail .write > li.booking > dl > dd > dl.time dd .text {margin-right: 5px;}
+    .board_detail .write > li.booking > dl > dd > dl dd .room_list {display: none;}
+    .board_detail .write > li.booking > dl > dd > dl dd .dropdown {display: block;}
+    .board_detail .write > li.booking > dl > dd > dl dd .minute {margin-bottom: 10px;}
+    .board_detail .write > li.booking > dl > dd > dl dd .minute li {width: calc(25% - 18px);}
+    .board_detail .write > li.booking > dl > dd > dl dd .minute li:nth-child(6n) {width: calc(25% - 18px);}
+    .board_detail .write > li.booking > dl > dd > dl dd .minute li:nth-child(5n) {width: 70px;}
+    .board_detail .write > li.booking > dl > dd > dl dd .minute li button {width: 70px; height: 22px; font-size: 12px;}
+
+    /*상단버튼*/
+    .btn_top .left .dropdown, .dropup {width: 130px;}
+    /*하단버튼*/
+    .btn_bottom .left {float: none; margin-bottom: 20px;}
+    .btn_bottom .left button.nav {width: calc(50% - 5px); margin-left: 10px; height: 30px; background-size: auto 15px;}
+    .btn_bottom .left button:first-child {margin-left: 0;}
+
+    /*갤러리형 게시판*/
+    .gallaylist > li {margin: 10px auto;}
+    .gallaylist > li a .img_box {margin: 0 auto 10px;}
+    .gallaylist > li a h3 {margin-bottom: 5px; height: 40px; font-size: 15px; line-height: 20px;}
+    .gallaylist > li a .date {font-size: 13px;}
+
+}
+@media screen and (min-width:320px) and (max-width:480px){
+	.inpbox input.txt:disabled::-webkit-input-placeholder {font-size: 13px;}
+    .inpbox input.txt:disabled:-moz-placeholder {font-size: 13px;}
+    .inpbox input.txt:disabled::-moz-placeholder {font-size: 13px;}
+    .inpbox input.txt:disabled:-ms-input-placeholder {font-size: 13px;}
+    /*기본 blue color*/
+    .radio_box2 input[type=radio] + label {padding-left: 20px; margin: 2px 5px 2px 0; width: 70px; font-size: 12px; line-height: 30px; background-position: 5px center; background-size: 10px;}
+
+    /*게시판 상단 카테고리 분류*/
+    .boardlist_category li button {height: 35px; font-size: 12px;}
+
+    /*게시판 글쓰기*/
+    .tablewrite > li > dl > dt {padding: 10px 5px; width: 74px; font-size: 14px;}
+    .tablewrite > li > dl > dt span {padding-left: 10px;}
+    .tablewrite > li > dl > dd {padding: 10px 5px; font-size: 13px !important;}
+    .tablewrite > li > dl > dt .optionbox, .tablewrite > li > dl > dd .optionbox {width: 140px;}
+    .tablewrite > li > dl > dd textarea {padding: 10px;}
+    /*우편번호*/
+    .tablewrite > li > dl > dd .postcode {margin-bottom: 10px;}
+    .tablewrite > li > dl > dd .postcode .inpbox {width: calc(100% - 84px);}
+    .tablewrite > li > dl > dd .postcode button {margin-left: 5px;}
+    /*달력*/
+    .tablewrite > li > dl > dd .calendar .inpbox {width: 145px;}
+    .tablewrite > li > dl > dd .calendar .inpbox:first-child {margin-bottom: 5px;}
+    .tablewrite > li > dl > dd .calendar.type2:first-child .inpbox {margin-bottom: 5px;}
+    /*핸드폰인증*/
+    .tablewrite > li > dl > dd .phon .inpbox {width: calc(100% - 73px);}
+    .tablewrite > li > dl > dd .phon button {margin-left: 5px;}
+    .tablewrite > li > dl dd .box1 .inpbox {width: 40px;}
+    .tablewrite > li > dl dd .box1 .inpbox.name {width: calc(100% - 62px);}
+    .tablewrite > li > dl dd .box1 .text {margin: 0 5px;}
+    .tablewrite > li > dl dd .box2 .optionbox {margin-bottom: 5px;}
+    /*핸드폰인증*/
+    .division.membership2 .tablewrite > li > dl > dd .inpbox {width: calc(50% - 17px);}
+    /*이메일*/
+    .tablewrite > li > dl > dd .email .inpbox {width: calc(50% - 10.2px) !important;}
+
+    /*일반게시판 상세*/
+    .board_detail .title_box {padding-bottom: 20px;}
+    .board_detail .title_box .list li {float: none; display: inline-block; padding: 0 5px;}
+    .board_detail .title_box .list li.line {display: none;}
+    .board_detail .title_box .dropdown {display: block; width: 100% !important;}
+    /*일반게시판 상세 입력폼*/
+    .board_detail .write > li .box .inpbox {width: calc(100% - 115px);}
+    .board_detail .write > li .box .inpbox.calendar {margin-left: 5px; width: 110px;}
+    /*회의실 예약*/
+    .board_detail .write > li.booking > dl > dd > dl.time dd .optionbox {width: calc(25% - 16.5px);}
+    .board_detail .byte {font-size: 10px;}
+
+    /*상세보기 일반 테이블 기본*/
+    .tablebasic table th, .tablebasic table td {line-height: 20px;}
+    .tablebasic table td .box_type .list_type > li {font-size: 13px;}
+    /*상세보기 일반 테이블 기본 (세로)*/
+    .tablebasic table.vertical_type th {width: 74px;}
+
+    /*갤러리형 게시판*/
+    .gallaylist > li {width: 100%;}
+    .gallaylist > li a h3 {display: block; height: auto; text-overflow: ellipsis; white-space: nowrap;}
+    .gallaylist > li a .date {font-size: 13px;}
+
+    /*상단버튼*/
+    .btn_top {height: auto;}
+    .btn_top .left {float: none; margin-top: 10px; width: 100%;}
+    .btn_top .left .dropdown, .dropup {width: 100%;}
+    .btn_top .left .dropdown > button {height: 30px}
+    .btn_top .left .dropdown-menu {top: 29px;}
+    .btn_top .right {float: none; text-align: right;}
+}
+@media screen and (min-width:320px) and (max-width:420px){
+    /*회의실 예약*/
+    .board_detail .write > li.booking > dl > dd > dl dd .minute {margin-bottom: 10px;}
+    .board_detail .write > li.booking > dl > dd > dl dd .minute li {width: calc(33.33% - 20.8px);}
+    .board_detail .write > li.booking > dl > dd > dl dd .minute li:nth-child(6n) {width: calc(33.33% - 20.8px);}
+    .board_detail .write > li.booking > dl > dd > dl dd .minute li:nth-child(5n) {width: calc(33.33% - 20.8px);}
+    .board_detail .write > li.booking > dl > dd > dl dd .minute li:nth-child(4n) {width: 62px;}
+    .board_detail .write > li.booking > dl > dd > dl dd .minute li button {width: 62px;}
+}
+@media screen and (min-width:320px) and (max-width:360px){
+
+    /*생년월일*/
+    .tablewrite > li > dl > dd .birthday .optionbox.year {width: 55px;}
+    .tablewrite > li > dl > dd .birthday .optionbox {width: 43px;}
+    .tablewrite > li > dl > dd .birthday .text {margin: 0 2px;}
+    .tablewrite > li > dl > dd .birthday .text:last-child {margin: 0 0 0 2px;}
+}
+
+@media screen and (max-width:768px){
+	.btn_bottom{display:flex; flex-direction:column;}
+	.btn_bottom button{width:100%; margin-bottom:5px; margin-left:0;}
+}

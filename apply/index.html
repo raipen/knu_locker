@@ -13,9 +13,8 @@
 				<dl>
 					<dt><span class="point">이름</span><span class="ex"></span></dt>
 					<dd>
-						<div class="email">
-							<div class="inpbox"><input type="text" id="name" name = "name" class="txt" title="이메일" placeholder="ex)홍길동" /></div>
-						</div>
+						<div class="inpbox"><input type="text" id="name" name = "name" class="txt" title="이메일" placeholder="ex)홍길동" /></div>
+						<span class="ex"></span>
 					</dd>
 				</dl>
 			</li>
@@ -32,11 +31,16 @@
 				<dl>
 					<dt><span class="point">전화번호</span></dt>
 					<dd>
-						<div class="inpbox"><input type="text" name="phone_number"  class="txt" placeholder="ex)010-1234-5678" /></div>
+						<div class="inpbox phoneinp"><input type="text" id="phone_number1" name="phone_number1"  class="txt" placeholder="ex)010" /></div>
+						<span class="text">-</span>
+						<div class="inpbox phoneinp"><input type="text" id="phone_number2" name="phone_number2"  class="txt" placeholder="ex)1234" /></div>
+						<span class="text">-</span>
+						<div class="inpbox phoneinp"><input type="text" id="phone_number3" name="phone_number3"  class="txt" placeholder="ex)5678" /></div>
 						<span class="ex"></span>
 					</dd>
 				</dl>
 			</li>
+			<input type="hidden" id="phone_number" name="phone_number">
 			<li>
 				<dl>
 					<dt><span class="point">학교 이메일</span></dt>
@@ -47,7 +51,7 @@
             <span class="text">@</span>
             <div class="inpbox">
             <input type="text" id="email2" name = "email2" class="txt emailDomainForm" title="이메일 계정" maxlength="256" placeholder="knu.ac.kr" value="knu.ac.kr" />
-          </div>
+          	</div>
           </dd>
 				</dl>
 			</li>
