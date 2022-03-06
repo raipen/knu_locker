@@ -52,6 +52,23 @@ module.exports ={
       var post = qs.parse(body);
       var queryData = qs.parse(body);
 
+      //값 확인
+      var temp = {isOK:false};
+      temp.values = {
+        name: /^[가-힣| ]+$/.test(queryData.name),
+        id : /^[0-9]{10}$/.test(queryData.number),
+        phone:/^010-?([0-9]{4})-?([0-9]{4})$/.test(queryData.phone_number),
+        email:/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@knu.ac.kr$/.test(queryData.email),
+        want : !(queryData.first_floor==queryData.second_floor&&queryData.first_height==queryData.second_height)
+      }
+      temp.isOK = temp.values.name&&temp.values.id&&temp.values.phone&&temp.values.email&&temp.values.want
+      console.log(temp);
+      //명부 확인
+      if(!temp.isOK){
+        response.writeHead(200);
+        response.end(JSON.stringify(temp));
+        return;
+      }
 
       //mysql 연결
       var connection = mysql.createConnection({
@@ -62,17 +79,16 @@ module.exports ={
         database : properties.DBdatabase,
         multipleStatements:true
       });
-      var temp = {success:false};
       var query1 = mysql.format(`select * from student_list where name= ? and student_id = ?;`,[queryData.name,queryData.number]);
       var query2 = mysql.format(`select * from student_list where name= ? and student_id is NULL;`,[queryData.name]);
       connection.query(query1+query2,
           function(error,results,fields){
             console.log("results");
             console.log(results);
-            temp.success = true;
+            temp.studentSearch = true;
             if(error){
               console.log(error);
-              temp.success = false;
+              temp.studentSearch = false;
               temp.error = error;
               response.writeHead(200);
               response.end(JSON.stringify(temp));
@@ -97,28 +113,51 @@ module.exports ={
             }
 
             if(temp.isStudent){//student가 아닌 경우는 위에서 처리 완료 else 안해도 됨
-              const salt = crypto.randomBytes(64).toString('base64');
-              const hashPassword = crypto.createHash('sha512').update(post.email + salt).digest('hex');
-              var query1 = mysql.format('INSERT INTO `dbraipen`.`applicant` (`student_id`, `phone_number`, `email`, `salt`, `token`) VALUES (?, ?, ?, ?, ?);',[post.number,post.phone_number,post.email,salt,hashPassword]);
-              var query2 = mysql.format('INSERT INTO `dbraipen`.`apply_info` (`student_id`, `dues`, `verify`, `first_floor`, `first_height`, `second_floor`, `second_height`) VALUES (?, ?, ?, ?, ?, ?, ?)',[post.number,0,0,post.first_floor,post.first_height,post.second_floor,post.second_height]);
-              connection.query(query1+query2,
-                  function(error,results,fields){
-                    temp.apply_success = true;
-                    if(error){
-                      temp.apply_success = false;
-                      temp.error = error;
-                      console.log(error);
-                    }
-                    else{
-                      console.log("results");
-                      console.log(results);
-                      sendMail(post.email,post.number,hashPassword);
-                      response.writeHead(200);
-                      response.end(JSON.stringify(temp));
-                    }
-                  });
-            }
+              connection.query(`SELECT * FROM dbraipen.apply_info where student_id = ?`,[post.number],
+                function(error,results,fields){
+                  temp.applySearch = true;
+                  if(error){
+                    temp.applySearch = false;
+                    temp.error = error;
+                    console.log(error);
+                    response.writeHead(200);
+                    response.end(JSON.stringify(temp));
+                  }
+                  if(results.length==0) temp.isApplied = false;
+                  else temp.isApplied = true;
 
+                  if(temp.isApplied&&results[0].verify){ //이미 신청된 정보가 있는 정보
+                    temp.verify = true;
+                    response.writeHead(200);
+                    response.end(JSON.stringify(temp));
+                  }else if(temp.isApplied){
+                    temp.verify = false;
+                    response.writeHead(200);
+                    response.end(JSON.stringify(temp));
+                  }else{//신규 신청
+                    const salt = crypto.randomBytes(64).toString('base64');
+                    const hashPassword = crypto.createHash('sha512').update(post.email + salt).digest('hex');
+                    var query1 = mysql.format('INSERT INTO `dbraipen`.`applicant` (`student_id`, `phone_number`, `email`, `salt`, `token`) VALUES (?, ?, ?, ?, ?);',[post.number,post.phone_number,post.email,salt,hashPassword]);
+                    var query2 = mysql.format('INSERT INTO `dbraipen`.`apply_info` (`student_id`, `dues`, `verify`, `first_floor`, `first_height`, `second_floor`, `second_height`) VALUES (?, ?, ?, ?, ?, ?, ?)',[post.number,0,0,post.first_floor,post.first_height,post.second_floor,post.second_height]);
+                    connection.query(query1+query2,
+                        function(error,results,fields){
+                          temp.apply_success = true;
+                          if(error){
+                            temp.apply_success = false;
+                            temp.error = error;
+                            console.log(error);
+                          }
+                          else{
+                            console.log("results");
+                            console.log(results);
+                            sendMail(post.email,post.number,hashPassword);
+                          }
+                          response.writeHead(200);
+                          response.end(JSON.stringify(temp));
+                    });
+                  }
+              });//
+            }//if(isStudent)
           });//select 쿼리 끝
       });
   }
