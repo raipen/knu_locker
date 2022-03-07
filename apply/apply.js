@@ -13,16 +13,16 @@ function sendMail(){
   }).done(function(data){
     data = JSON.parse(data);
     console.log(data);
-    if(data.success){
-      if(!data.isStudent){
-        $("#comment").text("명부에 등록되지 않은 정보입니다. 학생회 총무부 000 카카오톡 아이디 000000으로 문의해주세요");
-      }
-      else if(data.apply_success){
-        $("#comment").text("신청을 완료하시려면 이메일 인증을 해주세요");
-      }
-    }else{
-      $("#comment").text("오류입니다. 관리자에게 연락해주세요");
-    }
+    // if(data.success){
+    //   if(!data.isStudent){
+    //     $("#comment").text("명부에 등록되지 않은 정보입니다. 학생회 총무부 000 카카오톡 아이디 000000으로 문의해주세요");
+    //   }
+    //   else if(data.apply_success){
+    //     $("#comment").text("신청을 완료하시려면 이메일 인증을 해주세요");
+    //   }
+    // }else{
+    //   $("#comment").text("오류입니다. 관리자에게 연락해주세요");
+    // }
   });
   return false;
 }
