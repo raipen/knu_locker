@@ -86,6 +86,7 @@ module.exports ={
             console.log("results");
             console.log(results);
             temp.studentSearch = true;
+            var dues = 0;
             if(error){
               console.log(error);
               temp.studentSearch = false;
@@ -101,6 +102,7 @@ module.exports ={
               temp.isStudent=true;
               if(results[0].length==0){ //명부에 학번은 없는데 이름만 있는 경우
                 console.log("update std_list");
+                dues = results[1][0].dues;
                 connection.query(`UPDATE student_list SET student_id = ? WHERE (id = ?);`,[queryData.number,results[1][0].id],
                     function(error,results,fields){
                       console.log("results");
@@ -109,6 +111,8 @@ module.exports ={
                         console.log(error);
                       }
                 });
+              }else{
+                dues = results[0][0].dues;
               }
             }
 
@@ -138,7 +142,7 @@ module.exports ={
                     const salt = crypto.randomBytes(64).toString('base64');
                     const hashPassword = crypto.createHash('sha512').update(post.email + salt).digest('hex');
                     var query1 = mysql.format('INSERT INTO `dbraipen`.`applicant` (`student_id`, `phone_number`, `email`, `salt`, `token`) VALUES (?, ?, ?, ?, ?);',[post.number,post.phone_number,post.email,salt,hashPassword]);
-                    var query2 = mysql.format('INSERT INTO `dbraipen`.`apply_info` (`student_id`, `dues`, `verify`, `first_floor`, `first_height`, `second_floor`, `second_height`) VALUES (?, ?, ?, ?, ?, ?, ?)',[post.number,0,0,post.first_floor,post.first_height,post.second_floor,post.second_height]);
+                    var query2 = mysql.format('INSERT INTO `dbraipen`.`apply_info` (`student_id`, `dues`, `verify`, `first_floor`, `first_height`, `second_floor`, `second_height`) VALUES (?, ?, ?, ?, ?, ?, ?)',[post.number,dues,0,post.first_floor,post.first_height,post.second_floor,post.second_height]);
                     connection.query(query1+query2,
                         function(error,results,fields){
                           temp.apply_success = true;

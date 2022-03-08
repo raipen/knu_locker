@@ -13,7 +13,7 @@
 				<dl>
 					<dt><span class="point">이름</span><span class="ex"></span></dt>
 					<dd>
-						<div class="inpbox"><input type="text" id="name" name = "name" class="txt" title="이메일" placeholder="ex)홍길동" /></div>
+						<div class="inpbox"><input type="text" id="name" name = "name" class="txt" title="이메일" placeholder="홍길동" /></div>
 						<span class="ex"></span>
 					</dd>
 				</dl>
@@ -22,7 +22,7 @@
 				<dl>
 					<dt><span class="point">학번</span></dt>
 					<dd>
-						<div class="inpbox"><input type="text" name="number"  class="txt" placeholder="ex)2022123456" /></div>
+						<div class="inpbox"><input type="text" id="number" name="number"  class="txt" placeholder="2022123456" /></div>
 						<span class="ex"></span>
 					</dd>
 				</dl>
@@ -31,11 +31,11 @@
 				<dl>
 					<dt><span class="point">전화번호</span></dt>
 					<dd>
-						<div class="inpbox phoneinp"><input type="text" id="phone_number1" name="phone_number1"  class="txt" placeholder="ex)010" /></div>
+						<div class="inpbox phoneinp"><input type="text" id="phone_number1" name="phone_number1"  class="txt phone" placeholder="010" /></div>
 						<span class="text">-</span>
-						<div class="inpbox phoneinp"><input type="text" id="phone_number2" name="phone_number2"  class="txt" placeholder="ex)1234" /></div>
+						<div class="inpbox phoneinp"><input type="text" id="phone_number2" name="phone_number2"  class="txt phone" placeholder="1234" /></div>
 						<span class="text">-</span>
-						<div class="inpbox phoneinp"><input type="text" id="phone_number3" name="phone_number3"  class="txt" placeholder="ex)5678" /></div>
+						<div class="inpbox phoneinp"><input type="text" id="phone_number3" name="phone_number3"  class="txt phone" placeholder="5678" /></div>
 						<span class="ex"></span>
 					</dd>
 				</dl>
@@ -46,7 +46,7 @@
 					<dt><span class="point">학교 이메일</span></dt>
 					<dd>
             <div class="inpbox">
-              <input type="text" id="email1" name = "email1" class="txt emailDomainForm" title="이메일 계정" maxlength="256" placeholder="ex)knuces" />
+              <input type="text" id="email1" name = "email1" class="txt emailDomainForm" title="이메일 계정" maxlength="256" placeholder="knuces" />
             </div>
             <span class="text">@</span>
             <div class="inpbox">
@@ -95,7 +95,7 @@
                 <div class="birthday d-flex align-items-center">
                   <span class="text">층수</span>
                   <div class="floor2">
-                    <select title="층수선택" id="yy" name="second_floor">
+                    <select title="층수선택" class="sf" id="yy" name="second_floor">
                         <option value="-1" selected>지하1층</option>
 
                         <option value="1" >1층</option>
@@ -105,7 +105,7 @@
                   </div>
                   <span class="text">위치</span>
                   <div class="height2">
-                    <select title="위치선택" id="yy" name="second_height">
+                    <select title="위치선택" class="sf" id="yy" name="second_height">
                       <option value="2" selected>상</option>
 
                       <option value="1" >중</option>
