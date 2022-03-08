@@ -134,6 +134,28 @@ module.exports ={
                     temp.verify = true;
                     response.writeHead(200);
                     response.end(JSON.stringify(temp));
+                  }else if(temp.isApplied&&post.update){
+                    temp.verify = false;
+                    const salt = crypto.randomBytes(64).toString('base64');
+                    const hashPassword = crypto.createHash('sha512').update(post.email + salt).digest('hex');
+                    var query1 = mysql.format('',[post.number,post.phone_number,post.email,salt,hashPassword]);
+                    var query2 = mysql.format('UPDATE `dbraipen`.`apply_info` SET `first_floor` = ?, `first_height` = ?, `second_floor` = ?, `second_height` = ? WHERE (`student_id` = ?);',[post.first_floor,post.first_height,post.second_floor,post.second_height,post.number]);
+                    connection.query(query1+query2,
+                        function(error,results,fields){
+                          temp.apply_success = true;
+                          if(error){
+                            temp.apply_success = false;
+                            temp.error = error;
+                            console.log(error);
+                          }
+                          else{
+                            console.log("results");
+                            console.log(results);
+                            sendMail(post.email,post.number,hashPassword);
+                          }
+                          response.writeHead(200);
+                          response.end(JSON.stringify(temp));
+                    });
                   }else if(temp.isApplied){
                     temp.verify = false;
                     response.writeHead(200);
