@@ -1,10 +1,11 @@
 var a = 3;
 jQuery.fn.serializeObject = function() { var obj = null; try { if(this[0].tagName && this[0].tagName.toUpperCase() == "FORM" ) { var arr = this.serializeArray(); if(arr){ obj = {}; jQuery.each(arr, function() { obj[this.name] = this.value; }); } } }catch(e) { alert(e.message); }finally {} return obj; }
 
-function sendMail(){
+function sendMail(update){
   $("#email").val($("#email1").val()+"@"+$("#email2").val());
   $("#phone_number").val($("#phone_number1").val()+"-"+$("#phone_number2").val()+"-"+$("#phone_number3").val());
   var data = $("#apply").serializeObject();
+  data.update = update;
   $.ajax({
     url:'/API/combine/',
     type:'POST',
@@ -13,8 +14,8 @@ function sendMail(){
   }).done(function(data){
     data = JSON.parse(data);
     console.log(data);
+    $(".back_red").removeClass("back_red");
     if(!data.isOK){//데이터 형식이 잘못된 경우
-      $(".back_red").removeClass("back_red");
       if(!data.values.name) $("#name").addClass("back_red");
       if(!data.values.id) $("#number").addClass("back_red");
       if(!data.values.phone) $(".phone").addClass("back_red");
@@ -44,8 +45,8 @@ function sendMail(){
       return false;
     }
 
-    if(data.isApplied){
-      $("#comment").text("이미 신청된 정보가 있습니다. 위 정보로 새로 신청하시겠습니까?");
+    if(data.isApplied&&!data.apply_success){
+      $("#comment").html('이미 신청된 정보가 있습니다. 위 정보로 새로 신청하시겠습니까? <button class="btn3 btn_pink" onClick="sendMail(1)">예</button>');
       return false;
     }
 

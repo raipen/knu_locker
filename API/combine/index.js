@@ -51,7 +51,7 @@ module.exports ={
     request.on('end', function () {
       var post = qs.parse(body);
       var queryData = qs.parse(body);
-
+      console.log(post);
       //값 확인
       var temp = {isOK:false};
       temp.values = {
@@ -131,14 +131,14 @@ module.exports ={
                   else temp.isApplied = true;
 
                   if(temp.isApplied&&results[0].verify){ //이미 신청된 정보가 있는 정보
-                    temp.verify = true;
+                    temp.isVerify = true;
                     response.writeHead(200);
                     response.end(JSON.stringify(temp));
-                  }else if(temp.isApplied&&post.update){
-                    temp.verify = false;
+                  }else if(temp.isApplied&&post.update==1){
+                    temp.isVerify = false;
                     const salt = crypto.randomBytes(64).toString('base64');
                     const hashPassword = crypto.createHash('sha512').update(post.email + salt).digest('hex');
-                    var query1 = mysql.format('',[post.number,post.phone_number,post.email,salt,hashPassword]);
+                    var query1 = mysql.format('UPDATE `dbraipen`.`applicant` SET `phone_number` = ?, `email` = ?, `salt` = ?, `token` = ? WHERE (`student_id` = ?);',[post.phone_number,post.email,salt,hashPassword,post.number]);
                     var query2 = mysql.format('UPDATE `dbraipen`.`apply_info` SET `first_floor` = ?, `first_height` = ?, `second_floor` = ?, `second_height` = ? WHERE (`student_id` = ?);',[post.first_floor,post.first_height,post.second_floor,post.second_height,post.number]);
                     connection.query(query1+query2,
                         function(error,results,fields){
@@ -157,7 +157,7 @@ module.exports ={
                           response.end(JSON.stringify(temp));
                     });
                   }else if(temp.isApplied){
-                    temp.verify = false;
+                    temp.isVerify = false;
                     response.writeHead(200);
                     response.end(JSON.stringify(temp));
                   }else{//신규 신청

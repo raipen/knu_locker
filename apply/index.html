@@ -1,4 +1,4 @@
-<form id="apply" action="/apply/" method="post" onsubmit="return sendMail();">
+<form id="apply" action="/apply/" method="post" onsubmit="return sendMail(0);">
 
 <div class="division membership2">
 	<div class="contents_detail">
@@ -11,7 +11,9 @@
 		<ul class="tablewrite mb50">
 			<li>
 				<dl>
-					<dt><span class="point">이름</span><span class="ex"></span></dt>
+					<dt><span class="point">이름</span><span class="material-icons">help_outline</span><div class="help_box">
+						한글로 작성해주세요
+					</div></dt>
 					<dd>
 						<div class="inpbox"><input type="text" id="name" name = "name" class="txt" title="이메일" placeholder="홍길동" /></div>
 						<span class="ex"></span>
@@ -20,7 +22,7 @@
 			</li>
 			<li>
 				<dl>
-					<dt><span class="point">학번</span></dt>
+					<dt><span class="point">학번</span><span class="material-icons">help_outline</span></dt>
 					<dd>
 						<div class="inpbox"><input type="text" id="number" name="number"  class="txt" placeholder="2022123456" /></div>
 						<span class="ex"></span>
@@ -29,7 +31,7 @@
 			</li>
 			<li>
 				<dl>
-					<dt><span class="point">전화번호</span></dt>
+					<dt><span class="point">전화번호</span><span class="material-icons">help_outline</span></dt>
 					<dd>
 						<div class="inpbox phoneinp"><input type="text" id="phone_number1" name="phone_number1"  class="txt phone" placeholder="010" /></div>
 						<span class="text">-</span>
@@ -43,7 +45,7 @@
 			<input type="hidden" id="phone_number" name="phone_number">
 			<li>
 				<dl>
-					<dt><span class="point">학교 이메일</span></dt>
+					<dt><span class="point">학교 이메일</span><span class="material-icons">help_outline</span></dt>
 					<dd>
             <div class="inpbox">
               <input type="text" id="email1" name = "email1" class="txt emailDomainForm" title="이메일 계정" maxlength="256" placeholder="knuces" />
@@ -59,7 +61,7 @@
 
 			<li>
 				<dl>
-					<dt><span class="point">1지망</span></dt>
+					<dt><span class="point">1지망</span><span class="material-icons">help_outline</span></dt>
 					<dd>
 						<div class="birthday d-flex align-items-center">
 
@@ -90,7 +92,7 @@
 
           <li>
             <dl>
-              <dt><span class="point">2지망</span></dt>
+              <dt><span class="point">2지망</span><span class="material-icons">help_outline</span></dt>
               <dd>
                 <div class="birthday d-flex align-items-center">
                   <span class="text">층수</span>

@@ -8,6 +8,7 @@ module.exports = {
       <title>KNU CSE 사물함</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="../css/contents.css"/>
       <link rel="stylesheet" type="text/css" href="../css/default.css"/>
       <link rel="stylesheet" type="text/css" href="../css/reset.css"/>
