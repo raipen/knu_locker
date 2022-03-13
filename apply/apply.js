@@ -70,3 +70,9 @@ function sendMail(update){
   });
   return false;
 }
+
+$(document).ready(function(){
+  // $(".point").click(function(){
+  //   $(this).parent().children(".detail_option").toggleClass("on");
+  // });
+});

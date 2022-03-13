@@ -1,0 +1,10 @@
+.center {
+    display: inline;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+
+.material-icons.small_icon{
+  font-size: 16px; 
+}

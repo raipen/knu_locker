@@ -2,10 +2,46 @@ fieldset{
   display: inline;
 }
 
+.material-icons.small_icon {
+    font-size: 16px;
+}
+
 .division.membership2 .tablewrite > li > dl > dd .inpbox.phoneinp{
   width:90px;
 }
 
 .back_red{
   background-color: #e9bdbf !important;
+}
+
+dt{
+  position:relative;
+}
+
+.detail_option{
+  opacity: 0.9;
+  color:white;
+  display: none;
+  position: absolute;
+  top: 10px;
+  background: gray;
+  transform: translate(0,-100%);
+  word-break: keep-all;
+  padding:5px;
+  width: 200%;
+}
+
+.detail_option:after {
+    border-top: 10px solid gray;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 0px solid transparent;
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 10px;
+}
+
+dt:hover>.detail_option{
+  display:block;
 }
