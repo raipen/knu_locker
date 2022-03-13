@@ -41,7 +41,7 @@ function sendMail(update){
     }
 
     if(data.isApplied&&data.isVerify){
-      $("#comment").text("이미 신청완료된 정보가 있습니다. 변경을 원하시면 학생회 총무부(카카오톡 아이디: 0000)으로 문의해주세요.");
+      $("#comment").text("이미 신청완료된 정보가 있습니다. 변경을 원하시면 학생회 총무부(카카오톡 아이디: 000000)으로 문의해주세요.");
       return false;
     }
 
