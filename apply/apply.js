@@ -26,22 +26,22 @@ function sendMail(update){
     }
 
     if(!data.studentSearch){
-      $("#comment").text("명부 확인에 실패하였습니다. 이 오류가 지속된다면 학생회 총무부(카카오톡 아이디: 000000)으로 문의해주세요");
+      $("#comment").text("명부 확인에 실패하였습니다. 이 오류가 지속된다면 학생회 총무부(카카오톡 아이디: je12370)으로 문의해주세요");
       return false;
     }
 
     if(!data.isStudent){
-      $("#comment").text("재학생 명부에 없습니다. 학생회 총무부(카카오톡 아이디: 000000)으로 문의해주세요");
+      $("#comment").text("재학생 명부에 없습니다. 학생회 총무부(카카오톡 아이디: je12370)으로 문의해주세요");
       return false;
     }
 
     if(!data.applySearch){
-      $("#comment").text("신청정보 확인에 실패하였습니다. 이 오류가 지속된다면 학생회 총무부(카카오톡 아이디: 000000)으로 문의해주세요");
+      $("#comment").text("신청정보 확인에 실패하였습니다. 이 오류가 지속된다면 학생회 총무부(카카오톡 아이디: je12370)으로 문의해주세요");
       return false;
     }
 
     if(data.isApplied&&data.isVerify){
-      $("#comment").text("이미 신청완료된 정보가 있습니다. 변경을 원하시면 학생회 총무부(카카오톡 아이디: 000000)으로 문의해주세요.");
+      $("#comment").text("이미 신청완료된 정보가 있습니다. 변경을 원하시면 학생회 총무부(카카오톡 아이디: je12370)으로 문의해주세요.");
       return false;
     }
 
@@ -54,12 +54,12 @@ function sendMail(update){
       $("#comment").text("신청을 완료하시려면 이메일 인증을 해주세요");
       return false;
     }else{
-      $("#comment").text("신청을 실패하였습니다. 이 오류가 지속된다면 학생회 총무부(카카오톡 아이디: 000000)으로 문의해주세요");
+      $("#comment").text("신청을 실패하였습니다. 이 오류가 지속된다면 학생회 총무부(카카오톡 아이디: je12370)으로 문의해주세요");
       return false;
     }
     // if(data.success){
     //   if(!data.isStudent){
-    //     $("#comment").text("명부에 등록되지 않은 정보입니다. 학생회 총무부 000 카카오톡 아이디 000000으로 문의해주세요");
+    //     $("#comment").text("명부에 등록되지 않은 정보입니다. 학생회 총무부 000 카카오톡 아이디 je12370으로 문의해주세요");
     //   }
     //   else if(data.apply_success){
     //     $("#comment").text("신청을 완료하시려면 이메일 인증을 해주세요");
