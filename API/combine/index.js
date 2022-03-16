@@ -22,14 +22,26 @@ async function sendMail(email,number,verify_address) {
     let info = await transporter.sendMail({
         from: `"knulocker" <`+properties.mailAddress+`>`,
         to: email,//여기에 테스트로 받을 이메일 넣어봐
-        subject: '테스트 메일제목입니다.',
+        subject: '경북대학교 컴퓨터학부 2022년 1학기 사물함 배정을 위해 이메일을 인증해주세요',
         // text:
         // `
         // 안녕하세요.
         // ${verify_address} 입니다.
         // 좋은 하루 보내세요.
         // `,  //텍스트로 보냅니다.
-        html:`<div><a href="https://raipen.gabia.io/checkEmail/?number=${number}&id=${verify_address}">이메일 인증하기</a></div>`
+        html:`<div>
+        <span>아래와 같이 신청하신게 맞다면 이메일 인증하기를 눌러주세요</span>
+        <br>
+        <span></span>
+        </div>
+        <button style="background: #d03473;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0 10px;
+    min-width: 180px;
+    line-height: 55px;
+    font-size: 18px;
+    border: none;"><a  sytle="color: #fff;text-decoration: none;" href="https://raipen.gabia.io/checkEmail/?number=${number}&id=${verify_address}">이메일 인증하기</a></button>`
     })
 
     //#4. 전송 후 결과 단순 출력
