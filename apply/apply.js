@@ -72,6 +72,37 @@ function sendMail(update){
 }
 
 $(document).ready(function(){
+  $(".floor_select").on("change",function(){
+    console.log($(this).val());
+    switch($(this).val()){
+      case "-1":
+      console.log(-1);
+      $("#height_select"+$(this).attr('id')[12]).html(`
+      <option value="1" selected>상</option>
+      <option value="2" >중상</option>
+      <option value="3" >중</option>
+      <option value="4" >중하</option>
+      <option value="5" >하</option>`);
+      break;
+      case "1":
+      console.log(1);
+      $("#height_select"+$(this).attr('id')[12]).html(`
+        <option value="1" selected>상</option>
+        <option value="2" >중상</option>
+        <option value="3" >중하</option>
+        <option value="4" >하</option>`);
+      break;
+      case "3":
+      console.log(3);
+      $("#height_select"+$(this).attr('id')[12]).html(`
+        <option value="1" selected>상</option>
+        <option value="2" >중상</option>
+        <option value="3" >중하</option>
+        <option value="4" >하</option>`);
+      break;
+    }
+    console.log($(this).attr('id'));
+  });
   // $(".point").click(function(){
   //   $(this).parent().children(".detail_option").toggleClass("on");
   // });

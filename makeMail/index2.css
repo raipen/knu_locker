@@ -1,0 +1,22 @@
+.center {
+    position: relative;
+    padding: 0 20px;
+    width: fit-content;
+    min-width:50%;
+    margin:auto;
+}
+
+.material-icons.small_icon{
+  font-size: 16px;
+}
+.center a{
+  font-size: 18px;
+}
+.center>span{
+  font-family:NotoSansCJKkr;
+  font-size:18px;
+  margin-bottom: 10px;
+}
+.center>img{
+  max-width: calc(100vw - 40px);
+}

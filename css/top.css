@@ -172,7 +172,7 @@ button{cursor:pointer;}
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   left:50%;
   transform:translateX(-50%);
-  overflow:scroll;
+  overflow:overlay;
 }
 @media (max-width:1440px){
   #title{

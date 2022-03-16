@@ -10,10 +10,9 @@ module.exports = {
       response.end(fs.readFileSync("/web"+request.url));
       return;
     }
-    console.log("asdfqwer");
     var queryData = url.parse(request.url, true).query;
     response.writeHead(200);
-    var header = `<style>${fs.readFileSync(__dirname+"/index.css")}</style>`;
-    response.end(template.result_html(header,fs.readFileSync(__dirname+"/index.html")));
+    var header = `<style>${fs.readFileSync(__dirname+"/index2.css")}</style>`;
+    response.end(template.result_html(header,fs.readFileSync(__dirname+"/index2.html")));
   }
 }
