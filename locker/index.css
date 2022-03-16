@@ -1,5 +1,12 @@
 .center {
     width:100%;
+    text-align: center;
+}
+
+.center>img{
+  padding: 5px;
+  height:30vh;
+  border: 2px solid gray;
 }
 
 .material-icons.small_icon{
