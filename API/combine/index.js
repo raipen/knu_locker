@@ -6,7 +6,7 @@ const properties = require('/web/properties.js');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
-async function sendMail(email,number,verify_address) {
+async function sendMail(post,verify_address) {
     //#1. Transporter 객체 생성
     let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
@@ -21,27 +21,86 @@ async function sendMail(email,number,verify_address) {
     //#3. 메일 전송, 결과는 info 변수에 담아 집니다.
     let info = await transporter.sendMail({
         from: `"knulocker" <`+properties.mailAddress+`>`,
-        to: email,//여기에 테스트로 받을 이메일 넣어봐
-        subject: '경북대학교 컴퓨터학부 2022년 1학기 사물함 배정을 위해 이메일을 인증해주세요',
+        to: post.email,//여기에 테스트로 받을 이메일 넣어봐
+        subject: '이메일 인증을 완료해주세요(KNU CSE 2022학년도 1학기 사물함 배정)',
         // text:
         // `
         // 안녕하세요.
         // ${verify_address} 입니다.
         // 좋은 하루 보내세요.
         // `,  //텍스트로 보냅니다.
-        html:`<div>
-        <span>아래와 같이 신청하신게 맞다면 이메일 인증하기를 눌러주세요</span>
-        <br>
-        <span></span>
+        html:`<style>
+          .verify_button{
+            background: #d03473;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0 10px;
+            min-width: 180px;
+            line-height: 55px;
+            font-size: 18px;
+            border: none;
+          }
+          .verify_button>a{
+            color: #ffffff; text-decoration: none;
+          }
+          .verify_table{
+            margin:10px;
+            border-top:1px solid #000;
+            border-collapse:collapse;
+            background-color:#efefef;
+            width:100%;
+          }
+          .verify_table td{
+            border-bottom:1px solid #d0d0d0;
+            padding:20px 10px;
+          }
+          .verify_table td:first-child{
+            background-color:#f6f6f6;
+            position:relative;
+          }
+          .verify_table td:first-child::after {
+            content: '*';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            color: #e41741;
+            font-weight: 400;
+        }
+        .tit{
+          color: #525252;
+            font-size: 28px;
+            text-align: center;
+        }
+        #knu_verify{
+          margin:auto;
+          width:fit-content;
+          text-align:center;
+        }
+        </style>
+        <div id="knu_verify">
+          <span class="tit">신청 정보 확인 후 이메일 인증하기를 눌러주세요</span>
+          <br>
+          <table class="verify_table">
+            <tr>
+              <td>이름</td><td>${post.name}</td>
+            </tr>
+            <tr>
+              <td>학번</td><td>${post.number}</td>
+            </tr>
+            <tr>
+              <td>전화번호</td><td>${post.phone_number}</td>
+            </tr>
+            <tr>
+              <td>1지망</td><td>${post.first_floor+"층 "+post.first_height}</td>
+            </tr>
+            <tr>
+              <td>2지망</td><td>${post.second_floor+"층 "+post.second_height}</td>
+            </tr>
+          </table>
         </div>
-        <button style="background: #d03473;
-    font-weight: 500;
-    cursor: pointer;
-    padding: 0 10px;
-    min-width: 180px;
-    line-height: 55px;
-    font-size: 18px;
-    border: none;"><a  sytle="color: #fff;text-decoration: none;" href="https://raipen.gabia.io/checkEmail/?number=${number}&id=${verify_address}">이메일 인증하기</a></button>`
+        <button class="verify_button">
+          <a href="https://raipen.gabia.io/checkEmail/?number=${post.number}&id=${verify_address}">이메일 인증하기</a>
+        </button>`
     })
 
     //#4. 전송 후 결과 단순 출력
@@ -188,7 +247,7 @@ module.exports ={
                           else{
                             console.log("results");
                             console.log(results);
-                            sendMail(post.email,post.number,hashPassword);
+                            sendMail(post,hashPassword);
                           }
                           response.writeHead(200);
                           response.end(JSON.stringify(temp));
