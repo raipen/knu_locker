@@ -121,6 +121,7 @@ button{cursor:pointer;}
   text-align: left;
   color: #ffffff;
   padding:10px 0;
+  cursor: pointer;
 }
 .detail_menu{
   background-color: #ba1b20;

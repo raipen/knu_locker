@@ -115,15 +115,18 @@ module.exports ={
       console.log(post);
       //값 확인
       var temp = {isOK:false};
+      var floor_check = ["-1","1","3"];
+      var height_check=["1","2","3","4","5"];
       temp.values = {
         name: /^[가-힣| ]+$/.test(queryData.name),
         id : /^[0-9]{10}$/.test(queryData.number),
         phone:/^010-?([0-9]{4})-?([0-9]{4})$/.test(queryData.phone_number),
         email:/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@knu.ac.kr$/.test(queryData.email),
-        want : !(queryData.first_floor==queryData.second_floor&&queryData.first_height==queryData.second_height)
+        want : !(queryData.first_floor==queryData.second_floor&&queryData.first_height==queryData.second_height),
+        wantArr : [floor_check.includes(queryData.first_floor),height_check.includes(queryData.first_height),floor_check.includes(queryData.second_floor),height_check.includes(queryData.second_height)]
       }
 
-      temp.isOK = temp.values.name&&temp.values.id&&temp.values.phone&&temp.values.email&&temp.values.want
+      temp.isOK = temp.values.name&&temp.values.id&&temp.values.phone&&temp.values.email&&temp.values.want&&temp.values.wantArr[0]&&temp.values.wantArr[1]&&temp.values.wantArr[2]&&temp.values.wantArr[3];
       console.log(temp);
       //명부 확인
       if(!temp.isOK){

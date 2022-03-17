@@ -21,6 +21,10 @@ function sendMail(update){
       if(!data.values.phone) $(".phone").addClass("back_red");
       if(!data.values.email) $(".emailDomainForm").addClass("back_red");
       if(!data.values.want) $(".sf").addClass("back_red");
+      if(!data.values.wantArr[0]) $("#floor_select1").addClass("back_red");
+      if(!data.values.wantArr[1]) $("#height_select1").addClass("back_red");
+      if(!data.values.wantArr[2]) $("#floor_select2").addClass("back_red");
+      if(!data.values.wantArr[3]) $("#height_select2").addClass("back_red");
       $("#comment").text("올바르지 않는 형식입니다. 모든 값을 제대로 채워주세요");
       return false;
     }
