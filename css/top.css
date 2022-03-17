@@ -98,6 +98,7 @@ button{cursor:pointer;}
   left: calc((100% - 1320px) / 2 + 310px);
   transform: translateY(-50%);
   transition:all 0.5s;
+  display: flex;
 }
 #search{
   position: absolute;
