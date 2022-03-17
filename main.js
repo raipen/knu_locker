@@ -4,6 +4,11 @@ var url = require('url');
 var qs = require('querystring');
 
 var app = http.createServer(function(request,response){
+    if(request.headers['user-agent'].includes("Trident")){
+      response.writeHead(200);
+      response.end('internet explorer is not supported');
+      return;
+    }
     var _url = request.url;
     console.log(_url);
     var queryData = url.parse(_url, true).query;
