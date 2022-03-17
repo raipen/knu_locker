@@ -17,7 +17,13 @@ async function sendMail(post,verify_address) {
             pass: properties.mailPassword
         }
     })
-
+    console.log("post");
+    console.log(post);
+    var heightArr = [["","상","중상","중","중하","하"],["","상","중상","중하","하"]];
+    post.first_height = post.first_floor=="-1"?heightArr[0][post.first_height]:heightArr[1][post.first_height];
+    post.second_height = post.second_floor=="-1"?heightArr[0][post.second_height]:heightArr[1][post.second_height];
+    post.first_floor= post.first_floor=="-1"?"지하 1":post.first_floor;
+    post.second_floor= post.second_floor=="-1"?"지하 1":post.second_floor;
     //#3. 메일 전송, 결과는 info 변수에 담아 집니다.
     let info = await transporter.sendMail({
         from: `"knulocker" <`+properties.mailAddress+`>`,
@@ -29,78 +35,62 @@ async function sendMail(post,verify_address) {
         // ${verify_address} 입니다.
         // 좋은 하루 보내세요.
         // `,  //텍스트로 보냅니다.
-        html:`<style>
-          .verify_button{
-            background: #d03473;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 0 10px;
-            min-width: 180px;
-            line-height: 55px;
-            font-size: 18px;
-            border: none;
-          }
-          .verify_button>a{
-            color: #ffffff; text-decoration: none;
-          }
-          .verify_table{
-            margin:10px;
-            border-top:1px solid #000;
-            border-collapse:collapse;
-            background-color:#efefef;
-            width:100%;
-          }
-          .verify_table td{
-            border-bottom:1px solid #d0d0d0;
-            padding:20px 10px;
-          }
-          .verify_table td:first-child{
-            background-color:#f6f6f6;
-            position:relative;
-          }
-          .verify_table td:first-child::after {
-            content: '*';
-            position: absolute;
-            top: 15px;
-            left: 0;
-            color: #e41741;
-            font-weight: 400;
-        }
-        .tit{
-          color: #525252;
+        html:`
+        <div style="margin:auto;
+        width:fit-content;
+        text-align:center;">
+          <span style="color: #525252;
             font-size: 28px;
-            text-align: center;
-        }
-        #knu_verify{
-          margin:auto;
-          width:fit-content;
-          text-align:center;
-        }
-        </style>
-        <div id="knu_verify">
-          <span class="tit">신청 정보 확인 후 이메일 인증하기를 눌러주세요</span>
+            text-align: center;">신청 정보 확인 후 이메일 인증하기를 눌러주세요</span>
           <br>
-          <table class="verify_table">
+          <table class="verify_table" style="margin:10px;
+          border-top:1px solid #000;
+          border-collapse:collapse;
+          background-color:#efefef;
+          text-align: left;
+          width:100%;">
             <tr>
-              <td>이름</td><td>${post.name}</td>
+              <td style="background-color:#f6f6f6;
+              position:relative;border-bottom:1px solid #d0d0d0;
+              padding:20px 10px;">이름</td><td style="border-bottom:1px solid #d0d0d0;
+              padding:20px 10px;">${post.name}</td>
             </tr>
             <tr>
-              <td>학번</td><td>${post.number}</td>
+              <td style="background-color:#f6f6f6;
+              position:relative;border-bottom:1px solid #d0d0d0;
+              padding:20px 10px;">학번</td><td style="border-bottom:1px solid #d0d0d0;
+              padding:20px 10px;">${post.number}</td>
             </tr>
             <tr>
-              <td>전화번호</td><td>${post.phone_number}</td>
+              <td style="background-color:#f6f6f6;
+              position:relative;border-bottom:1px solid #d0d0d0;
+              padding:20px 10px;">전화번호</td><td style="border-bottom:1px solid #d0d0d0;
+              padding:20px 10px;">${post.phone_number}</td>
             </tr>
             <tr>
-              <td>1지망</td><td>${post.first_floor+"층 "+post.first_height}</td>
+              <td style="background-color:#f6f6f6;
+              position:relative;border-bottom:1px solid #d0d0d0;
+              padding:20px 10px;">1지망</td><td style="border-bottom:1px solid #d0d0d0;
+              padding:20px 10px;">${post.first_floor+"층 "+post.first_height}</td>
             </tr>
             <tr>
-              <td>2지망</td><td>${post.second_floor+"층 "+post.second_height}</td>
+              <td style="background-color:#f6f6f6;
+              position:relative;border-bottom:1px solid #d0d0d0;
+              padding:20px 10px;">2지망</td><td style="border-bottom:1px solid #d0d0d0;
+              padding:20px 10px;">${post.second_floor+"층 "+post.second_height}</td>
             </tr>
           </table>
-        </div>
-        <button class="verify_button">
-          <a href="https://raipen.gabia.io/checkEmail/?number=${post.number}&id=${verify_address}">이메일 인증하기</a>
-        </button>`
+          <button class="verify_button" style="background: #d03473;
+          font-weight: 500;
+          cursor: pointer;
+          padding: 0 10px;
+          min-width: 180px;
+          line-height: 55px;
+          font-size: 18px;
+          border: none;">
+            <a style="color: #ffffff; text-decoration: none;" href="https://raipen.gabia.io/checkEmail/?number=${post.number}&id=${verify_address}">이메일 인증하기</a>
+          </button>
+        </div>`
     })
 
     //#4. 전송 후 결과 단순 출력
@@ -132,6 +122,7 @@ module.exports ={
         email:/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@knu.ac.kr$/.test(queryData.email),
         want : !(queryData.first_floor==queryData.second_floor&&queryData.first_height==queryData.second_height)
       }
+
       temp.isOK = temp.values.name&&temp.values.id&&temp.values.phone&&temp.values.email&&temp.values.want
       console.log(temp);
       //명부 확인
@@ -222,7 +213,7 @@ module.exports ={
                           else{
                             console.log("results");
                             console.log(results);
-                            sendMail(post.email,post.number,hashPassword);
+                            sendMail(post,hashPassword);
                           }
                           response.writeHead(200);
                           response.end(JSON.stringify(temp));

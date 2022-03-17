@@ -11,8 +11,13 @@ module.exports = {
       return;
     }
     var queryData = url.parse(request.url, true).query;
-    response.writeHead(200);
-    var header = `<style>${fs.readFileSync(__dirname+"/index.css")}</style>`;
-    response.end(template.result_html(header,fs.readFileSync(__dirname+"/index"+queryData.floor+".html")));
+    if(queryData.floor==-1||queryData.floor==1||queryData.floor==3){
+      var header = `<style>${fs.readFileSync(__dirname+"/index.css")}</style>`;
+      response.writeHead(200);
+      response.end(template.result_html(header,fs.readFileSync(__dirname+"/index"+queryData.floor+".html")));
+    }else{
+      response.writeHead(200);
+      response.end(template.result_html("","사물함이 존재하지 않는 층입니다"));
+    }
   }
 }
