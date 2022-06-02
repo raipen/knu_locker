@@ -1,5 +1,31 @@
 <div class="table main">
   <div class="command">
+    <span>학생회비 납부여부 API</span>
+  </div>
+  <div class="detail">
+    <span>요청 URL</span><span>https://raipen.gabia.io/API/checkDues/</span>
+    <span>메서드</span><span>GET</span>
+    <span>출력 포맷</span><span>JSON</span>
+    <span>요청 변수</span>
+    <div class="req">
+      <span class="reqtitle">Key</span><span class="reqtitle">Type</span><span class="reqtitle">Description</span><span class="reqtitle">Required</span>
+      <span>name</span><span>string</span><span>이름(utf-8)</span><span>O</span>
+      <span>number</span><span>int</span><span>학번</span><span>O</span>
+    </div>
+    <span>출력 결과</span>
+    <div style="display: grid;grid-template-columns: 90px auto;">
+      <div class="res" style="grid-column:1/3">
+        <span class="restitle">Key</span><span class="restitle">Type</span><span class="restitle">Description</span>
+        <span>success</span><span>boolean</span><span>성공여부</span>
+        <span>isStudent</span><span>boolean</span><span>명부에 존재하는 학생인 경우 true, 없는 경우 false</span>
+        <span>dues</span><span>boolean</span><span>학생회비를 낸 경우 true, 없는 경우 false</span>
+      </div>
+    </div>
+    <span>사용 예시</span><span><a href="https://raipen.gabia.io/API/checkDues/?number=2021114335">https://raipen.gabia.io/API/checkDues/?number=2021114335</a></span>
+  </div>
+</div>
+<div class="table main">
+  <div class="command">
     <span>학생확인 API</span>
   </div>
   <div class="detail">

@@ -13,7 +13,7 @@ module.exports ={
     }
     response.writeHead(302, {'Location': '/apply/'});
     response.end();
-    // response.writeHead(200);
-    // response.end(template.result_html(`<link rel="stylesheet" type="text/css" href="/css/apply.css"/>`,fs.readFileSync("./index.html")));
+    //response.writeHead(200);
+    //response.end(template.result_html(`<link rel="stylesheet" type="text/css" href="/css/apply.css"/>`,fs.readFileSync("./index.html")));
   }
 }

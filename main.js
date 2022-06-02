@@ -13,6 +13,11 @@ var app = http.createServer(function(request,response){
     console.log(_url);
     var queryData = url.parse(_url, true).query;
     var pathname = url.parse(_url, true).pathname;
+    if(pathname === '/testAPI') {
+      const { main } = require('./API/allocate/allocate');
+      main(request, response);
+    }
+    console.log('pathname >> ', pathname);
     pathname = pathname.substr(0,pathname.lastIndexOf('/')+1);
     fs.exists("."+pathname+"index.js",function(exists){
       console.log("exist: "+exists);
