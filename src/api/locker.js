@@ -7,7 +7,7 @@ router.get('/checkDues',async (req,res)=>{
     var temp = {success:true};
     console.log(req.query);
     var query1 = mysql.format(`select * from student_list where name= ? and student_id = ?;`,[req.query.name,req.query.number]);
-    db.query(query1,
+    db(query1,
         function(error,results,fields){
           if(error){
             console.log(error);
