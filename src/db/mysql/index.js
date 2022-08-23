@@ -1,8 +1,7 @@
 const { DBaddress, DBuser, DBpassword, DBdatabase, DBport} = require('../../config');
 const mysql = require('mysql');
 
-async function connect(){
-    var connection = mysql.createConnection({
+module.exports = mysql.createConnection({
         host     : DBaddress,
         port     : DBport,
         user     : DBuser,
@@ -10,9 +9,3 @@ async function connect(){
         database : DBdatabase,
         multipleStatements:true
     });
-    return connection;
-}
-
-module.exports = {
-    connection: connect
-};
