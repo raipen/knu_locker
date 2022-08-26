@@ -14,7 +14,7 @@ router.post('/apply',async (req,res)=>{
     if(!checkLeaderInfo(leaderInfo))
       return res.status(400).send({error:"잘못된 입력"});
     var addMemberQuery = mysql.format(`INSERT INTO hackathon_member (team, name, student_number, member_type, phone_number, github) VALUES (?, ?, ?, ?, ?, ?);`,leaderInfo);
-    if(req.body.member.length>=4)
+    if(req.body.member.length>4)
       return res.status(400).send({error:"잘못된 입력"});
     for(var i = 1; i<req.body.member.length;i++){
       var memberInfo = readMemberInfo(teamName,req.body.member[i]);
@@ -26,7 +26,7 @@ router.post('/apply',async (req,res)=>{
     db(newTeamQuery + addMemberQuery,(error,results,fields)=>sendQueryResult(error,results,fields,res));
 });
 
-router.get('/status',async (req,res)=>{
+async function status(req,res){
   var query = `SELECT count(*) as c FROM hackathon_team;SELECT count(*) as c FROM hackathon_member;`
   db(query,(error,results)=>{
     if(error){
@@ -36,7 +36,9 @@ router.get('/status',async (req,res)=>{
     console.log(results);
     res.json({team:results[0][0].c,applicant:results[1][0].c});
   });
-});
+}
+router.get('/status',status);
+router.post('/status',status);
 
 router.post('/initialization',async (req,res)=>{
   var query = `TRUNCATE hackathon_team;TRUNCATE hackathon_member;`
