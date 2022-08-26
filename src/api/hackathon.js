@@ -78,6 +78,7 @@ router.get('/memberList',async (req,res)=>{
 
 function checkTeamName(team){
   if(team==undefined||team==null) return false;
+  return true;
   const teamNameReg = /^[가-힣|a-z|A-Z|0-9| ]+$/;
   if (teamNameReg.test(team))
     return true;
@@ -97,8 +98,8 @@ function checkLeaderInfo(leader){
   const nameReg = /^[가-힣| ]+$/;
   const student_numberReg = /^[0-9]{10}$/;
   const phone_numberReg = /^010-?([0-9]{4})-?([0-9]{4})$/;
-  const githubReg = /^[a-zA-Z0-9]+$/;
-  if (teamNameReg.test(leader[0])&&nameReg.test(leader[1])&&student_numberReg.test(leader[2])&&phone_numberReg.test(leader[4])&&(leader[5]==""||githubReg.test(leader[5])))
+  const githubReg = /^[a-zA-Z0-9_-]+$/;
+  if (student_numberReg.test(leader[2])&&phone_numberReg.test(leader[4]))
     return true;
   else
     return false;
@@ -115,7 +116,7 @@ function checkMemberInfo(member){
   const teamNameReg = /^[가-힣|a-z|A-Z|0-9| ]+$/;
   const nameReg = /^[가-힣| ]+$/;
   const student_numberReg = /^[0-9]{10}$/;
-  if (teamNameReg.test(member[0])&&nameReg.test(member[1])&&student_numberReg.test(member[2]))
+  if (student_numberReg.test(member[2]))
     return true;
   else
     return false;
