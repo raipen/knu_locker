@@ -26,7 +26,7 @@ router.post('/apply',async (req,res)=>{
     db(newTeamQuery + addMemberQuery,(error,results,fields)=>sendQueryResult(error,results,fields,res));
 });
 
-async function status(req,res){
+router.use('/status',async (req,res)=>{
   var query = `SELECT count(*) as c FROM hackathon_team;SELECT count(*) as c FROM hackathon_member;`
   db(query,(error,results)=>{
     if(error){
@@ -36,9 +36,7 @@ async function status(req,res){
     console.log(results);
     res.json({team:results[0][0].c,applicant:results[1][0].c});
   });
-}
-router.get('/status',status);
-router.post('/status',status);
+});
 
 router.post('/initialization',async (req,res)=>{
   var query = `TRUNCATE hackathon_team;TRUNCATE hackathon_member;`

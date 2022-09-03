@@ -1,9 +1,18 @@
 const express = require('express');
-const db = require('../db/mysql');
-const mysql = require('mysql');
 const router = express.Router();
+const {errorCatcher,errorHandling} = require('./asyncErrorWraper');
+const LockerService = require('../services/LockerService');
 
-router.get('/checkDues',async (req,res)=>{
+router.get('/checkDues', errorCatcher(async (req, res) => {
+  const userDTO = req.query;
+  const result = await LockerService.SignUp(userDTO);
+  console.log(`[/users/checkDues] ${userDTO.name}`);
+  res.status(200).json(result);
+}));
+
+router.use(errorHandling);
+
+/* router.get('/checkDues',async (req,res)=>{
     var temp = {success:true};
     console.log(req.query);
     var query1 = mysql.format(`select * from student_list where name= ? and student_id = ?;`,[req.query.name,req.query.number]);
@@ -22,6 +31,6 @@ router.get('/checkDues',async (req,res)=>{
             temp.dues=results[0].dues==1?true:false;
           }res.json(temp);
         });
-});
+}); */
 
 module.exports = router;
