@@ -12,6 +12,7 @@
     <style>
         body{
             font-family: 'Noto Sans KR', sans-serif;
+            text-align: center;
         }
         a{
             color:#000;
@@ -20,20 +21,125 @@
         a:hover{
             color:#000;
         }
-        
+
+        footer{
+            height:4rem;
+            margin-top:1rem;
+            padding-left:20px;
+            font-size: 0.8rem;
+        }
+        article{
+            overflow: scroll;
+            text-align: center;
+        }
+
+        .input>input{
+            box-sizing: border-box;
+            width: 80vw;
+            height: 3rem;
+            margin-bottom: 4vh;
+            background: #F1F1F1;
+            border: 5px solid #F1F1F1;
+            border-radius: 0.5rem;
+        }
+
+        form>button{
+            width: 50vw;
+            height: 4rem;
+            outline: none;
+            border:none;
+            color:#fff;
+            font-weight: bold;
+            background: #8A8A88;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            margin-top: 5vh;
+        }
 
         @media screen and (max-width:992px) {
         /* 스마트폰 가로 */
-            
+            header{
+                height: 20vh;
+                position:relative;
+                background-color: #DA2127;
+                margin-bottom: 5vh;
+            }
+            header>a>*{
+                position:absolute;
+                left: 50%;
+                transform:translate(-50%);
+            }
+            header img{
+                top: 4vh;
+                height: 8vh;
+            }
+            .logo{
+                color:#fff;
+                top:13vh;
+                font-size: 4vh;
+                line-height: 4vh;
+            }
+            article{
+                height:calc(75vh - 5rem);
+            }
+            .input>label{
+                display: block;
+                text-align: left;
+                margin-top: 1vh;
+                padding-left: 10vw;
+                font-weight: bold;
+            }
         }
         @media screen and (min-width:992px) {
         /* 데스크탑 */
-
+            header{
+                height: 60px;
+                padding-left:12px;
+                padding-top:12px;
+                margin-bottom:5vh;
+                background-color: #DA2127;
+            }
+            header>a{
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+            header img{
+                height: 36px;
+                margin-right:10px;
+            }
+            article{
+                width:100vw;
+                height:calc(95vh - 60px - 5rem);
+            }
+            .input>input{
+                width: 50vw;
+            }
+            .input>label{
+                font-weight: bold;
+                margin-right: 10px;
+            }
+            form>button{
+                width:30vw;
+            }
+            .logo{
+                color:#fff;
+                font-size: 36px;
+                line-height: 36px;
+            }
         }
 
         @media screen and (min-width:1200px) {
         /* 큰 데스크탑 */
-
+            article{
+                position: relative;
+                width:1200px;
+                height:calc(95vh - 60px - 5rem);
+                left:calc(50vw - 600px);
+            }
+            .input>input{
+                width: 600px;
+            }
         }
     </style>
 </head>
@@ -45,6 +151,7 @@
         </a>
     </header>
     <article>
+        <h1>2022년 1학기<br>사물함 배정 정보 조회</h1><br>
         <form action="/API/fetchApply" method="post">
             <div class="input">
                 <label for="name">
@@ -58,7 +165,7 @@
                 </label>
                 <input type="text" name="number" id="number" placeholder="2022123456">
             </div>
-            <button type="submit">사물함 초기 비밀번호 조회</button>
+            <button type="submit">조회</button>
         </form>
     </article>
     <footer>
