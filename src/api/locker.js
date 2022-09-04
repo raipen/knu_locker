@@ -10,6 +10,13 @@ router.get('/checkDues', errorCatcher(async (req, res) => {
   res.status(200).json(result);
 }));
 
+router.get('/fetchApply', errorCatcher(async (req, res) => {
+  const userDTO = req.query;
+  const result = await LockerService.fetchApply(userDTO);
+  console.log(`[/users/fetchApply] ${userDTO.name}`);
+  res.status(200).json(result);
+}));
+
 router.use(errorHandling);
 
 /* router.get('/checkDues',async (req,res)=>{
