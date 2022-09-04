@@ -1,9 +1,18 @@
 const crypto = require('crypto');
+const studentModel = require('../models/Student');
 
 class UserService {
-    async SignUp(userDTO){
-        //throw new Error("asdf");
-        return{name: userDTO.name, number: userDTO.number};
+    async checkDues(userDTO){
+        let result = await studentModel.findOne({
+            where: {
+                name:userDTO.name,
+                student_id: userDTO.number
+            }
+        });
+        if(result)
+            return {success: true, isStudent: true, dues:result.dues===1}
+        else
+            return {success: true, isStudent: false}
     }
 }
 

@@ -5,7 +5,7 @@ const LockerService = require('../services/LockerService');
 
 router.get('/checkDues', errorCatcher(async (req, res) => {
   const userDTO = req.query;
-  const result = await LockerService.SignUp(userDTO);
+  const result = await LockerService.checkDues(userDTO);
   console.log(`[/users/checkDues] ${userDTO.name}`);
   res.status(200).json(result);
 }));

@@ -4,6 +4,6 @@ module.exports = {errorCatcher: function (fn) {
     }
   },
   errorHandling: function (error, req, res, next) {
-    res.status(400).json({ message: error.message })
+    res.status(400).json({success: false, message: error.message })
   }
 }
