@@ -6,6 +6,7 @@ module.exports = {errorCatcher: function (fn) {
     }
   },
   errorHandling: function (error, req, res, next) {
+    console.log(error);
     if(error instanceof Sequelize.Error)
       res.status(400).json({success: false, message: "database error" });
     else
