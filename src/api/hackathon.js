@@ -20,7 +20,7 @@ router.post('/apply',async (req,res)=>{
       var memberInfo = readMemberInfo(teamName,req.body.member[i]);
       if(!checkMemberInfo(memberInfo))
         return res.status(400).send({error:"잘못된 입력"});
-      addMemberQuery += mysql.format(`INSERT INTO hackathon_member (team, name, student_number, member_type) VALUES (?, ?, ?, ?);`,memberInfo);
+      addMemberQuery += mysql.format(`INSERT INTO hackathon_member (team, name, student_number, member_type, department) VALUES (?, ?, ?, ?, ?);`,memberInfo);
     }
     console.log(newTeamQuery + addMemberQuery);
     db(newTeamQuery + addMemberQuery,(error,results,fields)=>sendQueryResult(error,results,fields,res));
@@ -105,7 +105,7 @@ function checkLeaderInfo(leader){
 
 function readMemberInfo(teamName,member){
   if(member==undefined||member==null) return null;
-  return [teamName,member.name,member.student_number,"member"];
+  return [teamName,member.name,member.student_number,"member",member.department];
 }
 
 function checkMemberInfo(member){
