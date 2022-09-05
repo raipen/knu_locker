@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const fs = require('fs');
 const axios = require('axios');
+const logger = require('../log');
 
 router.get('/', async (req, res) => {
     console.log(`[/]`);
@@ -18,6 +19,7 @@ router.get('/search', async (req, res) => {
 
 router.post('/fetchApply', async (req, res) => {
     console.log(`[/fetchApply]`);
+    logger(req,"[/fetchApply]",req.body);
     try{
         const result = await axios.post(
             "http://localhost:8080/API/fetchApply",
