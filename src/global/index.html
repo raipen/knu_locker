@@ -93,6 +93,15 @@
                 font-size: 4vh;
                 line-height: 4vh;
             }
+            .menu>div>div>span{
+                font-size: 4vh;
+            }
+            .menu>div>div:nth-of-type(2){
+                font-size:2vh;
+            }
+            .menu>div>div:nth-of-type(3){
+                font-size:1.5vh;
+            }
         }
         @media screen and (min-width:992px) {
             header{
@@ -126,14 +135,24 @@
             }
             .menu:nth-of-type(1){
                 left: calc(45% - 30vh);
+                top: 7vh;
             }
             .menu:nth-of-type(2){
                 left: 55%;
-                top: -30vh;
+                top: -23vh;
             }
             .menu:nth-of-type(3){
                 left: calc(50% - 15vh);
-                top: -30vh;
+                top: -23vh;
+            }
+            .menu>div>div>span{
+                font-size: 6vh;
+            }
+            .menu>div>div:nth-of-type(2){
+                font-size:3vh;
+            }
+            .menu>div>div:nth-of-type(3){
+                font-size:2.25vh;
             }
         /* 데스크탑 */
         }
@@ -158,7 +177,9 @@
                     </span></div>
                 <div>사물함 신청</div>
                 <div>9.13~9.16</div>
-                <div>></div>
+                <div><span class="material-icons-outlined">
+                    arrow_forward_ios
+                    </span></div>
             </div>
         </a>
         <a class="menu disable" href="">
@@ -168,7 +189,9 @@
                     </span></div>
                 <div>동아리 사물함 신청</div>
                 <div>9.16~</div>
-                <div>></div>
+                <div><span class="material-icons-outlined">
+                    arrow_forward_ios
+                    </span></div>
             </div>
         </a>
         <a class="menu" href="/search">
@@ -178,7 +201,9 @@
                     </span></div>
                 <div>사물함 조회</div>
                 <div>~9.16</div>
-                <div>></div>
+                <div><span class="material-icons-outlined">
+                    arrow_forward_ios
+                    </span></div>
             </div>
         </a>
     </article>
