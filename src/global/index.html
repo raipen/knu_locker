@@ -73,7 +73,9 @@
             top:50%;
             transform:translateY(-50%);
         }
-
+        .deco{
+            display: none;
+        }
         /* 스마트폰 세로 */
 
         @media screen and (max-width:992px) {
@@ -156,9 +158,22 @@
             }
         /* 데스크탑 */
         }
-
         @media screen and (min-width:1200px) {
         /* 큰 데스크탑 */
+            article{
+                position: relative;
+                width:1200px;
+                left: calc(100vw - 1200px);
+            }
+            .deco{
+                display: block;
+                position: absolute;
+                font-size: calc(95vh - 85px - 5rem);
+                line-height: calc(95vh - 85px - 5rem);
+                color:#fff;
+                left: 0;
+                transform:translateX(calc(-100% + 45vw - 35vh));
+            }
         }
     </style>
 </head>
@@ -169,6 +184,9 @@
             <span class="logo">KNU CSE</span>
         </a>
     </header>
+    <span class="deco material-icons-outlined">
+        laptop_mac
+    </span>
     <article>
         <a class="menu disable" href="">
             <div>
