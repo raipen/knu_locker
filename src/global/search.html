@@ -51,13 +51,18 @@
             border:none;
             color:#fff;
             font-weight: bold;
-            background: #8A8A88;
+            background: #DA2127;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 10px;
             margin-top: 5vh;
         }
 
+        form>button:disabled{
+            background: #8A8A88;
+        }
+
         h1{
+            word-break: keep-all;
             padding-left:10px;
             padding-right:10px;
         }
@@ -171,14 +176,20 @@
                 </label>
                 <input type="text" name="number" id="number" placeholder="2022123456">
             </div>
-            <button type="submit">조회</button>
+            <button id="submit" type="submit" disabled>조회</button>
         </form>
     </article>
     <script>
         function check(){
-
+            let name = /^[가-힣| ]+$/.test($("#name").val());
+            let number = /^[0-9]{10}$/.test($("#number").val());
+            if(name&&number)
+                $("#submit").removeAttr("disabled");
+            else
+                $("#submit").prop("disabled", true);
         }
         $("#name").on("input", check);
+        $("#number").on("input", check);
     </script>
     <footer>
         <p class="col-12 tm-copyright-text mb-0">
