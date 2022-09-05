@@ -44,7 +44,7 @@ class UserService {
             `이름: ${userDTO.name}\n사물함: ${lockerInfo[0].locker}\n초기 비밀번호: ${lockerInfo[0].pw}`
         );
         console.log(SMSresult);
-        return {success: SMSresult.statusName==="success"};
+        return {success: SMSresult.statusName==="success",phone: applicantInfo.phone_number};
     }
 
 }
