@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="img/png" href="https://computer.knu.ac.kr/img/include/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
+    <title>KNU CSE 사물함 신청</title>
+    <style>
+        body{
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #DA2127;
+            text-align: center;
+        }
+        a{
+            color:#000;
+            text-decoration: none;
+        }
+        a:hover{
+            color:#000;
+        }
+        header{
+            height: 20vh;
+            position:relative;
+        }
+        article{
+            height:calc(80vh - 5rem);
+        }
+        footer{
+            height:4rem;
+            margin-top:1rem;
+            padding-left:20px;
+            font-size: 0.8rem;
+        }
+        .menu{
+            display: block;
+            background-color: #fff;
+            color:#000;
+            border-radius: 100%;
+            text-decoration: none;
+            height: 20vh;
+            width: 20vh;
+            position: relative;
+            left: calc(50% - 10vh);
+            cursor:pointer;
+            text-align: center;
+            -webkit-transform: perspective(1px) translateZ(0);
+            transform: perspective(1px) translateZ(0);
+            box-shadow: 0 0 1px rgb(0 0 0 / 0%);
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-property: transform;
+            transition-property: transform;
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        }
+        .menu:not(.disable):hover{
+            transform: scale(1.1);
+        }
+        .menu~.menu{
+            margin-top: 5vh;
+        }
+        .menu.disable{
+            background-color:#888;
+            cursor:default;
+        }
+        .menu>div{
+            position:absolute;
+            width:100%;
+            top:50%;
+            transform:translateY(-50%);
+        }
+        .deco{
+            display: none;
+        }
+        /* 스마트폰 세로 */
+
+        @media screen and (max-width:992px) {
+        /* 스마트폰 가로 */
+            header>a>*{
+                position:absolute;
+                left: 50%;
+                transform:translate(-50%);
+            }
+            header img{
+                top: 4vh;
+                height: 8vh;
+            }
+            .logo{
+                color:#fff;
+                top:13vh;
+                font-size: 4vh;
+                line-height: 4vh;
+            }
+            .menu>div>div>span{
+                font-size: 4vh;
+            }
+            .menu>div>div:nth-of-type(2){
+                font-size:2vh;
+            }
+            .menu>div>div:nth-of-type(3){
+                font-size:1.5vh;
+            }
+        }
+        @media screen and (min-width:992px) {
+            header{
+                height: 65px;
+                padding-left:20px;
+                margin-top:20px;
+                margin-bottom:5vh;
+            }
+            header>a{
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+            header img{
+                height: 65px;
+            }
+            article{
+                height:calc(95vh - 85px - 5rem);
+            }
+            .logo{
+                color:#fff;
+                font-size: 65px;
+                line-height: 65px;
+            }
+            .menu{
+                height: 30vh;
+                width: 30vh;
+            }
+            .menu~.menu{
+                margin-top: 0;
+            }
+            .menu:nth-of-type(1){
+                left: calc(45% - 30vh);
+                top: 7vh;
+            }
+            .menu:nth-of-type(2){
+                left: 55%;
+                top: -23vh;
+            }
+            .menu:nth-of-type(3){
+                left: calc(50% - 15vh);
+                top: -23vh;
+            }
+            .menu>div>div>span{
+                font-size: 6vh;
+            }
+            .menu>div>div:nth-of-type(2){
+                font-size:3vh;
+            }
+            .menu>div>div:nth-of-type(3){
+                font-size:2.25vh;
+            }
+        /* 데스크탑 */
+        }
+        @media screen and (min-width:1200px) {
+        /* 큰 데스크탑 */
+            article{
+                position: relative;
+                width:1200px;
+                left: calc(100vw - 1200px);
+            }
+            .deco{
+                display: block;
+                position: absolute;
+                font-size: calc(95vh - 85px - 5rem);
+                line-height: calc(95vh - 85px - 5rem);
+                color:#fff;
+                left: 0;
+                transform:translateX(calc(-100% + 45vw - 35vh));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/">
+            <img src="/logo.png">
+            <span class="logo">KNU CSE</span>
+        </a>
+    </header>
+    <span class="deco material-icons-outlined">
+        laptop_mac
+    </span>
+    <article>
+        <a class="menu disable" href="">
+            <div>
+                <div><span class="material-icons-outlined">
+                    mouse
+                    </span></div>
+                <div>사물함 신청</div>
+                <div>9.13~9.16</div>
+                <div><span class="material-icons-outlined">
+                    arrow_forward_ios
+                    </span></div>
+            </div>
+        </a>
+        <a class="menu disable" href="">
+            <div>
+                <div><span class="material-icons">
+                    groups
+                    </span></div>
+                <div>동아리 사물함 신청</div>
+                <div>9.16~</div>
+                <div><span class="material-icons-outlined">
+                    arrow_forward_ios
+                    </span></div>
+            </div>
+        </a>
+        <a class="menu" href="/search">
+            <div>
+                <div><span class="material-icons">
+                    check_circle
+                    </span></div>
+                <div>사물함 조회</div>
+                <div>~9.16</div>
+                <div><span class="material-icons-outlined">
+                    arrow_forward_ios
+                    </span></div>
+            </div>
+        </a>
+    </article>
+    <footer>
+        <p class="col-12 tm-copyright-text mb-0">
+            Copyright 2022. KNU CSE student. 
+            <br>
+            <a href="https://www.instagram.com/ji1_bahk/" rel="nofollow" class="tm-copyright-link">@ji1_bahk</a>,
+            <a href="https://www.instagram.com/wlssyuu/" rel="nofollow" class="tm-copyright-link">designed by @wlssyuu</a>
+        </p>
+    </footer>
+</body>
+</html>

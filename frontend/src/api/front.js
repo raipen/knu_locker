@@ -22,7 +22,7 @@ router.post('/fetchApply', async (req, res) => {
     logger(req,"[/fetchApply]",req.body);
     try{
         const result = await axios.post(
-            "http://localhost:8080/API/fetchApply",
+            "http://localhost:8088/API/fetchApply",
             {
                 name:req.body.name,
                 number:req.body.number
