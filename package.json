@@ -7,7 +7,7 @@
     "postinstall": "npm-run-all install:* --parallel --print-label --aggregate-output",
     "install:backend": "cd backend && npm install",
     "install:frontend": "cd frontend && npm install",
-    "test": "npm-run-all test:* --parallel --print-label --aggregate-output",
+    "test": "pm2 delete all&&npm-run-all test:* --parallel --print-label --aggregate-output",
     "test:backend": "cd backend && npm test",
     "test:frontend": "cd frontend && npm test",
     "start": "npm-run-all start:* --parallel --print-label --aggregate-output",

@@ -25,12 +25,7 @@ const config = {
       NCP_SENS_SECRET: process.env.NCP_SENS_SECRET,
       NCP_SENS_ID: process.env.NCP_SENS_ID,
       NCP_SENS_MY_NUMBER: process.env.NCP_SENS_MY_NUMBER
-    },
-    DBuser: process.env.DBuser,
-    DBpassword: process.env.DBpassword,
-    DBdatabase: process.env.DBdatabase,
-    DBaddress: process.env.DBaddress,
-    DBport: process.env.DBport
+    }
 }
 
 module.exports = config;

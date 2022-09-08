@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "pm2 start src/app.js --watch",
+    "test": "pm2 start src/app.js --watch --ignore-watch=\"src/log/*\"",
     "start": "node src/app.js"
   },
   "author": "",
