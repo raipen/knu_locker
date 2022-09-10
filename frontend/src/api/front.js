@@ -5,6 +5,7 @@ const logger = require('../log');
 
 router.get('/', async (req, res) => {
     console.log(`[/]`);
+    logger(req,"[/]",{});
     fs.readFile('./src/global/index.html', 'utf-8', (error, data) => {
         res.send(data);
     });
@@ -12,6 +13,7 @@ router.get('/', async (req, res) => {
 
 router.get('/search', async (req, res) => {
     console.log(`[/search]`);
+    logger(req,"[/search]",{});
     fs.readFile('./src/global/search.html', 'utf-8', (error, data) => {
         res.status(200).send(data);
     });
@@ -43,6 +45,7 @@ router.post('/fetchApply', async (req, res) => {
 
 router.get('/Result', async (req, res) => {
     console.log(`[/Result]`);
+    logger(req,"[/Result]",{});
     fs.readFile('./src/global/Result.html', 'utf-8', (error, data) => {
         res.status(200).send(data+`${req.query.phone}에서 문자를 확인해주세요.</h1><br>
         </article>
@@ -61,6 +64,7 @@ router.get('/Result', async (req, res) => {
 
 router.get('/NoResult', async (req, res) => {
     console.log(`[/NoResult]`);
+    logger(req,"[/NoResult]",{});
     fs.readFile('./src/global/NoResult.html', 'utf-8', (error, data) => {
         res.status(200).send(data);
     });
@@ -70,7 +74,6 @@ router.use(async (req, res) => {
     allowPage=["/logo.png"];
     if(!allowPage.includes(req.url))
         return res.status(404).json({message: "not found"});
-    console.log(req.url);
     fs.readFile('./src/global'+req.url, (error, data) => {
         res.send(data);
     });

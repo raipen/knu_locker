@@ -4,7 +4,6 @@ const axios = require('axios');
 
 class NCPSMS{
     /**
-     * 
      * @param {string} phoneNumber 하이픈 포함 전화번호
      * @param {string} type ("SMS"|"LMS") SMS: 건당 9원, LMS: 건당 30원
      * @param {string} message 전송할 메시지(SMS:80byte, LMS:2000byte)
