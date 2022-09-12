@@ -1,0 +1,111 @@
+article{
+    height:calc(80vh - 5rem);
+}
+
+.menu{
+    display: block;
+    background-color: #fff;
+    color:#000;
+    border-radius: 100%;
+    text-decoration: none;
+    height: 20vh;
+    width: 20vh;
+    position: relative;
+    left: calc(50% - 10vh);
+    cursor:pointer;
+    text-align: center;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgb(0 0 0 / 0%);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.menu:not(.disable):hover{
+    transform: scale(1.1);
+}
+.menu~.menu{
+    margin-top: 5vh;
+}
+.menu.disable{
+    background-color:#888;
+    cursor:default;
+}
+.menu>div{
+    position:absolute;
+    width:100%;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.deco{
+    display: none;
+}
+
+@media screen and (max-width:992px) {
+    /* 스마트폰 가로 */
+    .menu>div>div>span{
+        font-size: 4vh;
+    }
+    .menu>div>div:nth-of-type(2){
+        font-size:2vh;
+    }
+    .menu>div>div:nth-of-type(3){
+        font-size:1.5vh;
+    }
+}
+
+@media screen and (min-width:992px) {
+    /* 데스크탑 */
+    article{
+        height:calc(95vh - 85px - 5rem);
+    }
+    .menu{
+        height: 30vh;
+        width: 30vh;
+    }
+    .menu~.menu{
+        margin-top: 0;
+    }
+    .menu:nth-of-type(1){
+        left: calc(45% - 30vh);
+        top: 7vh;
+    }
+    .menu:nth-of-type(2){
+        left: 55%;
+        top: -23vh;
+    }
+    .menu:nth-of-type(3){
+        left: calc(50% - 15vh);
+        top: -23vh;
+    }
+    .menu>div>div>span{
+        font-size: 6vh;
+    }
+    .menu>div>div:nth-of-type(2){
+        font-size:3vh;
+    }
+    .menu>div>div:nth-of-type(3){
+        font-size:2.25vh;
+    }
+}
+
+@media screen and (min-width:1200px){
+    /* 큰 데스크탑 */
+    article{
+        position: relative;
+        width:1200px;
+        left: calc(100vw - 1200px);
+    }
+    .deco{
+        display: block;
+        position: absolute;
+        font-size: calc(95vh - 85px - 5rem);
+        line-height: calc(95vh - 85px - 5rem);
+        color:#fff;
+        left: 0;
+        transform:translateX(calc(-100% + 45vw - 35vh));
+    }
+}

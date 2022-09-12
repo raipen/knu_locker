@@ -1,0 +1,38 @@
+.input>input{
+    box-sizing: border-box;
+    width: 80vw;
+    height: 3rem;
+    margin-bottom: 4vh;
+    background: #F1F1F1;
+    border: 5px solid #F1F1F1;
+    border-radius: 0.5rem;
+}
+
+@media screen and (max-width:992px) {
+    /* 스마트폰 가로 */
+    .input>label{
+        display: block;
+        text-align: left;
+        margin-top: 1vh;
+        padding-left: 10vw;
+        font-weight: bold;
+    }
+}
+
+@media screen and (min-width:992px) {
+    /* 데스크탑 */
+    .input>input{
+        width: 50vw;
+    }
+    .input>label{
+        font-weight: bold;
+        margin-right: 10px;
+    }
+}
+
+@media screen and (min-width:1200px) {
+    /* 큰 데스크탑 */
+    .input>input{
+        width: 600px;
+    }
+}
