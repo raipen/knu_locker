@@ -1,13 +1,11 @@
 import './App.css';
 import { BrowserRouter,Routes, Route } from "react-router-dom";
-import MainHeader from './component/MainHeader';
 import Header from './component/Header';
 import Main from './page/Main';
 import Apply from './page/Apply';
 import Result from './page/Result';
-import ResultSMS from './page/ResultSMS';
-import NoResult from './page/NoResult';
-import MainFooter from './component/MainFooter';
+import ResultSMS from './page/Result/ResultSMS';
+import NoResult from './page/Result/NoResult';
 import Footer from './component/Footer';
 import EmptyPage from './page/EmptyPage';
 
@@ -15,7 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainHeader/>}/>
+        <Route path="/" element={<Header cName="main"/>}/>
         <Route path="/*" element={<Header/>}/>
       </Routes>
       <Routes>
@@ -27,7 +25,7 @@ function App() {
         <Route path="/*" element={<EmptyPage/>}/>
       </Routes>
       <Routes>
-        <Route path="/" element={<MainFooter/>}/>
+        <Route path="/" element={<Footer color="#da2127"/>}/>
         <Route path="/*" element={<Footer/>}/>
       </Routes>
     </BrowserRouter>

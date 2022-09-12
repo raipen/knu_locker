@@ -1,8 +1,7 @@
-import Input from "../component/Input";
-import SendButton from "../component/SendButton";
+import Input from "../../component/Input";
+import SendButton from "../../component/SendButton";
 import { useRef, useState } from "react";
 import {useNavigate} from "react-router-dom";
-import './Result.css';
 import axios from 'axios';
 
 export default function Result(){
@@ -30,7 +29,7 @@ export default function Result(){
         const sendButton = submitRef.current;
         try{
             sendButton.disabled = true;
-            sendButton.innerText = "전송중...";
+            sendButton.innerText = "조회중...";
             const result = await axios.post("/API/fetchApply", data);
             if(result.data.success){
                 let phone = result.data.phone;

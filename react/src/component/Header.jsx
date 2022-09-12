@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import styles from "./Header.module.css"
 
-export default function Header() {
+export default function Header({cName}) {
   return (
-    <header className={styles.header}>
+    <header className={cName}>
         <Link to="/">
             <img src="/logo.png"/>
-            <span className={styles.logo}>KNU CSE</span>
+            <span className="logo">KNU CSE</span>
         </Link>
     </header>
   );

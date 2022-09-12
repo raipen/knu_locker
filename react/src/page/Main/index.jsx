@@ -1,4 +1,4 @@
-import Menu from "../component/Menu";
+import Menu from "./Menu";
 import styles from "./Main.module.css";
 
 export default function Main(){
