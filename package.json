@@ -9,7 +9,8 @@
     "install:frontend": "cd frontend && npm install",
     "test": "npm-run-all test:* --parallel --print-label --aggregate-output",
     "test:backend": "cd backend && npm test",
-    "test:frontend": "cd frontend2 && npm test",
+    "test:frontend": "cd frontend && npm test",
+    "test:frontend2": "cd frontend2 && npm test",
     "start": "npm-run-all start:* --parallel --print-label --aggregate-output",
     "start:backend": "cd backend && npm start",
     "start:frontend": "cd frontend2 && npm start"

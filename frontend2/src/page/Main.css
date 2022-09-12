@@ -1,7 +1,3 @@
-article{
-    height:calc(80vh - 5rem);
-}
-
 .menu{
     display: block;
     background-color: #fff;
@@ -27,7 +23,7 @@ article{
     transform: scale(1.1);
 }
 .menu~.menu{
-    margin-top: 5vh;
+    margin-top: calc(10vh - 2.5rem);
 }
 .menu.disable{
     background-color:#888;
@@ -94,7 +90,7 @@ article{
 
 @media screen and (min-width:1200px){
     /* 큰 데스크탑 */
-    article{
+    .article{
         position: relative;
         width:1200px;
         left: calc(100vw - 1200px);

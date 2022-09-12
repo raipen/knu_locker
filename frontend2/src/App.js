@@ -5,8 +5,11 @@ import Header from './component/Header';
 import Main from './page/Main';
 import Apply from './page/Apply';
 import Result from './page/Result';
+import ResultSMS from './page/ResultSMS';
+import NoResult from './page/NoResult';
 import MainFooter from './component/MainFooter';
 import Footer from './component/Footer';
+import EmptyPage from './page/EmptyPage';
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
         <Route path="/" element={<Main/>}/>
         <Route path="/apply" element={<Apply/>}/>
         <Route path="/result" element={<Result/>}/>
+        <Route path="/result/:phone" element={<ResultSMS/>}/>
+        <Route path="/noResult" element={<NoResult/>}/>
+        <Route path="/*" element={<EmptyPage/>}/>
       </Routes>
       <Routes>
         <Route path="/" element={<MainFooter/>}/>
