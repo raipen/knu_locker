@@ -31,7 +31,7 @@ export default function Result(){
         try{
             sendButton.disabled = true;
             sendButton.innerText = "전송중...";
-            const result = await axios.post("http://localhost:8088/API/fetchApply", data);
+            const result = await axios.post("/API/fetchApply", data);
             if(result.data.success){
                 let phone = result.data.phone;
                 let securePhone = phone.substr(0,6)+"**"+phone.substr(8,3)+"**";
@@ -49,7 +49,7 @@ export default function Result(){
     const handleInputChange = (e) => {
         const name = document.getElementById("name").value;
         const studentId = document.getElementById("studentId").value;
-        const nameRegex = /^[가-힣]{2,4}$/;
+        const nameRegex = /^[가-힣| ]+$/;
         const studentIdRegex = /^[0-9]{10}$/;
         const sendButton = submitRef.current;
         if(nameRegex.test(name) && studentIdRegex.test(studentId)){
