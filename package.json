@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cd react&&npm test&&cd ..&&pm2 start src/app.js --watch --ignore-watch=\"src/log/*\"",
-    "start": "cd react&&npm run build&&cd ..&&pm2 start src/app.js --watch --ignore-watch=\"src/log/*\""
+    "postinstall": "cd react&&npm install",
+    "test": "cd react&&npm test&&cd ..&&pm2 start src/app.js --watch --ignore-watch=\"src/log/* react/*\"",
+    "start": "cd react&&npm run build&&cd ..&&pm2 start src/app.js --watch --ignore-watch=\"src/log/* react/*\""
   },
   "author": "",
   "license": "ISC",

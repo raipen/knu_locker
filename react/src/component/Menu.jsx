@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import styles from "./Menu.module.css";
 
-export default function Menu({href, icon, iconType="", text,date,disable=false}) {
-    let disableClass = disable ? " disable" : "";
+export default function Menu({cName,href, icon, iconType="", text,date,disabled=false}) {
     return (
-        <Link to={href} className={["menu"+disableClass, styles.menu].join(" ")}>
+        <Link to={href} className={cName}  disabled={disabled}>
             <div>
                 <div><span className={"material-icons"+iconType}>
                     {icon}

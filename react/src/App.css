@@ -1,0 +1,10 @@
+article{
+    width:100%;
+    height: calc(75vh - 5rem);
+}
+
+@media screen and (min-width:992px) {
+    article{
+        height: calc(95vh - 60px - 5rem);
+    }
+}
