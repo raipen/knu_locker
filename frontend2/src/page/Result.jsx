@@ -60,13 +60,13 @@ export default function Result(){
     }
 
     return (
-        <div>
+        <article>
             <h1>2022년 1학기<br/>사물함 배정 정보 조회</h1><br/>
             <form onSubmit={handleSubmit}>
                 {inputData.map((info,i) => <Input info={info} key={i+1} event={handleInputChange}/>)}
                 <SendButton reff={submitRef} disabled={true} text="조회"/>
             </form>
-        </div>
+        </article>
     )
 
 }
