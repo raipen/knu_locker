@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-export default function Menu({cName,href, icon, iconType="", text,date,disabled=false}) {
+export default function Menu({cName,href, icon, iconType="", text,date}) {
     return (
-        <Link to={href} className={cName}  disabled={disabled}>
+        <Link to={href} className={cName}>
             <div>
                 <div><span className={"material-icons"+iconType}>
                     {icon}

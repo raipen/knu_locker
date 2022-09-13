@@ -2,6 +2,11 @@ body{
   font-family: 'Noto Sans KR', sans-serif;
   text-align: center;
   margin:0;
+  background-color: #fff;
+}
+
+body.main{
+  background-color: #da2127;
 }
 
 a{
@@ -11,4 +16,105 @@ a{
 
 a:hover{
   color:#000;
+}
+
+header{
+  height: 20vh;
+  position:relative;
+  background-color: #DA2127;
+  margin-bottom: 5vh;
+  transition: all ease-in-out 0.5s 0s;
+}
+
+header.main{
+  margin-bottom:0;
+}
+
+article{
+  width:100%;
+  height: calc(75vh - 5rem);
+  overflow: overlay;
+}
+
+footer{
+  height:5rem;
+  padding-top:1rem;
+  padding-left:20px;
+  font-size: 0.8rem;
+}
+
+h1{
+  word-break: keep-all;
+  padding-left:10px;
+  padding-right:10px;
+}
+
+@media screen and (max-width:992px) {
+  /* 스마트폰 가로 */
+  header>a>*{
+      position:absolute;
+      left: 50%;
+      transform:translate(-50%);
+  }
+  header img{
+      top: 4vh;
+      height: 8vh;
+  }
+  header .logo{
+      color:#fff;
+      top:13vh;
+      font-size: 4vh;
+      line-height: 4vh;
+  }
+}
+
+@media screen and (min-width:992px) {
+  /* 데스크탑 */
+  header{
+      height: 60px;
+      padding-left:12px;
+      padding-top:12px;
+  }
+  header.main{
+      height: calc(85px + 5vh);
+      padding-left: 20px;
+      padding-top: 20px;
+      padding-bottom: 5vh;
+  }
+  header>a{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+  }
+  header img{
+      height: 36px;
+      margin-right:10px;
+  }
+  header.main img{
+      height: 65px;
+      margin-right:0px;
+  }
+  header .logo{
+      color:#fff;
+      font-size: 36px;
+      line-height: 36px;
+  }
+  header.main .logo{
+      font-size: 65px;
+      line-height: 65px;
+  }
+  article{
+      height: calc(95vh - 60px - 5rem);
+  }
+}
+
+@media screen and (min-width:1200px){
+  /* 큰 데스크탑 */
+  header>a{
+      margin-left:calc(50vw - 600px);
+  }
+  article{
+      width: 1200px;
+      margin-left: calc(50vw - 600px);
+  }
 }
