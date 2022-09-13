@@ -6,16 +6,16 @@ export default function ({info}){
         done
         </span>);
     else
-        info.id = (<div className={styles[info.status]}>
+        info.id = (<div>
             {info.id}
         </div>);
     return (
-        <div className={styles.step}>
-            <div className={styles.circle+" "+styles[info.status]}>
+        <div className={styles.step+" "+styles[info.status]}>
+            <div className={styles.circle}>
                 {info.id}
             </div>
             <br/>
-            <div className={styles.label+" "+styles[info.status]}>
+            <div className={styles.label}>
                 {info.label}
             </div>
         </div>

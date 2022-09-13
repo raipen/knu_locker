@@ -9,6 +9,50 @@
 
 @media screen and (max-width:992px) {
     /* 스마트폰 가로 */
+    .steps{
+        width: 100%;
+        position: relative;
+        background-color: #da2127;
+        margin:0 0 1rem;
+        padding:0 calc(50vw - 288px) 2vh;
+    }
+    .line{
+        width: 40px;
+        height: 40px;
+        border-radius: 0.4rem;
+        border-top: 0.4rem solid #fff;
+        border-right: 0.4rem solid #fff;
+        position: relative;
+        margin-top: 1rem;
+        transform: rotate(45deg);
+    }
+    .line.on{
+        animation:point 1s ease-in-out;
+    }
+}
+
+@keyframes point{
+    0%{
+        transform:rotate(45deg) translate(0);
+    }20%{
+        transform:rotate(45deg) translate(40%,-40%);
+    }40%{
+        transform:rotate(45deg) translate(-30%,30%);
+    }60%{
+        transform:rotate(45deg) translate(40%,-40%);
+    }80%{
+        transform:rotate(45deg) translate(-30%,30%);
+    }100%{
+        transform:rotate(45deg) translate(0);
+    }
+}
+
+@media screen and (max-width:576px) {
+    /* 스마트폰 가로 */
+    .line{
+        width: 7vw;
+        height: 7vw;
+    }
 }
 
 @media screen and (min-width:992px) {
@@ -30,12 +74,11 @@
         top:0;
         background-color: #da2127;
     }
-    .line>div.on{
+    .line.on>div{
         animation:progress 1s ease-in-out;
         animation-fill-mode:forwards;
     }
 }
-
 
 @keyframes progress{
     from{

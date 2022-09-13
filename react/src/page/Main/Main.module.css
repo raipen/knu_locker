@@ -60,6 +60,7 @@
 @media screen and (min-width:992px) {
     /* 데스크탑 */
     .article{
+        margin-top: 0;
         height:calc(95vh - 85px - 5rem);
     }
     .menu{

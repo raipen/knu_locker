@@ -3,8 +3,8 @@ import styles from "./Steps.module.css";
 
 export default function ({step}){
     let steps = [
-        {id:1,label:"신청자 정보 입력"},
-        {id:2,label:"사물함 위치 선택"},
+        {id:1,label:"신청자 정보"},
+        {id:2,label:"사물함 선택"},
         {id:3,label:"신청 완료"},
     ];
     let lines = [false,false];
@@ -16,12 +16,12 @@ export default function ({step}){
     return (
         <div className={styles.steps}>
             <Step info={steps[0]}/>
-            <div className={styles.line}>
-                <div className={lines[0]&&styles.on}></div>
+            <div className={styles.line+" "+(lines[0]&&styles.on)}>
+                <div></div>
             </div>
             <Step info={steps[1]}/>
-            <div className={styles.line}>
-                <div className={lines[1]&&styles.on}></div>
+            <div className={styles.line+" "+(lines[1]&&styles.on)}>
+                <div></div>
             </div>
             <Step info={steps[2]}/>
         </div>

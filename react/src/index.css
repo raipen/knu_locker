@@ -3,8 +3,20 @@ body{
   text-align: center;
   margin:0;
   background-color: #fff;
+  overflow: hidden;
 }
-
+article::-webkit-scrollbar{
+  width:2vw;
+  height: 100px;
+}
+article::-webkit-scrollbar-thumb {
+  background: rgba(218,33,39,0.5);
+  border-radius: 2vw;
+  max-height: 50%;
+}
+article::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0);
+}
 body.main{
   background-color: #da2127;
 }
@@ -22,7 +34,6 @@ header{
   height: 20vh;
   position:relative;
   background-color: #DA2127;
-  margin-bottom: 5vh;
   transition: all ease-in-out 0.5s 0s;
 }
 
@@ -32,7 +43,7 @@ header.main{
 
 article{
   width:100%;
-  height: calc(75vh - 5rem);
+  height: calc(80vh - 5rem);
   overflow: overlay;
 }
 
@@ -104,6 +115,7 @@ h1{
       line-height: 65px;
   }
   article{
+      margin-top: 5vh;
       height: calc(95vh - 60px - 5rem);
   }
 }
