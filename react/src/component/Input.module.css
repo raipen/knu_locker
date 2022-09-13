@@ -27,6 +27,8 @@
     .input>label{
         font-weight: bold;
         margin-right: 10px;
+        width: 4rem;
+        text-align: right;
     }
 }
 

@@ -12,6 +12,7 @@ header.main{
 article{
     width:100%;
     height: calc(75vh - 5rem);
+    overflow: overlay;
 }
 
 footer{
