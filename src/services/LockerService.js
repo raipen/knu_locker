@@ -37,7 +37,6 @@ class UserService {
         let cookieValue = CryptoJS.AES.encrypt(
             JSON.stringify({ code: code, phone: userDTO.phone, timestamp: Date.now() }), COOKIE_SECRET
         ).toString();
-        console.log(cookieValue);
         return {key:"vc",value: cookieValue};
     }
 
@@ -60,7 +59,7 @@ class UserService {
         let result = await db.Student.findOne({
             where: {
                 name:userDTO.name,
-                student_id: userDTO.number
+                student_id: userDTO.student_id
             }
         });
         if(result)
@@ -69,11 +68,51 @@ class UserService {
             throw new Error("No results found");
     }
 
+    async apply(userDTO, cookies){
+        let phone = cookies["phone"];
+        if(phone===undefined)
+            throw new Error( "Phone number is not verified");
+        
+        // Check if the student is already applied
+        let isStudent = await this.isStudent(userDTO);
+        if(!isStudent)
+            throw new Error("Student is not found");
+        let isAppledStudent = await this.isAppledStudent(userDTO);
+        if(isAppledStudent)
+            throw new Error("Already applied student");
+        let isAppledPhone = await this.isAppledPhone(phone);
+        if(isAppledPhone)
+            throw new Error("Already applied phone number");
+
+        let result = await db.Apply.create({
+            student_id: userDTO.studentId,
+            phone: phone,
+            first_floor: userDTO.first_floor,
+            first_height: userDTO.first_height,
+            second_floor: userDTO.second_floor,
+            second_height: userDTO.second_height,
+        });
+        console.log(result);
+        return {success: true};
+    }
+
+    async isStudent(userDTO){
+        let result = await db.Student.findOne({
+            where: {
+                name:userDTO.name,
+                student_id: userDTO.studentId
+            }
+        });
+        if(result)
+            return true;
+        else
+            return false;
+    }
+
     async isAppledStudent(userDTO){
         let result = await db.Apply.findOne({
             where: {
-                name:userDTO.name,
-                student_id: userDTO.number
+                student_id: userDTO.studentId
             }
         });
         if(result)
@@ -85,36 +124,13 @@ class UserService {
     async isAppledPhone(phone){
         let result = await db.Apply.findOne({
             where: {
-                phone_number: phone
+                phone: phone
             }
         });
         if(result)
             return true;
         else
             return false;
-    }
-
-    async apply(userDTO, cookies){
-        let phone = cookies["phone"];
-        if(phone===undefined)
-            throw new Error( "Phone number is not verified");
-        
-        // Check if the student is already applied
-        let isAppledStudent = await this.isAppledStudent(userDTO);
-        if(isAppledStudent)
-            throw new Error("Already applied student");
-        let isAppledPhone = await this.isAppledPhone(phone);
-        if(isAppledPhone)
-            throw new Error("Already applied phone number");
-
-        let result = await db.Apply.create({
-            name: userDTO.name,
-            student_id: userDTO.number,
-            phone_number: phone
-        });
-        return {success: true};
-
-
     }
 
     async fetchApply(userDTO){

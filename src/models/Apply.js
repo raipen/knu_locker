@@ -1,12 +1,17 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../db');
 
-module.exports = sequelize.define(
+module.exports = ({ DataTypes }, sequelize)=>{
+	return sequelize.define(
 		'apply_2022_2',
 		{
 			student_id: {
 				type: DataTypes.STRING(45),
 				primaryKey: true,
+				allowNull: false,
+			},
+			phone:{
+				type: DataTypes.STRING(45),
 				allowNull: false,
 			},
             first_floor: {
@@ -31,3 +36,4 @@ module.exports = sequelize.define(
 			timestamps: true,
 		}
 	);
+}

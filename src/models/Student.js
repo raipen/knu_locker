@@ -15,6 +15,7 @@ module.exports = ({ DataTypes }, sequelize)=>{
 			student_id: {
 				type: DataTypes.STRING(45),
 				allowNull: true,
+				unique: true,
 			},
 			dues: {
 				type: DataTypes.INTEGER,
