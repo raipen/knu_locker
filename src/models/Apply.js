@@ -9,14 +9,6 @@ module.exports = sequelize.define(
 				primaryKey: true,
 				allowNull: false,
 			},
-			dues: {
-				type: DataTypes.INTEGER,
-				allowNull: true,
-			},
-            verify: {
-				type: DataTypes.INTEGER,
-				allowNull: true,
-			},
             first_floor: {
 				type: DataTypes.STRING(45),
 				allowNull: true,
