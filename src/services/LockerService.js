@@ -1,16 +1,13 @@
-const sequelize = require('../db');
 const crypto = require('crypto');
-const studentModel = require('../models/Student');
-const applyModel = require('../models/Apply');
-const applicantModel = require('../models/Applicant');
+const CryptoJS = require('crypto-js');
+const db = require('../models');
 const {sendSMS} = require('../jobs/SMS');
 const {COOKIE_SECRET} = require('../config');
-const CryptoJS = require('crypto-js');
 
 
 class UserService {
     async checkDues(userDTO){
-        let result = await studentModel.findOne({
+        let result = await db.Student.findOne({
             where: {
                 name:userDTO.name,
                 student_id: userDTO.number
@@ -60,7 +57,7 @@ class UserService {
     }
 
     async checkStudent(userDTO){
-        let result = await studentModel.findOne({
+        let result = await db.Student.findOne({
             where: {
                 name:userDTO.name,
                 student_id: userDTO.number
@@ -73,7 +70,7 @@ class UserService {
     }
 
     async isAppledStudent(userDTO){
-        let result = await applyModel.findOne({
+        let result = await db.Apply.findOne({
             where: {
                 name:userDTO.name,
                 student_id: userDTO.number
@@ -85,10 +82,10 @@ class UserService {
             return false;
     }
 
-    async isAppledPhone(userDTO){
-        let result = await applyModel.findOne({
+    async isAppledPhone(phone){
+        let result = await db.Apply.findOne({
             where: {
-                phone_number: userDTO.phone
+                phone_number: phone
             }
         });
         if(result)
@@ -106,11 +103,11 @@ class UserService {
         let isAppledStudent = await this.isAppledStudent(userDTO);
         if(isAppledStudent)
             throw new Error("Already applied student");
-        let isAppledPhone = await this.isAppledPhone(userDTO);
+        let isAppledPhone = await this.isAppledPhone(phone);
         if(isAppledPhone)
             throw new Error("Already applied phone number");
 
-        let result = await applyModel.create({
+        let result = await db.Apply.create({
             name: userDTO.name,
             student_id: userDTO.number,
             phone_number: phone

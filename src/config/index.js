@@ -8,7 +8,7 @@ const config = {
         "development": {
           "username": process.env.testDBuser,
           "password": process.env.testDBpassword,
-          "database": process.env.DBdatabase,
+          "database": process.env.testDBdatabase,
           "host": process.env.testDBaddress,
           "dialect": "mysql"
         },

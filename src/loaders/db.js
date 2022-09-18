@@ -1,12 +1,7 @@
-const studentModel = require('../models/Student');
-const applyModel = require('../models/Apply');
-const applicantModel = require('../models/Applicant');
+const db = require("../models");
 
 async function db_loader(app){
-    /* await studentModel.sync({ alter: true });
-    await applyModel.sync({ alter: true });
-    await applicantModel.sync({ alter: true }); */
-    
+    db.sequelize.sync();
     return;
 }
 
