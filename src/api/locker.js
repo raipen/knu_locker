@@ -26,7 +26,7 @@ router.post('/sendCertificationCode', errorCatcher(async (req, res) => {
   logger(req,"[/API/fetchApply]",userDTO);
   const code = await LockerService.sendCertificationCode(userDTO);
   const result = await LockerService.generateCertificationCookie(userDTO,code);
-  res.cookie(result.key, result.code, {maxAge: 300000,signed: true});
+  res.cookie(result.key, result.value, {maxAge: 300000,signed: true});
   res.status(200).json({seccess:true});
 }));
 
@@ -38,9 +38,18 @@ router.post('/checkCertificationCode', errorCatcher(async (req, res) => {
   const isVeryfied = await LockerService.checkCertificationCode(userDTO,cookies);
   if(isVeryfied){
     const result = await LockerService.generateVerifiedPhoneCookie(userDTO);
-    res.cookie(result.key, result.code, {signed: true});
+    res.cookie(result.key, result.value, {signed: true});
   }
   res.status(200).json({success:isVeryfied});
+}));
+
+router.post('/apply', errorCatcher(async (req, res) => {
+  const userDTO = req.body;
+  const cookies = req.signedCookies;
+  console.log(`[/API/apply] ${userDTO.name} ${userDTO.studentId} ${cookies.phone}`);
+  logger(req,"[/API/apply]",userDTO);
+  const result = await LockerService.apply(userDTO,cookies);
+  res.status(200).json(result);
 }));
 
 router.use(errorHandling);

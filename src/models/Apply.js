@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../db');
 
 module.exports = sequelize.define(
-		'apply_info',
+		'apply_2022_2',
 		{
 			student_id: {
 				type: DataTypes.STRING(45),

@@ -4,6 +4,9 @@ const studentModel = require('../models/Student');
 const applyModel = require('../models/Apply');
 const applicantModel = require('../models/Applicant');
 const {sendSMS} = require('../jobs/SMS');
+const {COOKIE_SECRET} = require('../config');
+const CryptoJS = require('crypto-js');
+
 
 class UserService {
     async checkDues(userDTO){
@@ -20,7 +23,6 @@ class UserService {
     }
 
     async sendCertificationCode(userDTO){
-        //use crypto 6 digit random number
         let code = crypto.randomInt(100000, 999999);
         if(userDTO.phone===undefined)
             throw new Error("Phone number is not provided");
@@ -29,25 +31,24 @@ class UserService {
             "SMS",
             `[KNU CSE] 인증번호 [${code}]를 입력해주세요.`
         );
-        //전화번호 전송 실패시 오류 던지기
         if(SMSresult.statusName!=="success")
             throw new Error("SMS sending failed");
         return code;
     }
 
     async generateCertificationCookie(userDTO,code){
-        let cookieValue = JSON.stringify({code:code,phone:userDTO.phone,timestamp:Date.now()});
+        let cookieValue = CryptoJS.AES.encrypt(
+            JSON.stringify({ code: code, phone: userDTO.phone, timestamp: Date.now() }), COOKIE_SECRET
+        ).toString();
         console.log(cookieValue);
-        return {code: cookieValue,key:"vc"};
+        return {key:"vc",value: cookieValue};
     }
 
     async checkCertificationCode(userDTO,cookies){
         let cookie = cookies["vc"];
         if(cookie===undefined)
             return false;
-        let cookieValue = JSON.parse(cookie);
-        //코드 일치, 전화번호 일치, 5분 이내
-        console.log(cookieValue.code,userDTO.code);
+        let cookieValue = JSON.parse(CryptoJS.AES.decrypt(cookie, COOKIE_SECRET).toString(CryptoJS.enc.Utf8));
         if(cookieValue.code===Number(userDTO.code) && cookieValue.phone===userDTO.phone && Date.now()-cookieValue.timestamp<300000)
             return true;
         else
@@ -55,8 +56,68 @@ class UserService {
     }
 
     async generateVerifiedPhoneCookie(userDTO){
-        let cookieValue = JSON.stringify({phone:userDTO.phone,timestamp:Date.now()});
-        return {code: cookieValue,key:"vp"};
+        return {key:"phone",value: userDTO.phone};
+    }
+
+    async checkStudent(userDTO){
+        let result = await studentModel.findOne({
+            where: {
+                name:userDTO.name,
+                student_id: userDTO.number
+            }
+        });
+        if(result)
+            return {isStudent: true}
+        else
+            throw new Error("No results found");
+    }
+
+    async isAppledStudent(userDTO){
+        let result = await applyModel.findOne({
+            where: {
+                name:userDTO.name,
+                student_id: userDTO.number
+            }
+        });
+        if(result)
+            return true;
+        else
+            return false;
+    }
+
+    async isAppledPhone(userDTO){
+        let result = await applyModel.findOne({
+            where: {
+                phone_number: userDTO.phone
+            }
+        });
+        if(result)
+            return true;
+        else
+            return false;
+    }
+
+    async apply(userDTO, cookies){
+        let phone = cookies["phone"];
+        if(phone===undefined)
+            throw new Error( "Phone number is not verified");
+        
+        // Check if the student is already applied
+        let isAppledStudent = await this.isAppledStudent(userDTO);
+        if(isAppledStudent)
+            throw new Error("Already applied student");
+        let isAppledPhone = await this.isAppledPhone(userDTO);
+        if(isAppledPhone)
+            throw new Error("Already applied phone number");
+
+        let result = await applyModel.create({
+            name: userDTO.name,
+            student_id: userDTO.number,
+            phone_number: phone
+        });
+        return {success: true};
+
+
     }
 
     async fetchApply(userDTO){
