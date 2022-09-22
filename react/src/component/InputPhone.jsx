@@ -1,5 +1,5 @@
 import styles from "./Input.module.css"
-import VerifyStep from "./VerifyStep";
+import VerifyStep from "./Step";
 import axios from "axios";
 
 export default function ({info,event,step,setStep}){

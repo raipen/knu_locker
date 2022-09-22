@@ -5,7 +5,7 @@ import SelectLocker from "./SelectLocker";
 import Steps from "./Steps";
 
 export default function Apply(){
-    const [step,setStep] = useState(1);
+    const [step,setStep] = useState(2);
     switch(step){
         case 1:
             return (

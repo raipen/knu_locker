@@ -1,115 +1,121 @@
 import { useRef, useState,useEffect } from "react";
 import Input from "../../component/Input";
-import InputPhone from "../../component/InputPhone";
 import SendButton from "../../component/SendButton";
 import axios from 'axios';
-import VerifyStep from '../../component/VerifyStep';
+import Step from '../../component/Step';
 
 export default function ({setStep}) {
+    const steps = {
+        name: useState(Step.WAITING_INPUT),
+        studentId: useState(Step.WAITING_INPUT),
+        phone: useState(Step.WAITING_INPUT),
+        code: useState(Step.NONE),
+    };
+
     const inputData = [
         {
             id: "name", label: "이름",
             placeholder: "호반우", type: "text",
             reg:/^[가-힣| ]+$/, useButton:false,
+            step:steps.name[0],setStep:steps.name[1],
         },
         {
             id: "studentId", label: "학번",
             placeholder: "2022123456", type: "number",
             reg:/^[0-9]{10}$/, useButton:false,
+            step:steps.studentId[0],setStep:steps.studentId[1],
         },
-        /* {
+        {
             id: "phone", label: "전화번호",
             placeholder: "'-'없이 숫자만 입력", type: "number",
             reg: /^010\d{8}$/, useButton:true,
-            activate: "인증",
-            waiting: true,
+            step:steps.phone[0],setStep:steps.phone[1],
+            activate: "인증", sending: "인증중", complete: "인증완료",
         },
         {
             id: "code", label: "인증번호",
             placeholder: "인증번호 6자리", type: "number",
             reg: /^\d{6}$/, useButton:true,
-            activate: "확인",
-        } */
+            step:steps.code[0],setStep:steps.code[1],
+            activate: "확인", sending: "확인중", complete: "확인완료",
+        },
     ];
-    const phoneInputData = {
-        id: "phone", label: "전화번호",
-        placeholder: "'-'없이 숫자만 입력",
-        reg : /^010\d{8}$/,
-        activate: "인증",
-        waiting: true,
-    };
-    const codeInputData = {
-        id: "code", label: "인증번호",
-        placeholder: "인증번호 6자리",
-        reg: /^\d{6}$/,
-        activate: "확인",
-    };
-
-    const [phoneStep,setPhoneStep] = useState(VerifyStep.WAITING_INPUT);
-    const [codeStep,setCodeStep] = useState(VerifyStep.NONE);
-
-
-    if(codeStep===VerifyStep.NONE&&phoneStep===VerifyStep.COMPLETE){
-        setCodeStep(VerifyStep.WAITING_INPUT);
-    }
-
-    if(codeStep!==VerifyStep.NONE&&phoneStep!==VerifyStep.COMPLETE){
-        setCodeStep(VerifyStep.NONE);
-    }
 
     useEffect(()=>{
+        if(steps.phone[0]===Step.COMPLETE){
+            steps.code[1](Step.WAITING_INPUT);
+            return;
+        }
+        steps.code[1](Step.NONE);
         const phone = document.getElementById("phone");
         let phone_temp = phone.value;
         phone.value = "";
         phone.focus();
         phone.value = phone_temp;
-    },[phoneStep]);
+    },[steps.phone[0]]);
 
     useEffect(()=>{
-        handleInputChange(null);
-    },);
+        if(steps.code[0]===Step.WAITING_INPUT){
+            document.getElementById("code").focus();
+        }
+    },[steps.code[0]]);
 
     useEffect(()=>{
         document.getElementById("name").focus();
     },[]);
 
     const submitRef = useRef(null);
-    const handleInputChange = (e) => {
-        const name = document.getElementById("name").value;
-        const studentId = document.getElementById("studentId").value;
-        const nameRegex = /^[가-힣| ]+$/;
-        const studentIdRegex = /^[0-9]{10}$/;
-        const phoneVerified = phoneStep === VerifyStep.COMPLETE && codeStep === VerifyStep.COMPLETE;
-        const sendButton = submitRef.current;
-        if (nameRegex.test(name) && studentIdRegex.test(studentId) && phoneVerified) {
-            sendButton.disabled = false;
-        } else {
-            sendButton.disabled = true;
+    
+    useEffect(()=>{
+        //check if all steps are complete
+        let complete = true;
+        for(let key in steps){
+            console.log(key,steps[key][0]);
+            if(steps[key][0]!==Step.COMPLETE){
+                complete = false;
+                break;
+            }
         }
-    }
-
-    const handlePhone = async (e) => {
-        e.preventDefault();
-        setPhoneStep(VerifyStep.COMPLETE);
-        const phone = document.getElementById("phone").value;
-        const res = await axios.post("/API/sendCertificationCode", {phone:phone});
-        if(res.data.success){
-            console.log("인증번호 전송 성공");
+        if(complete){
+            submitRef.current.disabled = false;
         }else{
-            console.log("인증번호 전송 실패");
+            submitRef.current.disabled = true;
+        }
+    },[steps.name[0],steps.studentId[0],steps.code[0]]);
+
+
+    inputData[2].event = async (e) => {
+        e.preventDefault();
+        steps.phone[1](Step.SENDING);
+        const phone = document.getElementById("phone").value;
+        try {
+            const res = await axios.post("/API/sendCertificationCode", { phone: phone });
+            if (res.data.success) {
+                steps.phone[1](Step.COMPLETE);
+            } else {
+                steps.phone[1](Step.FAIL);
+            }
+        } catch (e) {
+            steps.phone[1](Step.FAIL);
         }
     }
 
-    const handleCode = async (e) => {
+    inputData[3].event = async (e) => {
         e.preventDefault();
-        setCodeStep(VerifyStep.COMPLETE);
+        steps.code[1](Step.SENDING);
         const phone = document.getElementById("phone").value;
         const code = document.getElementById("code").value;
-        const res = await axios.post("/API/checkCertificationCode", {phone:phone,code:code});
-        if(res.data.success){
-            console.log("인증번호 확인 성공");
-        }else{
-            console.log("인증번호 확인 실패");
+        try {
+            const res = await axios.post("/API/checkCertificationCode", { phone: phone, code: code });
+            if (res.data.success) {
+                steps.code[1](Step.COMPLETE);
+            } else {
+                steps.code[1](Step.FAIL);
+                document.getElementById("code").value="";
+                document.getElementById("code").focus();
+            }
+        } catch (e) {
+            steps.code[1](Step.FAIL);
         }
     }
 
@@ -117,10 +123,9 @@ export default function ({setStep}) {
         e.preventDefault();
         setStep(2);
     }
+
     return (<form onSubmit={handleSubmit}>
-        {inputData.map((info,i) => <Input info={info} key={i+1} event={handleInputChange}/>)}
-        <InputPhone info={phoneInputData} event={handlePhone} step={phoneStep} setStep={setPhoneStep}/>
-        <InputPhone info={codeInputData} event={handleCode} step={codeStep} setStep={setCodeStep}/>
+        {inputData.map((info,i) => <Input info={info} key={i+1}/>)}
         <SendButton reff={submitRef} disabled={true} text="다음"/>
     </form>);
 }
