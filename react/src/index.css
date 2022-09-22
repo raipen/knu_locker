@@ -44,7 +44,8 @@ header.main{
 article{
   width:100%;
   height: calc(80vh - 5rem);
-  overflow: overlay;
+  overflow-y: overlay;
+  overflow-x:hidden;
 }
 
 footer{
@@ -58,6 +59,12 @@ h1{
   word-break: keep-all;
   padding-left:10px;
   padding-right:10px;
+}
+
+input::-webkit-inner-spin-button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
 }
 
 @media screen and (max-width:992px) {

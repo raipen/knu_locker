@@ -27,7 +27,7 @@ router.post('/sendCertificationCode', errorCatcher(async (req, res) => {
   const code = await LockerService.sendCertificationCode(userDTO);
   const result = await LockerService.generateCertificationCookie(userDTO,code);
   res.cookie(result.key, result.value, {maxAge: 300000,signed: true});
-  res.status(200).json({seccess:true});
+  res.status(200).json({success:true});
 }));
 
 router.post('/checkCertificationCode', errorCatcher(async (req, res) => {

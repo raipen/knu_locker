@@ -1,3 +1,11 @@
+.input{
+    position: relative;
+}
+
+.input.error{
+    border: 3px solid #DA2127;
+}
+
 .input>input{
     box-sizing: border-box;
     width: 80vw;
@@ -6,6 +14,29 @@
     background: #F1F1F1;
     border: 5px solid #F1F1F1;
     border-radius: 0.5rem;
+}
+
+.right>input{
+    padding-right: 60px;
+}
+
+.button{
+    position:absolute;
+    bottom: calc(4vh + 0.5rem);
+    right:50px;
+    width: 50px;
+    height: 2rem;
+    outline: none;
+    border:none;
+    color:#fff;
+    font-weight: bold;
+    background: #DA2127;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.button:disabled{
+    background: #8A8A88;
 }
 
 @media screen and (max-width:992px) {
@@ -21,6 +52,13 @@
 
 @media screen and (min-width:992px) {
     /* 데스크탑 */
+    .right{
+        left:25px;
+    }
+    .button{
+        position:relative;
+        top:0;
+    }
     .input>input{
         width: 50vw;
     }
@@ -29,6 +67,9 @@
         margin-right: 10px;
         width: 4rem;
         text-align: right;
+    }
+    .button{
+        right:60px;
     }
 }
 

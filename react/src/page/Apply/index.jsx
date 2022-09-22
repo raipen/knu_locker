@@ -6,20 +6,19 @@ import Steps from "./Steps";
 
 export default function Apply(){
     const [step,setStep] = useState(1);
-    const [verifyToken,setVerifyToken] = useState("");
     switch(step){
         case 1:
             return (
                 <article>
                     <Steps step={step}/>
-                    <Applicant setStep={setStep} setVerifyToken={setVerifyToken}/>
+                    <Applicant setStep={setStep}/>
                 </article>
             );
         case 2:
             return (
                 <article>
                     <Steps step={step} />
-                    <SelectLocker setStep={setStep} verifyToken={verifyToken}/>
+                    <SelectLocker setStep={setStep}/>
                 </article>
             );
         default:

@@ -2,7 +2,7 @@ import styles from "./Step.module.css";
 
 export default function ({info}){
     if(info.status==="done")
-        info.id = (<span class="material-icons-round">
+        info.id = (<span className="material-icons-round">
         done
         </span>);
     else
