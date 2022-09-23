@@ -13,26 +13,35 @@
     margin-bottom: 1vh;
 }
 
-.table>span:first-child{
+.main{
     display: inline-block;
-    font-weight: 700;
-    margin-right: 10px;
-    text-align: right;
-    width: 8rem;
+    text-align: left;
+    margin-top: 5vh;
+    width:auto;
+    padding:0 1rem;
 }
 
+.table>span:nth-child(1){
+    display: block;
+}
 .table>span:nth-child(2){
-    display: inline-block;
-    background: #f1f1f1;
-    border: 5px solid #f1f1f1;
-    border-radius: 0.5rem;
-    box-sizing: border-box;
-    height: 3rem;
-    margin: 1vh 0;
-    width: 50vw;
+    display: block;
+    margin-left: 2rem;
+}
+.red{
+    color: #DA2127;
 }
 
 @media screen and (min-width:992px) {
+    .main{
+        width: auto;
+    }
+    .main,.red{
+        font-size: 1.2rem;
+    }
+    .table>span:nth-child(1){
+        font-size: 1.5rem;
+    }
     .apply{
         width: 30vw;
     }

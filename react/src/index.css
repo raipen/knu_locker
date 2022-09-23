@@ -31,7 +31,7 @@ a:hover{
 }
 
 header{
-  height: 20vh;
+  height: 15vh;
   position:relative;
   background-color: #DA2127;
   transition: all ease-in-out 0.5s 0s;
@@ -43,7 +43,7 @@ header.main{
 
 article{
   width:100%;
-  height: calc(80vh - 5rem);
+  height: calc(85vh - 5rem);
   overflow-y: overlay;
   overflow-x:hidden;
 }
@@ -75,12 +75,12 @@ input::-webkit-inner-spin-button {
       transform:translate(-50%);
   }
   header img{
-      top: 4vh;
+      top: 1vh;
       height: 8vh;
   }
   header .logo{
       color:#fff;
-      top:13vh;
+      top:10vh;
       font-size: 4vh;
       line-height: 4vh;
   }

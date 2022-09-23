@@ -7,9 +7,9 @@ export default function Tab({text,locker,event}){
         [],
         ["상","중상","중하","하"]
     ]
-    let lockerText="";
+    let lockerText="선택해주세요";
     if(locker?.floor!==undefined)
-        lockerText += (locker.floor===-1?"지하 1층":locker.floor+"층");
+        lockerText = (locker.floor===-1?"지하 1층":locker.floor+"층");
     if(locker?.height!==undefined)
         lockerText += " "+height[locker.floor==-1?0:locker.floor][locker.height-1];
     return (

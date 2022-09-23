@@ -58,17 +58,28 @@
 }
 .selectHeight>div{
     cursor: pointer;
-    display: block;
+    display: flex;
     border:5px solid #8A8A88;
     border-bottom-style: none;
-    height: 55px;
+    height: 50px;
     width: 80%;
     margin:auto;
+    overflow: hidden;
+}
+.selectHeight>div>div{
+    display: inline-block;
+    border-right:5px solid #8A8A88;
+    height: 50px;
+    width: 100px;
+}
+.selectHeight>div>div:nth-last-child(1){
+    border-right-style:none;
 }
 .selectHeight>div:nth-last-child(1){
     border-bottom-style: solid;
+    height: 20px;
 }
-.selectHeight>div:hover{
+.selectHeight>div:not(:nth-last-child(1)):hover{
     background-color: RGBA(218,33,39,0.5);
 }
 .selectHeight>div.select{
@@ -89,6 +100,10 @@
     .text:nth-of-type(2) {
         line-height: 20px;
         font-size: 20px;
+    }
+
+    .selectHeight>div>div:nth-of-type(2n+1){
+        border-right-style:none;
     }
 }
 
