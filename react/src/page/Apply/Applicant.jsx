@@ -4,7 +4,7 @@ import SendButton from "../../component/SendButton";
 import axios from 'axios';
 import Step from '../../component/Step';
 
-export default function ({setStep}) {
+export default function ({setStep,setInfo}) {
     const steps = {
         name: useState(Step.WAITING_INPUT),
         studentId: useState(Step.WAITING_INPUT),
@@ -70,7 +70,6 @@ export default function ({setStep}) {
         //check if all steps are complete
         let complete = true;
         for(let key in steps){
-            console.log(key,steps[key][0]);
             if(steps[key][0]!==Step.COMPLETE){
                 complete = false;
                 break;
@@ -121,11 +120,14 @@ export default function ({setStep}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setInfo({name:document.getElementById("name").value,studentId:document.getElementById("studentId").value});
         setStep(2);
     }
 
-    return (<form onSubmit={handleSubmit}>
-        {inputData.map((info,i) => <Input info={info} key={i+1}/>)}
-        <SendButton reff={submitRef} disabled={true} text="다음"/>
-    </form>);
+    return (
+        <form onSubmit={handleSubmit}>
+            {inputData.map((info, i) => <Input info={info} key={i + 1} />)}
+            <SendButton reff={submitRef} disabled={true} text="다음" />
+        </form>
+    );
 }

@@ -1,0 +1,45 @@
+.apply{
+    display: inline-block;
+    width: 50vw;
+    height: 4rem;
+    outline: none;
+    border:none;
+    color:#fff;
+    font-weight: bold;
+    background: #DA2127;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    margin-top: 5vh;
+    margin-bottom: 1vh;
+}
+
+.table>span:first-child{
+    display: inline-block;
+    font-weight: 700;
+    margin-right: 10px;
+    text-align: right;
+    width: 8rem;
+}
+
+.table>span:nth-child(2){
+    display: inline-block;
+    background: #f1f1f1;
+    border: 5px solid #f1f1f1;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    height: 3rem;
+    margin: 1vh 0;
+    width: 50vw;
+}
+
+@media screen and (min-width:992px) {
+    .apply{
+        width: 30vw;
+    }
+}
+
+@media screen and (min-width:1200px) {
+    .apply{
+        width: 360px;
+    }
+}

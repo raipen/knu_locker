@@ -1,0 +1,113 @@
+.locker{
+    border: 5px solid #DA2127;
+    border-top-width: 50px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.tabs{
+    position:absolute;
+    top:-45px;
+}
+
+.tab{
+    display: inline-block;
+    border-radius:10px 10px 0 0;
+    background-color: #ffffff;
+    color:#DA2127;
+    width:30vw;
+    height:45px;
+    cursor: pointer;
+}
+
+.text{
+    width:100%;
+    font-weight: bold;
+    text-align:center;
+    margin-top: 5px;
+    text-align: left;
+    padding-left:5vw;
+    line-height: 45px;
+    font-size: 20px;
+}
+
+.tab.select{
+    background-color: #DA2127;
+    color:#ffffff;
+}
+
+.selectForm{
+    height:330px;
+}
+
+.selectFloor{
+    margin:10px 0;
+}
+.selectFloor>div{
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 36px;
+    text-align: center;
+    margin-right: 10px;
+}
+.selectFloor>div.select{
+    color: #DA2127;
+    text-decoration: underline;
+}
+.selectHeight>div{
+    cursor: pointer;
+    display: block;
+    border:5px solid #8A8A88;
+    border-bottom-style: none;
+    height: 55px;
+    width: 80%;
+    margin:auto;
+}
+.selectHeight>div:nth-last-child(1){
+    border-bottom-style: solid;
+}
+.selectHeight>div:hover{
+    background-color: RGBA(218,33,39,0.5);
+}
+.selectHeight>div.select{
+    background-color: #DA2127;
+}
+
+@media screen and (max-width:992px) {
+    /* 스마트폰 가로 */
+    .tab{
+        width:calc(50vw - 5px);
+    }
+    
+    .text:nth-of-type(1) {
+        line-height: 15px;
+        font-size: 15px;
+    }
+
+    .text:nth-of-type(2) {
+        line-height: 20px;
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width:992px) {
+    /* 데스크탑 */
+    .text{
+        display: inline-block;
+        padding: 0;
+        width:auto;
+        margin-top: 0;
+    }
+    .text:nth-of-type(1)::after{
+        content:":\00a0";
+    }
+}
+
+@media screen and (min-width:1200px) {
+    /* 큰 데스크탑 */
+    .tab{
+        width:360px;
+    }
+}

@@ -8,6 +8,7 @@ import ResultSMS from './page/Result/ResultSMS';
 import NoResult from './page/Result/NoResult';
 import Footer from './component/Footer';
 import EmptyPage from './page/EmptyPage';
+import Agree from './page/Agree';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/" element={<Main/>}/>
+        <Route path="/agree" element={<Agree/>}/>
         <Route path="/apply" element={<Apply/>}/>
         <Route path="/result" element={<Result/>}/>
         <Route path="/result/:phone" element={<ResultSMS/>}/>
