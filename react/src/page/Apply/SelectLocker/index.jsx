@@ -95,8 +95,8 @@ export default function ({setStep,info}) {
         sendButton = (<SendButton reff={submitRef} disabled={false} text="2지망 선택 완료"/>);
         handleSubmit = async (e) => {
             e.preventDefault();
-            submitRef.current.text="신청 중...";
-
+            submitRef.current.innerText="신청 중...";
+            submitRef.current.disabled = true;
             let data = {
                 name: info.name,
                 studentId: info.studentId,

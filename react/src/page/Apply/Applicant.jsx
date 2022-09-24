@@ -30,14 +30,14 @@ export default function ({setStep,setInfo}) {
             placeholder: "'-'없이 숫자만 입력", type: "number",
             reg: /^010\d{8}$/, useButton:true,
             step:steps.phone[0],setStep:steps.phone[1],
-            activate: "인증", sending: "인증중", complete: "인증완료",
+            activate: "인증", sending: "...", complete: "인증완료",
         },
         {
             id: "code", label: "인증번호",
             placeholder: "인증번호 6자리", type: "number",
             reg: /^\d{6}$/, useButton:true,
             step:steps.code[0],setStep:steps.code[1],
-            activate: "확인", sending: "확인중", complete: "확인완료",
+            activate: "확인", sending: "...", complete: "확인완료",
         },
     ];
 
@@ -65,6 +65,7 @@ export default function ({setStep,setInfo}) {
     },[]);
 
     const submitRef = useRef(null);
+    const errorRef = useRef(null);
     
     useEffect(()=>{
         //check if all steps are complete
@@ -120,13 +121,29 @@ export default function ({setStep,setInfo}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setInfo({name:document.getElementById("name").value,studentId:document.getElementById("studentId").value});
-        setStep(2);
+        submitRef.current.disabled = true;
+        submitRef.current.innerText = "확인중...";
+        let name = document.getElementById("name").value;
+        let studentId = document.getElementById("studentId").value;
+        try {
+            const res = await axios.post("/API/checkStudent", {name:name,studentId:studentId});
+            if (res.data.isStudent) {
+                setInfo({name:name,studentId:studentId});
+                setStep(2);
+            } else {
+                errorRef.current.innerText = "일치하는 컴퓨터학부 학생이 존재하지 않습니다. 문제가 지속될 경우 카카오톡 아이디 je12370로 문의해주세요.";
+                submitRef.current.innerText = "다음";
+            }
+        } catch (e) {
+            errorRef.current.innerText = "오류가 발생했습니다";
+            submitRef.current.innerText = "다음";
+        }
     }
 
     return (
         <form onSubmit={handleSubmit}>
             {inputData.map((info, i) => <Input info={info} key={i + 1} />)}
+            <div ref={errorRef} style={{color:"red"}}></div>
             <SendButton reff={submitRef} disabled={true} text="다음" />
         </form>
     );

@@ -3,6 +3,7 @@ const CryptoJS = require('crypto-js');
 const db = require('../models');
 const {sendSMS} = require('../jobs/SMS');
 const {COOKIE_SECRET} = require('../config');
+const e = require('express');
 
 
 class UserService {
@@ -59,13 +60,30 @@ class UserService {
         let result = await db.Student.findOne({
             where: {
                 name:userDTO.name,
-                student_id: userDTO.student_id
+                student_id: userDTO.studentId
             }
         });
+        if(result){
+            console.log(result);
+            return {isStudent: true};
+        }
+        
+        result = await db.Student.findOne({
+            where: {
+                name:userDTO.name,
+                student_id: null
+            }
+        });
+        let update;
         if(result)
-            return {isStudent: true}
+            update = await db.Student.update({student_id: userDTO.studentId}, {where: {name: userDTO.name,student_id: null}});
         else
             throw new Error("No results found");
+        
+        if(update)
+            return {isStudent: true};
+        else
+            throw new Error("Update failed");
     }
 
     async apply(userDTO, cookies){

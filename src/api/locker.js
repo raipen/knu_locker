@@ -52,6 +52,14 @@ router.post('/apply', errorCatcher(async (req, res) => {
   res.status(200).json(result);
 }));
 
+router.post('/checkStudent', errorCatcher(async (req, res) => {
+  const userDTO = req.body;
+  console.log(`[/API/checkStudent] ${userDTO.name} ${userDTO.studentId}`);
+  logger(req,"[/API/checkStudent]",userDTO);
+  const result = await LockerService.checkStudent(userDTO);
+  res.status(200).json(result);
+}));
+
 router.use(errorHandling);
 
 module.exports = router;

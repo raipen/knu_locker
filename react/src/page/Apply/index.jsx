@@ -26,7 +26,7 @@ export default function Apply(){
             return (
                 <article>
                     <Steps step={step}/>
-                    <Done/>
+                    <Done info={info}/>
                 </article>
             );
         default:
