@@ -121,28 +121,27 @@ export default function ({setStep,info,setInfo}) {
                     });
                     setStep(3);
                 } else {
-                    switch (res.data.message) {
-                        case "Already applied student":
-                            setInfo("이미 신청한 학생입니다.");
-                            break;
-                        case "Already applied phone number":
-                            setInfo("이미 신청한 전화번호입니다.");
-                            break;
-                        case "Student is not found":
-                            setInfo("존재하지 않는 학생입니다.");
-                            break;
-                        case "Phone number is not verified":
-                            setInfo("인증되지 않은 전화번호입니다.");
-                            break;
-                        default:
-                            setInfo("신청 오류");
-                            break;
-                    }                    
+                    setInfo("신청 오류");
                     setStep(4);
                 }
             } catch (e) {
-                console.log(e);
-                setInfo("신청 오류");
+                switch (e.response.data.message) {
+                    case "Already applied student":
+                        setInfo("이미 신청한 학생입니다.");
+                        break;
+                    case "Already applied phone number":
+                        setInfo("이미 신청한 전화번호입니다.");
+                        break;
+                    case "Student is not found":
+                        setInfo("존재하지 않는 학생입니다.");
+                        break;
+                    case "Phone number is not verified":
+                        setInfo("인증되지 않은 전화번호입니다.");
+                        break;
+                    default:
+                        setInfo("신청 오류");
+                        break;
+                }
                 setStep(4);
             }
         }
