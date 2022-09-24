@@ -22,7 +22,6 @@
     -webkit-transition-property: transform;
     transition-property: transform;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    margin-top:5vh;
 }
 .menu:not(.disable):hover{
     transform: scale(1.1);
@@ -55,6 +54,9 @@
     }
     .menu>div>div:nth-of-type(3){
         font-size:1.5vh;
+    }
+    .menu:nth-of-type(1){
+        margin-top:5vh;
     }
 }
 
