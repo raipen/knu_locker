@@ -4,6 +4,7 @@ import Done from "./Done";
 import SelectLocker from "./SelectLocker";
 import Steps from "./Steps";
 import styles from "./index.module.css";
+import Fail from "./Fail";
 
 export default function Apply(){
     const [step,setStep] = useState(1);
@@ -34,7 +35,7 @@ export default function Apply(){
         default:
             return (
                 <article>
-                    <h1>신청 오류</h1>
+                    <Fail info={info}/>
                 </article>
             );
     }
