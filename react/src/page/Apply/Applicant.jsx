@@ -125,17 +125,18 @@ export default function ({setStep,setInfo}) {
         submitRef.current.innerText = "확인중...";
         let name = document.getElementById("name").value;
         let studentId = document.getElementById("studentId").value;
+        const phone = document.getElementById("phone").value;
         try {
             const res = await axios.post("/API/checkStudent", {name:name,studentId:studentId});
             if (res.data.isStudent) {
-                setInfo({name:name,studentId:studentId});
+                setInfo({name:name,studentId:studentId,phone:phone});
                 setStep(2);
             } else {
                 errorRef.current.innerText = "일치하는 컴퓨터학부 학생이 존재하지 않습니다. 문제가 지속될 경우 카카오톡 아이디 je12370로 문의해주세요.";
                 submitRef.current.innerText = "다음";
             }
         } catch (e) {
-            errorRef.current.innerText = "오류가 발생했습니다";
+            errorRef.current.innerText = "일치하는 컴퓨터학부 학생이 존재하지 않습니다. 문제가 지속될 경우 카카오톡 아이디 je12370로 문의해주세요.";
             submitRef.current.innerText = "다음";
         }
     }

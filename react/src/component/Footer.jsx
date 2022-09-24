@@ -1,6 +1,6 @@
 export default function ({color = "#fff"}) {
   return (
-    <footer style={{background:color}}>
+    <footer>
         <p className="col-12 tm-copyright-text mb-0">
             Copyright 2022. KNU CSE student. 
             <br/>

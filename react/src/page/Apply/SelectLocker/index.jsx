@@ -6,7 +6,7 @@ import styles from "./index.module.css";
 import SelectHeight from "./SelectHeight";
 import axios from 'axios';
 
-export default function ({setStep,info}) {
+export default function ({setStep,info,setInfo}) {
     const [first,setFirst] = useState(null);
     const [second,setSecond] = useState(null);
     const submitRef = useRef(null);
@@ -105,10 +105,20 @@ export default function ({setStep,info}) {
                 second_floor: second.floor,
                 second_height: second.height
             }
-            console.log(data);
+            let height = [
+                ["상","중상","중","중하","하"],
+                ["상","중상","중하","하"],
+                [],
+                ["상","중상","중하","하"]
+            ]
             try {
                 const res = await axios.post("/API/apply", data);
                 if (res.data.success) {
+                    setInfo({
+                        ...info,
+                        first: (data.first_floor===-1?"지하 1층":data.first_floor+"층")+" "+height[data.first_floor==-1?0:data.first_floor][data.first_height-1],
+                        second: (data.second_floor===-1?"지하 1층":data.second_floor+"층")+" "+height[data.second_floor==-1?0:data.second_floor][data.second_height-1]
+                    });
                     setStep(3);
                 } else {
                     setStep(4);

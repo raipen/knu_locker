@@ -3,6 +3,7 @@ import Applicant from "./Applicant";
 import Done from "./Done";
 import SelectLocker from "./SelectLocker";
 import Steps from "./Steps";
+import styles from "./index.module.css";
 
 export default function Apply(){
     const [step,setStep] = useState(1);
@@ -19,10 +20,11 @@ export default function Apply(){
             return (
                 <article>
                     <Steps step={step} />
-                    <SelectLocker setStep={setStep} info={info}/>
+                    <SelectLocker setStep={setStep} setInfo={setInfo} info={info}/>
                 </article>
             );
         case 3:
+            document.body.className = styles.main;
             return (
                 <article>
                     <Steps step={step}/>
