@@ -88,7 +88,7 @@ class UserService {
 
     async apply(userDTO, cookies){
         let phone = cookies["phone"];
-        if(phone===undefined)
+        if(phone===undefined||!(/^010\d{8}$/.test(phone)))
             throw new Error( "Phone number is not verified");
         
         // Check if the student is already applied
