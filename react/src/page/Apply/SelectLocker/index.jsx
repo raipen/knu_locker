@@ -138,6 +138,9 @@ export default function ({setStep,info,setInfo}) {
                     case "Phone number is not verified":
                         setInfo("인증되지 않은 전화번호입니다.");
                         break;
+                    case "Application deadline has passed":
+                        setInfo("신청 기간이 지났습니다.");
+                        break;
                     default:
                         setInfo("신청 오류");
                         break;

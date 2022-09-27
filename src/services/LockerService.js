@@ -3,8 +3,6 @@ const CryptoJS = require('crypto-js');
 const db = require('../models');
 const {sendSMS} = require('../jobs/SMS');
 const {COOKIE_SECRET} = require('../config');
-const e = require('express');
-
 
 class UserService {
     async checkDues(userDTO){
@@ -87,6 +85,12 @@ class UserService {
     }
 
     async apply(userDTO, cookies){
+        let now = new Date();
+        let deadline = new Date("2022-09-27 23:59:59");
+        if (now > deadline) {
+            throw new Error("Application deadline has passed");
+        }
+        
         let phone = cookies["phone"];
         if(phone===undefined||!(/^010\d{8}$/.test(phone)))
             throw new Error( "Phone number is not verified");

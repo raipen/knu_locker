@@ -1,6 +1,3 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../db');
-
 module.exports = ({ DataTypes }, sequelize)=>{
 	return sequelize.define(
 		'apply_2022_2',
