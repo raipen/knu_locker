@@ -5,13 +5,64 @@ class AllocateLocker{
     floor = [-1,1,3];
     height = [[1,2,3,4,5],[1,2,3,4],[1,2,3,4]];
 
-    //인자로 층수와 높이를 받아 1지망 먼저 배정하고 2지망 먼저 배정해주는 함수
-    async allocate(floor, height){
-        const first = await this.getFirstChoice(floor, height);
-        const second = await this.getSecondChoice(floor, height);
-        const locker = await this.getAvailableLocker(floor, height);
-        return locker;
+    async allocate(){
+        for(let i = 0; i < this.floor.length; i++)
+            for(let j = 0; j < this.height[i].length; j++)
+                await this.allocateFirst(this.floor[i], this.height[i][j]);
+
+        for(let i = 0; i < this.floor.length; i++)
+            for(let j = 0; j < this.height[i].length; j++)
+                await this.allocateSecond(this.floor[i], this.height[i][j]);
+
+        let result = this.allocateLeft();
+        return result;
     }
+
+    async allocateFirst(floor, height){
+        const apply = await this.getFirstChoice(floor, height);
+        const locker = await this.getAvailableLocker(floor, height);
+
+        const duesApply = apply.filter((apply) => apply.student_list.dues == 1);
+        const notDuesApply = apply.filter((apply) => apply.student_list.dues == 0);
+        this.shuffle(duesApply);
+        this.shuffle(notDuesApply);
+        let i = 0;
+        for(; i < duesApply.length && i<locker.length; i++)
+            await this.allocateLocker(duesApply[i], locker[i]);
+        for(; i < notDuesApply.length && i<locker.length; i++)
+            await this.allocateLocker(notDuesApply[i], locker[i]);
+    }
+
+    async allocateSecond(floor, height){
+        const apply = await this.getAvailableSecondChoice(floor, height);
+        const locker = await this.getAvailableLocker(floor, height);
+
+        const duesApply = apply.filter((apply) => apply.student_list.dues == 1);
+        const notDuesApply = apply.filter((apply) => apply.student_list.dues == 0);
+        this.shuffle(duesApply);
+        this.shuffle(notDuesApply);
+        let i = 0;
+        for(; i < duesApply.length && i<locker.length; i++)
+            await this.allocateLocker(duesApply[i], locker[i]);
+        for(; i < notDuesApply.length && i<locker.length; i++)
+            await this.allocateLocker(notDuesApply[i], locker[i]);
+    }
+
+    async allocateLeft(){
+        const apply = await this.getAvailableApply();
+        //const locker = await this.getAvailableLocker();
+        return apply;
+
+    }
+
+    async allocateLocker(apply, locker){
+        console.log(apply.student_id, locker.locker);
+        await db.Allocate.create({
+            student_id: apply.student_id,
+            locker: locker.locker
+        });
+    }
+
 
     //인자로 층수와 높이를 받아 해당 층수와 높이인 사물함 중 할당되지 않은 사물함만 리턴하는 함수
     async getAvailableLocker(floor, height){
@@ -22,13 +73,11 @@ class AllocateLocker{
             },
             include:[{
                 model: db.Allocate,
-                where: {
-                    student_id:"2021114335"
-                },
-                attributes: ['student_id'],
+                as: 'allocate',
+                attributes: ['locker'],
             }]
         });
-        return locker;
+        return locker.filter((locker) => locker.allocate == null);
     }
 
     //인자로 층수와 높이를 받아 해당 층수와 높이를 1지망으로 원하는 사람 리턴하는 함수
@@ -43,12 +92,12 @@ class AllocateLocker{
                 attributes: ['name', 'student_id','dues'],
             }]
         });
-        console.log(apply[0].student_id);
+        //console.log(apply[0].student_id);
         return apply;
     };
 
     //인자로 층수와 높이를 받아 해당 층수와 높이를 2지망으로 원하는 사람 리턴하는 함수
-    async getSecondChoice(floor, height){
+    async getAvailableSecondChoice(floor, height){
         const apply = await db.Apply.findAll({
             where: {
                 second_floor: floor,
@@ -57,10 +106,35 @@ class AllocateLocker{
             include: [{
                 model: db.Student,
                 attributes: ['name', 'student_id','dues'],
+            },{
+                model: db.Allocate,
+                as: 'allocate',
+                attributes: ['student_id'],
             }]
         });
-        return apply;
+        return apply.filter((apply) => apply.allocate == null);
     };
+
+    async getAvailableApply(){
+        const apply = await db.Apply.findAll({
+            include: [{
+                model: db.Student,
+                attributes: ['name', 'student_id','dues'],
+            },{
+                model: db.Allocate,
+                as: 'allocate',
+                attributes: ['student_id'],
+            }]
+        });
+        return apply.filter((apply) => apply.allocate == null);
+    }
+
+    shuffle(array) {
+        for (let index = array.length - 1; index > 0; index--) {
+          const randomPosition = Math.floor(Math.random() * (index + 1));
+          [array[index],array[randomPosition]] = [array[randomPosition],array[index]];
+        }
+    }
 
 }
 

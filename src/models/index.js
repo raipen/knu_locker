@@ -18,9 +18,9 @@ db.Apply.belongsTo(db.Student, {foreignKey: 'student_id', targetKey: 'student_id
 
 //Apply랑 Allocate가 student_id로 1:1 관계
 //Allocate랑 Locker가 locker로 1:1 관계
-db.Apply.hasOne(db.Allocate, {foreignKey: 'student_id', sourceKey: 'student_id'});
+db.Apply.hasOne(db.Allocate, {foreignKey: 'student_id', sourceKey: 'student_id', as: 'allocate'});
 db.Allocate.belongsTo(db.Apply, {foreignKey: 'student_id', targetKey: 'student_id'});
-db.Locker.hasOne(db.Allocate, {foreignKey: 'locker', targetKey: 'locker'});
+db.Locker.hasOne(db.Allocate, {foreignKey: 'locker', targetKey: 'locker', as: 'allocate'});
 db.Allocate.belongsTo(db.Locker, {foreignKey: 'locker', sourceKey: 'locker'});
 
 module.exports = db;
