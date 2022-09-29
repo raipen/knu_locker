@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 
 router.get('/allocate', async (req, res) => {
     console.log("test/allocate");
-    const result = await AllocateLocker.allocate();
+    const result = await AllocateLocker.sendAllocate();
     res.json(result);
 });
 

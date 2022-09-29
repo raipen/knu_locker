@@ -14,7 +14,7 @@ router.get('/checkDues', errorCatcher(async (req, res) => {
 
 router.post('/fetchApply', errorCatcher(async (req, res) => {
   const userDTO = req.body;
-  console.log(`[/API/fetchApply] ${userDTO.name} ${userDTO.number}`);
+  console.log(`[/API/fetchApply] ${userDTO.name} ${userDTO.phone}`);
   logger(req,"[/API/fetchApply]",userDTO);
   const result = await LockerService.fetchApply(userDTO);
   res.status(200).json(result);
@@ -23,7 +23,7 @@ router.post('/fetchApply', errorCatcher(async (req, res) => {
 router.post('/sendCertificationCode', errorCatcher(async (req, res) => {
   const userDTO = req.body;
   console.log(`[/API/verifyCode] ${userDTO.phone}`);
-  logger(req,"[/API/fetchApply]",userDTO);
+  logger(req,"[/API/verifyCode]",userDTO);
   const code = await LockerService.sendCertificationCode(userDTO);
   const result = await LockerService.generateCertificationCookie(userDTO,code);
   res.cookie(result.key, result.value, {maxAge: 300000,signed: true});
