@@ -6,7 +6,8 @@
   "scripts": {
     "postinstall": "cd react&&npm install",
     "test": "cd react&&npm test&&cd ..&&pm2 start src/app.js --watch --ignore-watch=\"src/log/* react/*\"",
-    "start": "cd react&&npm run build&&cd ..&&pm2 start src/app.js --watch --ignore-watch=\"src/log/* react/*\""
+    "start": "pm2 start src/app.js --watch --ignore-watch=\"src/log/* react/*\"",
+    "build": "cd react&&npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +15,6 @@
     "axios": "^0.27.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "crypto": "^1.0.1",
     "crypto-js": "^4.1.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
