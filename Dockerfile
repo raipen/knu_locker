@@ -18,4 +18,4 @@ COPY . .
 # build react app
 RUN npm run build
 EXPOSE 8080
-CMD [ "pm2-runtime", "start","src/app.js"]
+CMD ["pm2-runtime", "start", "ecosystem.config.js", "--env", "production"]
