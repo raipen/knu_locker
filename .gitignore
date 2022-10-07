@@ -1,3 +1,8 @@
 /.ftpconfig
 /baekjoon/
 /properties.js
+node_modules
+*.sql
+.env
+/react/
+/src/
