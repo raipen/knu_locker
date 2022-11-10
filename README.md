@@ -1,4 +1,4 @@
-# KNU CSE 사물함 신청
+# KNU CSE 사물함 신청 [\[바로가기\]](https://raipen.gabia.io)
 
 > 경북대학교 컴퓨터학부 사물함 신청 서비스
 
