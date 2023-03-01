@@ -1,6 +1,6 @@
 module.exports = ({ DataTypes }, sequelize)=>{
 	return sequelize.define(
-		'allocated_2022_2',
+		'allocated_'+process.env.SEMESTER,
 		{
 			student_id: {
 				type: DataTypes.STRING(45),

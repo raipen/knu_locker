@@ -86,7 +86,7 @@ class UserService {
 
     async apply(userDTO, cookies){
         let now = new Date();
-        let deadline = new Date("2022-09-27 23:59:59");
+        let deadline = new Date(process.env.DEAD_LINE);
         if (now > deadline) {
             throw new Error("Application deadline has passed");
         }
@@ -127,8 +127,7 @@ class UserService {
         });
         if(result)
             return true;
-        else
-            return false;
+        return false;
     }
 
     async isAppledStudent(userDTO){
@@ -139,8 +138,7 @@ class UserService {
         });
         if(result)
             return true;
-        else
-            return false;
+        return false;
     }
 
     async isAppledPhone(phone){
@@ -151,8 +149,7 @@ class UserService {
         });
         if(result)
             return true;
-        else
-            return false;
+        return false;
     }
 
     async fetchApply(userDTO){
