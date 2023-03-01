@@ -168,10 +168,10 @@ class UserService {
                 attributes: ['pw'],
             }]
         });
-        let phone = allocate.apply_2022_2.phone.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
+        let phone = allocate['apply_'+process.env.SEMESTER].phone.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
         console.log(phone);
         let SMSresult = await sendSMS(
-            allocate.apply_2022_2.phone,
+            allocate['apply_'+process.env.SEMESTER].phone,
             "SMS",
             `이름: ${userDTO.name}\n사물함: ${allocate.locker}\n비밀번호: ${allocate.locker_info.pw}`
         );
