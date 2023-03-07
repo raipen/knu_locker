@@ -179,6 +179,50 @@ class UserService {
         return {success: SMSresult.statusName==="success",phone: phone.substr(0,6)+"**"+phone.substr(8,3)+"**"};
     }
 
+    async fetchLastApply(userDTO){
+        let isStudent = await this.isStudent(userDTO);
+        if(!isStudent)
+            throw new Error("Student is not found");
+        const allocate = await db.LastAllocate.findOne({
+            where: {
+                student_id: userDTO.studentId
+            },
+            include: [{
+                model: db.LastApply,
+                attributes: ['phone'],
+            },{
+                model: db.Locker,
+                attributes: ['pw'],
+            }]
+        });
+        let phone = allocate['apply_'+process.env.LAST_SEMESTER].phone.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
+        console.log(phone);
+        let SMSresult = await sendSMS(
+            allocate['apply_'+process.env.LAST_SEMESTER].phone,
+            "SMS",
+            `이름: ${userDTO.name}\n사물함: ${allocate.locker}\n비밀번호: ${allocate.locker_info.pw}`
+        );
+        console.log(SMSresult);
+        return {success: SMSresult.statusName==="success",phone: phone.substr(0,6)+"**"+phone.substr(8,3)+"**"};
+    }
+
+    async status(){
+        let deadline = new Date(process.env.DEAD_LINE);
+        let nextDayOfDeadline = new Date(deadline.getTime() + 24 * 60 * 60 * 1000);
+        
+        return [{
+            isDisabled: new Date() > deadline || new Date() < new Date(process.env.START_DATE),
+            date: process.env.START_DATE + "~" + process.env.DEAD_LINE,
+        },
+        {
+            isDisabled: new Date() > new Date(process.env.CLEAN_DEAD_LINE),
+            date: "~"+process.env.CLEAN_DEAD_LINE,
+        },
+        {
+            isDisabled: new Date() < nextDayOfDeadline,
+            date: nextDayOfDeadline.toISOString().substring(0,19).replace('T',' ')+"~",
+        }];
+    }
 
 }
 

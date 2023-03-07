@@ -60,6 +60,10 @@ router.post('/checkStudent', errorCatcher(async (req, res) => {
   res.status(200).json(result);
 }));
 
+router.get("/status", errorCatcher(async (req, res) => {
+  res.status(200).json(await LockerService.status());
+}));
+
 router.use(errorHandling);
 
 module.exports = router;
