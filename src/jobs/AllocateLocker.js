@@ -16,12 +16,12 @@ class AllocateLocker{
                 attributes: ['pw'],
             }]
         });
-        /* for(let i = 0; i < allocate.length ; i++){
+        for(let i = 0; i < allocate.length ; i++){
             const message = `[KNU CSE] 사물함 배정 완료\n사물함: ${allocate[i].locker}\n비밀번호: ${allocate[i].locker_info.pw}`;
             console.log(message);
-            let SMSresult = await sendSMS(allocate[i].apply_2022_2.phone,"SMS", message);
+            let SMSresult = await sendSMS(allocate[i]['apply_'+process.env.SEMESTER].phone,"SMS", message);
             logger(null,"[sendAllocate]", SMSresult);
-        } */
+        } 
         return allocate;
     }
 
@@ -35,6 +35,15 @@ class AllocateLocker{
                 await this.allocateSecond(this.floor[i], this.height[i][j]);
 
         await this.allocateLeft();
+        return await db.Allocate.findAll({
+            include: [{
+                model: db.Apply,
+                attributes: ['phone'],
+            },{
+                model: db.Locker,
+                attributes: ['pw'],
+            }]
+        });
     }
 
     async allocateFirst(floor, height){

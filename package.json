@@ -7,7 +7,9 @@
     "postinstall": "cd react&&npm install",
     "test": "cd react&&npm test&&cd ..&&pm2 start --env development",
     "start": "pm2 start --env production",
-    "build": "cd react&&npm run build"
+    "build": "cd react&&npm run build",
+    "allocate": "node src/allocate.js",
+    "send": "node src/sendResult.js"
   },
   "author": "",
   "license": "ISC",

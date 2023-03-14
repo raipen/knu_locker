@@ -51,6 +51,11 @@ export default function Result(){
         sendButton.disabled = false;
     }
     
+    const getStatus = async () => {
+        let result = await axios.get("/API/status");
+        setData(result.data);
+    }
+
     useEffect(()=>{
         //check if all steps are complete
         let complete = true;
@@ -69,7 +74,7 @@ export default function Result(){
 
     return (
         <article>
-            <h1>2022년 2학기<br/>사물함 배정 정보 조회</h1><br/>
+            <h1>2023년 1학기<br/>사물함 배정 정보 조회</h1><br/>
             <form onSubmit={handleSubmit}>
                 {inputData.map((info,i) => <Input info={info} key={i+1}/>)}
                 <SendButton reff={submitRef} disabled={true} text="조회"/>
