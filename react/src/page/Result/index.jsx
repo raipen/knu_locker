@@ -50,11 +50,6 @@ export default function Result(){
         }
         sendButton.disabled = false;
     }
-    
-    const getStatus = async () => {
-        let result = await axios.get("/API/status");
-        setData(result.data);
-    }
 
     useEffect(()=>{
         //check if all steps are complete
