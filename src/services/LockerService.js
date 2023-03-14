@@ -220,7 +220,7 @@ class UserService {
         },
         {
             isDisabled: new Date() < nextDayOfDeadline,
-            date: nextDayOfDeadline.toISOString().substring(0,19).replace('T',' ')+"~",
+            date: (new Date(nextDayOfDeadline.getTime() + 9 * 60 * 60 * 1000)).toISOString().substring(0,19).replace('T',' ')+"~",
         }];
     }
 
