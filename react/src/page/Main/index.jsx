@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 
 export default function Main(){
-    const [data, setData] = useState([]);
+    const [data, setData] = useState([{"isDisabled":true,"date":""},{"isDisabled":true,"date":""},{"isDisabled":true,"date":""}]);
     const getStatus = async () => {
         let result = await axios.get("/API/status");
         setData(result.data);
