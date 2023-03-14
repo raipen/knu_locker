@@ -1,7 +1,7 @@
 const db = require("../models");
 
 async function db_loader(app){
-    db.sequelize.sync({force: false, alter: false});
+    await db.sequelize.sync({force: false, alter: false});
     return;
 }
 
