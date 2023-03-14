@@ -212,11 +212,11 @@ class UserService {
         
         return [{
             isDisabled: new Date() > deadline || new Date() < new Date(process.env.START_DATE),
-            date: process.env.START_DATE + "~" + process.env.DEAD_LINE,
+            date: new Date() > deadline || new Date() < new Date(process.env.START_DATE) ? "신청기간이 아닙니다.":("~" + process.env.DEAD_LINE),
         },
         {
-            isDisabled: new Date() > new Date(process.env.CLEAN_DEAD_LINE),
-            date: "~"+process.env.CLEAN_DEAD_LINE,
+            isDisabled: true /*new Date() > new Date(process.env.CLEAN_DEAD_LINE)*/,
+            date: "신청기간이 아닙니다." /*+process.env.CLEAN_DEAD_LINE*/,
         },
         {
             isDisabled: new Date() < nextDayOfDeadline,
