@@ -132,11 +132,11 @@ export default function ({setStep,setInfo}) {
                 setInfo({name:name,studentId:studentId,phone:phone});
                 setStep(2);
             } else {
-                errorRef.current.innerText = "일치하는 컴퓨터학부 학생이 존재하지 않습니다. 문제가 지속될 경우 카카오톡 아이디 je12370로 문의해주세요.";
+                errorRef.current.innerText = "일치하는 컴퓨터학부 학생이 존재하지 않습니다. 문제가 지속될 경우 카카오톡 아이디 jmin9011로 문의해주세요.";
                 submitRef.current.innerText = "다음";
             }
         } catch (e) {
-            errorRef.current.innerText = "일치하는 컴퓨터학부 학생이 존재하지 않습니다. 문제가 지속될 경우 카카오톡 아이디 je12370로 문의해주세요.";
+            errorRef.current.innerText = "일치하는 컴퓨터학부 학생이 존재하지 않습니다. 문제가 지속될 경우 카카오톡 아이디 jmin9011로 문의해주세요.";
             submitRef.current.innerText = "다음";
         }
     }
