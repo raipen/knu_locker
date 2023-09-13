@@ -4,6 +4,10 @@ const {errorCatcher,errorHandling} = require('./asyncErrorWraper');
 const LockerService = require('../services/LockerService');
 const logger = require('../log');
 
+router.get('/kakaoId', errorCatcher(async (req, res) => {
+  res.status(200).json({kakaoId:process.env.KAKAOID||"경북대학교 학생회 통합공지방 확인"});
+}));
+
 router.get('/checkDues', errorCatcher(async (req, res) => {
   const userDTO = req.query;
   console.log(`[/API/checkDues] ${userDTO.name} ${userDTO.number}`);

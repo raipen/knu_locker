@@ -27,7 +27,8 @@ const config = {
       NCP_SENS_ID: process.env.NCP_SENS_ID,
       NCP_SENS_MY_NUMBER: process.env.NCP_SENS_MY_NUMBER
     },
-    COOKIE_SECRET: process.env.COOKIE_SECRET
+    COOKIE_SECRET: process.env.COOKIE_SECRET,
+    KAKAOID: process.env.KAKAOID,
 }
 
 module.exports = config;
