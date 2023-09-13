@@ -6,8 +6,11 @@
 }
 
 .tabs{
-    position:absolute;
+    position:relative;
     top:-45px;
+    display: flex;
+    justify-content: start;
+    align-self: start;
 }
 
 .tab{
