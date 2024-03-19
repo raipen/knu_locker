@@ -51,6 +51,11 @@ export const apply = async (userDTO: applyDTO, cookies: any) => {
     second_floor: userDTO.second_floor,
     second_height: userDTO.second_height,
   });
+  await axios.post('https://kapi.kakao.com/v1/user/logout', undefined, {
+    headers: {
+      Authorization: `Bearer ${kakaoAccessToken}`
+    }
+  });
   return { success: true };
 }
 
@@ -95,10 +100,16 @@ const isAppledKakaoId = async (kakaoId: string) => {
   return false;
 }
 
-export const result = async (kakaoId: string) => {
+export const result = async (kakaoAccessToken: string) => {
+  const { id:kakaoId } = (await axios.get<{id:bigint}>('https://kapi.kakao.com/v1/user/access_token_info', {
+    headers: {
+      Authorization: `Bearer ${kakaoAccessToken}`
+    },
+    transformResponse: [data=>jsonBigint.parse(data)]
+  })).data;
   const result = await Applied.findOne({
     where: {
-      kakao_id: kakaoId
+      kakao_id: kakaoId.toString()
     }
   });
   if (!result) throw new Error("No results found");
@@ -111,11 +122,12 @@ export const result = async (kakaoId: string) => {
       model: Lockers,
       attributes: ['pw'],
     }]
-  });
+  }) as any;
   if (!allocate) throw new Error("No results found");
-  console.log(allocate);
+  
   return {
     locker: allocate.locker,
+    password: allocate.locker_info.pw,
   };
 }
 
