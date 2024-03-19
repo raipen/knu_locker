@@ -1,4 +1,11 @@
-import { DataTypes } from 'sequelize';
+import { Model, DataTypes, InferAttributes, InferCreationAttributes } from 'sequelize';
+
+export interface LockerModel extends Model<InferAttributes<LockerModel>, InferCreationAttributes<LockerModel>> {
+  locker: string;
+  floor: number;
+  height: number;
+  pw: string;
+}
 
 export default [
   'locker_info',

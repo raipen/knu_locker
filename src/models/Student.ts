@@ -1,6 +1,11 @@
-import { DataTypes } from 'sequelize';
-import config from '../config';
+import { Model, DataTypes, CreationOptional, InferAttributes, InferCreationAttributes } from 'sequelize';
 
+export interface StudentModel extends Model<InferAttributes<StudentModel>, InferCreationAttributes<StudentModel>> {
+  id: number;
+  name: CreationOptional<string>;
+  student_id: CreationOptional<string>;
+  dues: CreationOptional<number>;
+}
 export default [
   'student_list',
   {

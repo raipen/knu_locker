@@ -1,5 +1,14 @@
-import { DataTypes } from 'sequelize';
+import { Model, DataTypes, CreationOptional, InferAttributes, InferCreationAttributes } from 'sequelize';
 import config from '../config';
+
+export interface ApplyModel extends Model<InferAttributes<ApplyModel>, InferCreationAttributes<ApplyModel>> {
+  student_id: string;
+  phone: string;
+  first_floor: CreationOptional<string>;
+  first_height: CreationOptional<string>;
+  second_floor: CreationOptional<string>;
+  second_height: CreationOptional<string>;
+}
 
 export default [
   'apply_' + config.SEMESTER,
