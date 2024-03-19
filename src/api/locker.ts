@@ -15,7 +15,7 @@ router.get("/status", errorCatcher(async (req: Request, res: Response) => {
 
 router.post('/apply', errorCatcher(async (req: Request, res: Response) => {
   const userDTO = req.body;
-  const cookies = req.signedCookies;
+  const cookies = req.cookies;
   console.log(`[/api/locker/apply] ${userDTO.name} ${userDTO.studentId} ${cookies.phone}`);
   logger(req,"[/api/locker/apply]",userDTO);
   const result = await LockerService.apply(userDTO,cookies);

@@ -30,7 +30,7 @@ const config = {
   PORT: process.env.PORT,
   DB: ENV_DB,
   KAKAO_CLIENT_ID: process.env.KAKAO_CLIENT_ID,
-  KAKAO_REDIRECT_URI: process.env.KAKAO_REDIRECT_URI || `http://localhost:${process.env.PORT}/oauth`,
+  KAKAO_REDIRECT_URI: process.env.KAKAO_REDIRECT_URI || `http://localhost:${process.env.PORT}/api/v2/oauth`,
   START_DATE: process.env.START_DATE,
   DEAD_LINE: process.env.DEAD_LINE,
   SEMESTER: process.env.SEMESTER,

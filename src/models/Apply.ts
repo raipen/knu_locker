@@ -4,6 +4,7 @@ import config from '../config';
 export interface ApplyModel extends Model<InferAttributes<ApplyModel>, InferCreationAttributes<ApplyModel>> {
   student_id: string;
   phone: string;
+  kakao_id: string;
   first_floor: number;
   first_height: number;
   second_floor: number;
@@ -17,6 +18,11 @@ export default [
       type: DataTypes.STRING(45),
       primaryKey: true,
       allowNull: false,
+    },
+    kakao_id: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+      unique: true,
     },
     phone: {
       type: DataTypes.STRING(45),

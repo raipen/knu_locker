@@ -1,6 +1,7 @@
 import { Students, Applied, Allocated, Lockers } from '../models';
 import config from '../config';
 import axios from 'axios';
+import jsonBigint from 'json-bigint';
 
 type UserDTO = {
   name: string;
@@ -22,7 +23,7 @@ export const apply = async (userDTO: applyDTO, cookies: any) => {
   const deadline = new Date(config.DEAD_LINE);
   if (now > deadline) throw new Error("Application deadline has passed");
 
-  const phone = cookies.phone;
+  const phone = userDTO.phone;
   if (phone === undefined || !(/^010\d{8}$/.test(phone))) throw new Error("Phone number is not verified");
 
   // Check if the student is already applied
@@ -31,11 +32,20 @@ export const apply = async (userDTO: applyDTO, cookies: any) => {
   if (await isAppledPhone(phone)) throw new Error("Already applied phone number");
 
   const kakaoAccessToken = cookies.access_token;
-  //TODO: Check isAppled KakaoId
+  console.log(kakaoAccessToken);
+  const { id } = (await axios.get<{id:bigint}>('https://kapi.kakao.com/v1/user/access_token_info', {
+    headers: {
+      Authorization: `Bearer ${kakaoAccessToken}`
+    },
+    transformResponse: [data=>jsonBigint.parse(data)]
+  })).data;
+  console.log(id);
+  if (await isAppledKakaoId(id.toString())) throw new Error("Already applied kakao id");
 
   await Applied.create({
     student_id: userDTO.studentId,
     phone: phone,
+    kakao_id: id.toString(),
     first_floor: userDTO.first_floor,
     first_height: userDTO.first_height,
     second_floor: userDTO.second_floor,
@@ -75,21 +85,38 @@ const isAppledPhone = async (phone: string) => {
   return false;
 }
 
-export const result = async (userDTO: UserDTO) => {
-  if (!await isStudent(userDTO))
-    throw new Error("Student is not found");
+const isAppledKakaoId = async (kakaoId: string) => {
+  let result = await Applied.findOne({
+    where: {
+      kakao_id: kakaoId
+    }
+  });
+  if (result) return true;
+  return false;
+}
+
+export const result = async (kakaoId: string) => {
+  const result = await Applied.findOne({
+    where: {
+      kakao_id: kakaoId
+    }
+  });
+  if (!result) throw new Error("No results found");
+  const { student_id: studentId } = result;
   const allocate = await Allocated.findOne({
     where: {
-      student_id: userDTO.studentId
+      student_id: studentId
     },
     include: [{
-      model: Applied,
-      attributes: ['phone'],
-    }, {
       model: Lockers,
       attributes: ['pw'],
     }]
   });
+  if (!allocate) throw new Error("No results found");
+  console.log(allocate);
+  return {
+    locker: allocate.locker,
+  };
 }
 
 export const status = async () => {
