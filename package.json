@@ -2,11 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "postinstall": "cd react&&npm install",
     "test": "cd react&&npm test&&cd ..&&pm2 start --env development",
-    "start": "pm2 start --env production",
+    "start": "nodemon --watch src src/app.js",
     "build": "cd react&&npm run build",
     "allocate": "node src/allocate.js",
     "send": "node src/sendResult.js"
@@ -23,6 +23,7 @@
     "express-session": "^1.17.3",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
+    "nodemon": "^3.1.0",
     "request-ip": "^3.3.0",
     "sequelize": "^6.21.4"
   },
