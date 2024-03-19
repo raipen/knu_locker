@@ -16,17 +16,17 @@ router.get("/status", errorCatcher(async (req: Request, res: Response) => {
 router.post('/apply', errorCatcher(async (req: Request, res: Response) => {
   const userDTO = req.body;
   const cookies = req.signedCookies;
-  console.log(`[/API/apply] ${userDTO.name} ${userDTO.studentId} ${cookies.phone}`);
-  logger(req,"[/API/apply]",userDTO);
+  console.log(`[/api/locker/apply] ${userDTO.name} ${userDTO.studentId} ${cookies.phone}`);
+  logger(req,"[/api/locker/apply]",userDTO);
   const result = await LockerService.apply(userDTO,cookies);
   res.status(200).json(result);
 }));
 
-router.post('/fetchApply', errorCatcher(async (req: Request, res: Response) => {
+router.post('/result', errorCatcher(async (req: Request, res: Response) => {
   const userDTO = req.body;
-  console.log(`[/API/fetchApply] ${userDTO.name} ${userDTO.phone}`);
-  logger(req,"[/API/fetchApply]",userDTO);
-  const result = await LockerService.fetchApply(userDTO);
+  console.log(`[/api/locker/result] ${userDTO.name} ${userDTO.phone}`);
+  logger(req,"[/api/locker/result]",userDTO);
+  const result = await LockerService.result(userDTO);
   res.status(200).json(result);
 }));
 

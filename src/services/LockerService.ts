@@ -17,40 +17,6 @@ type applyDTO = {
   second_height: number;
 };
 
-export const checkDues = async (userDTO: { name: string, number: string }) => {
-  const result = await Students.findOne({
-    where: {
-      name: userDTO.name,
-      student_id: userDTO.number
-    }
-  });
-  if (result) return { success: true, isStudent: true, dues: result.dues === 1 }
-  return { success: true, isStudent: false }
-}
-
-export const checkStudent = async (userDTO: UserDTO) => {
-    const result = await Students.findOne({
-      where: {
-        name: userDTO.name,
-        student_id: userDTO.studentId
-      }
-    });
-    if (result) return { isStudent: true };
-
-    const noStudentIdResult = await Students.findOne({
-      where: {
-        name: userDTO.name,
-        student_id: null
-      }
-    });
-    if (noStudentIdResult === null) throw new Error("No results found");
-
-    const update = await Students.update({ student_id: userDTO.studentId }, { where: { name: userDTO.name, student_id: null } });
-
-    if (update) return { isStudent: true };
-    throw new Error("Update failed");
-}
-
 export const apply = async (userDTO: applyDTO, cookies: any) => {
   const now = new Date();
   const deadline = new Date(config.DEAD_LINE);
@@ -109,7 +75,7 @@ const isAppledPhone = async (phone: string) => {
   return false;
 }
 
-export const fetchApply = async (userDTO: UserDTO) => {
+export const result = async (userDTO: UserDTO) => {
   if (!await isStudent(userDTO))
     throw new Error("Student is not found");
   const allocate = await Allocated.findOne({
