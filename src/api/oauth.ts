@@ -1,11 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const {errorCatcher,errorHandling} = require('./asyncErrorWraper');
-const OauthService = require('../services/OauthService');
-const logger = require('../log');
+import express, { Router, Request, Response, NextFunction } from 'express';
+import errorCatcher from './errorCatcher';
+import * as  OauthService from '../services/OauthService';
+import logger from '../log';
 
-router.get('/', errorCatcher(async (req, res) => {
-    const DTO = req.query;
+const router = Router();
+
+router.get('/', errorCatcher(async (req: Request, res: Response) => {
+    const DTO = req.query as {code:string,error:string};
     console.log(`[/oauth] ${DTO.code} ${DTO.error}`);
     logger(req,"[/oauth]",{code:DTO.code,error:DTO.error});
     const {access_token,refresh_token} = await OauthService.getOauthToken(DTO);

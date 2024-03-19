@@ -4,10 +4,10 @@ import config from '../config';
 export interface ApplyModel extends Model<InferAttributes<ApplyModel>, InferCreationAttributes<ApplyModel>> {
   student_id: string;
   phone: string;
-  first_floor: string;
-  first_height: string;
-  second_floor: string;
-  second_height: string;
+  first_floor: number;
+  first_height: number;
+  second_floor: number;
+  second_height: number;
 }
 
 export default [
@@ -23,19 +23,19 @@ export default [
       allowNull: false,
     },
     first_floor: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     first_height: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     second_floor: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     second_height: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.INTEGER,
       allowNull: true,
     }
   },
