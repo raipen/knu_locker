@@ -1,7 +1,5 @@
-import express, {Router, Request, Response, NextFunction} from 'express';
-import path from 'path';
+import {Router, Request, Response, NextFunction} from 'express';
 import Sequelize from 'sequelize';
-import config from '../config';
 import logger from '../log';
 import locker from './locker';
 import oauth from './oauth';
