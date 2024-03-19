@@ -26,3 +26,4 @@ Lockers.hasOne(Allocated, {foreignKey: 'locker', sourceKey: 'locker', as: 'alloc
 Allocated.belongsTo(Lockers, {foreignKey: 'locker', targetKey: 'locker'});
 
 export default sequelize;
+export { Students, Applied, Allocated, Lockers };
