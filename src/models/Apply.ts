@@ -4,10 +4,10 @@ import config from '../config';
 export interface ApplyModel extends Model<InferAttributes<ApplyModel>, InferCreationAttributes<ApplyModel>> {
   student_id: string;
   phone: string;
-  first_floor: CreationOptional<string>;
-  first_height: CreationOptional<string>;
-  second_floor: CreationOptional<string>;
-  second_height: CreationOptional<string>;
+  first_floor: string;
+  first_height: string;
+  second_floor: string;
+  second_height: string;
 }
 
 export default [

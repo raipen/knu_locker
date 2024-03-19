@@ -2,9 +2,9 @@ import { Model, DataTypes, CreationOptional, InferAttributes, InferCreationAttri
 
 export interface StudentModel extends Model<InferAttributes<StudentModel>, InferCreationAttributes<StudentModel>> {
   id: number;
-  name: CreationOptional<string>;
-  student_id: CreationOptional<string>;
-  dues: CreationOptional<number>;
+  name: string;
+  student_id: string | null;
+  dues: number;
 }
 export default [
   'student_list',
