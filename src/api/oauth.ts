@@ -16,4 +16,4 @@ router.get('/', errorCatcher(async (req: Request, res: Response) => {
     res.redirect('/agree');
 }));
 
-module.exports = router;
+export default router;
