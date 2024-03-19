@@ -4,12 +4,12 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "postinstall": "cd react&&npm install",
-    "test": "cd react&&npm test&&cd ..&&pm2 start --env development",
-    "start": "nodemon --watch src src/app.js",
-    "build": "cd react&&npm run build",
-    "allocate": "node src/allocate.js",
-    "send": "node src/sendResult.js"
+    "dev:server": "tsx --watch src/app.ts",
+    "dev:client": "vite",
+    "dev": "npm-run-all --parallel dev:server dev:client",
+    "build": "vite build",
+    "allocate": "tsx src/allocate.ts",
+    "send": "tsx src/sendResult.ts"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +24,7 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "nodemon": "^3.1.0",
+    "npm-run-all": "^4.1.5",
     "qs": "^6.12.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
