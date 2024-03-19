@@ -24,29 +24,6 @@ router.post('/fetchApply', errorCatcher(async (req, res) => {
   res.status(200).json(result);
 }));
 
-router.post('/sendCertificationCode', errorCatcher(async (req, res) => {
-  const userDTO = req.body;
-  console.log(`[/API/verifyCode] ${userDTO.phone}`);
-  logger(req,"[/API/verifyCode]",userDTO);
-  const code = await LockerService.sendCertificationCode(userDTO);
-  const result = await LockerService.generateCertificationCookie(userDTO,code);
-  res.cookie(result.key, result.value, {maxAge: 300000,signed: true});
-  res.status(200).json({success:true});
-}));
-
-router.post('/checkCertificationCode', errorCatcher(async (req, res) => {
-  const userDTO = req.body;
-  const cookies = req.signedCookies;
-  console.log(`[/API/check] ${userDTO.phone} ${userDTO.code}`);
-  logger(req,"[/API/check]",userDTO);
-  const isVeryfied = await LockerService.checkCertificationCode(userDTO,cookies);
-  if(isVeryfied){
-    const result = await LockerService.generateVerifiedPhoneCookie(userDTO);
-    res.cookie(result.key, result.value, {signed: true});
-  }
-  res.status(200).json({success:isVeryfied});
-}));
-
 router.post('/apply', errorCatcher(async (req, res) => {
   const userDTO = req.body;
   const cookies = req.signedCookies;

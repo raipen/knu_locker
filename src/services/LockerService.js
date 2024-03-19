@@ -18,42 +18,6 @@ class UserService {
             return {success: true, isStudent: false}
     }
 
-    async sendCertificationCode(userDTO){
-        let code = crypto.randomInt(100000, 999999);
-        if(userDTO.phone===undefined)
-            throw new Error("Phone number is not provided");
-        let SMSresult = await sendSMS(
-            userDTO.phone,
-            "SMS",
-            `[KNU CSE] 인증번호 [${code}]를 입력해주세요.`
-        );
-        if(SMSresult.statusName!=="success")
-            throw new Error("SMS sending failed");
-        return code;
-    }
-
-    async generateCertificationCookie(userDTO,code){
-        let cookieValue = CryptoJS.AES.encrypt(
-            JSON.stringify({ code: code, phone: userDTO.phone, timestamp: Date.now() }), COOKIE_SECRET
-        ).toString();
-        return {key:"vc",value: cookieValue};
-    }
-
-    async checkCertificationCode(userDTO,cookies){
-        let cookie = cookies["vc"];
-        if(cookie===undefined)
-            return false;
-        let cookieValue = JSON.parse(CryptoJS.AES.decrypt(cookie, COOKIE_SECRET).toString(CryptoJS.enc.Utf8));
-        if(cookieValue.code===Number(userDTO.code) && cookieValue.phone===userDTO.phone && Date.now()-cookieValue.timestamp<300000)
-            return true;
-        else
-            return false;
-    }
-
-    async generateVerifiedPhoneCookie(userDTO){
-        return {key:"phone",value: userDTO.phone};
-    }
-
     async checkStudent(userDTO){
         let result = await db.Student.findOne({
             where: {
