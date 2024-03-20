@@ -24,6 +24,14 @@
   
       /* Paths */
       "baseUrl": ".",
+      "paths": {
+        "@hooks/*": ["react/src/hooks/*"],
+        "@components/*": ["react/src/components/*"],
+        "@utils/*": ["react/src/utils/*"],
+        "@context/*": ["react/src/context/*"],
+        "@pages/*": ["react/src/pages/*"],
+        "@assets/*": ["react/src/assets/*"],
+      }
     },
     "include": ["src", "react"],
     "exclude": ["node_modules"],

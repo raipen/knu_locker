@@ -5,6 +5,7 @@ export default function useInput(regex: RegExp) {
     const [value, setValue] = useState("");
     const [validation, setValidation] = useState(InputValidation.NONE);
 
+    console.log(value,validation);
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const v = e.target.value;
         setValue(v);

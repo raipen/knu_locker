@@ -1,11 +1,11 @@
 import { BrowserRouter,Routes, Route } from "react-router-dom";
-import Header from './component/Header';
+import Header from './components/Header';
 import Main from './page/Main';
 import Apply from './page/Apply';
 import Result from './page/Result';
 import ResultSMS from './page/Result/ResultSMS';
 import NoResult from './page/Result/NoResult';
-import Footer from './component/Footer';
+import Footer from './components/Footer';
 import EmptyPage from './page/EmptyPage';
 import Agree from './page/Agree';
 

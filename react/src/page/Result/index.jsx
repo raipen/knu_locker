@@ -1,9 +1,9 @@
-import Input from "../../component/Input";
-import SendButton from "../../component/SendButton";
+import Input from "../../components/Input";
+import SendButton from "../../components/SendButton";
 import { useRef, useState,useEffect } from "react";
 import {useNavigate} from "react-router-dom";
 import axios from 'axios';
-import Step from "../../component/Step";
+import Step from "../../components/Step";
 
 export default function Result(){
     const navigate = useNavigate();

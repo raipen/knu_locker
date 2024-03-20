@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import SendButton from "../../../component/SendButton";
+import SendButton from "../../../components/SendButton";
 import Tab from "./Tab";
 import SelectFloor from "./SelectFloor";
 import styles from "./index.module.css";
