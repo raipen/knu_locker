@@ -17,9 +17,6 @@ function App() {
         <Route path="/" element={<Main/>}/>
         <Route path="/agree" element={<Agree/>}/>
         <Route path="/apply" element={<Apply/>}/>
-        <Route path="/result" element={<Result/>}/>
-        <Route path="/result/:phone" element={<ResultSMS/>}/>
-        <Route path="/noResult" element={<NoResult/>}/>
         <Route path="/*" element={<EmptyPage/>}/>
       </Routes>
       <Footer/>

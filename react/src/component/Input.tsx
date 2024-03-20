@@ -1,38 +1,28 @@
-import { InputStep } from "../utils/enum";
-import { useId,useState } from "react";
+import { InputValidation } from "../utils/enum";
+import { useId } from "react";
+import { styled } from "styled-components";
 
-export function useInput(regex: RegExp) {
-    const [value, setValue] = useState("");
-    const [step, setStep] = useState(InputStep.NONE);
+const InputStyle = styled.input<{$step: InputValidation}>`
+    border-radius: 5px;
+    background: ${({$step}) => $step === InputValidation.ERROR ? "#ffc9c9" : "#f1f1f1"};
+    padding: 5px 10px 20px;
+    line-height: 3rem;
+`;
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const v = e.target.value;
-        setValue(v);
-        if (regex.test(v)) return setStep(InputStep.COMPLETE);
-        return setStep(InputStep.NONE);
-    };
-    const onBlur = () => {
-        if (regex.test(value)) return setStep(InputStep.COMPLETE);
-        return setStep(InputStep.ERROR);
-    }
-    return {value, step, onChange, onBlur};
-}
-
-
-export function Input({info}: {info:{
+export function Input({label, placeholder, type, value, onChange, onBlur, step}: {
     label: string,
     placeholder: string,
     type: "text"|"number",
     value: string,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
     onBlur: () => void,
-    step: InputStep,
-}}) {
+    step: InputValidation,
+}) {
     const id = useId();
     return (
         <div>
-            <label htmlFor={id}>{info.label}</label>
-            <input type={info.type} name={id} placeholder={info.placeholder} value={info.value} onChange={info.onChange} onBlur={info.onBlur}/>
+            <label htmlFor={id}>{label}</label>
+            <InputStyle $step={step} type={type} name={id} placeholder={placeholder} value={value} onChange={onChange} onBlur={onBlur}/>
         </div>
     );
 }
