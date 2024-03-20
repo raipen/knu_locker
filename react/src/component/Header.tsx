@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Header({cName}) {
+export default function Header({cName}: {cName?: string}) {
   if(cName==="main"){
     document.body.className = "main";
   }else{
