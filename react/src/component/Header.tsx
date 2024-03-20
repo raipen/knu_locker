@@ -1,17 +1,29 @@
-import { Link } from "react-router-dom";
+import { styled } from 'styled-components';
+import Logo from '../assets/logo.png';
+import Title from '../assets/title.png';
+import { Link } from 'react-router-dom';
 
-export default function Header({cName}: {cName?: string}) {
-  if(cName==="main"){
-    document.body.className = "main";
-  }else{
-    document.body.className = "";
+const HeaderContainer = styled.header`
+  background-color: var(--main-color);
+  padding: 20px max(calc(50% - 600px), 20px);
+  width: 100%;
+  display: flex;
+  user-select: none;
+  *{
+    height: 30px;
   }
+  img{
+    margin-right: 10px;
+  }
+`;
+
+export default function Header() {
   return (
-    <header className={cName}>
+    <HeaderContainer>
         <Link to="/">
-            <img src="/logo.png"/>
-            <span className="logo">KNU CSE</span>
+            <img src={Logo} alt="logo" />
+            <img src={Title} alt="title" />
         </Link>
-    </header>
+    </HeaderContainer>
   );
 }

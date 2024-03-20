@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter,Routes, Route } from "react-router-dom";
 import Header from './component/Header';
 import Main from './page/Main';
@@ -13,10 +12,7 @@ import Agree from './page/Agree';
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Header/>}/>
-        <Route path="/*" element={<Header/>}/>
-      </Routes>
+      <Header/>
       <Routes>
         <Route path="/" element={<Main/>}/>
         <Route path="/agree" element={<Agree/>}/>
@@ -26,10 +22,7 @@ function App() {
         <Route path="/noResult" element={<NoResult/>}/>
         <Route path="/*" element={<EmptyPage/>}/>
       </Routes>
-      <Routes>
-        <Route path="/" element={<Footer color="#da2127"/>}/>
-        <Route path="/*" element={<Footer/>}/>
-      </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 }
