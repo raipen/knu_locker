@@ -1,6 +1,6 @@
-export default function () {
+export default function ({color}: {color?: string}) {
   return (
-    <footer>
+    <footer style={{backgroundColor: color}}>
         <p>
             Copyright 2022. KNU CSE student. 
             <br/>

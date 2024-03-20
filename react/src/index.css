@@ -1,139 +1,38 @@
-body{
+@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap);
+
+body, html{
   font-family: 'Noto Sans KR', sans-serif;
-  text-align: center;
+  padding:0;
   margin:0;
-  background-color: #fff;
-  overflow: hidden;
 }
-article::-webkit-scrollbar{
-  width:2vw;
-  height: 100px;
+
+*{
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', sans-serif;
 }
-article::-webkit-scrollbar-thumb {
-  background: rgba(218,33,39,0.5);
-  border-radius: 2vw;
-  max-height: 50%;
-}
-article::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0);
-}
-body.main{
-  background-color: #da2127;
+
+:root{
+  --main-color: #da2127;
+  --text-color: #4e4e4e;
+  --important-color: rgb(31,35,40);
+  --muted-text-color: rgb(101,109,118);
 }
 
 a{
-  color:#000;
+  color: inherit;
   text-decoration: none;
 }
 
-a:hover{
-  color:#000;
-}
-
-header{
-  height: 15vh;
-  position:relative;
-  background-color: #DA2127;
-  transition: all ease-in-out 0.5s 0s;
-}
-
-header.main{
-  margin-bottom:0;
-}
-
-article{
-  width:100%;
-  height: calc(85vh - 5rem);
-  overflow-y: overlay;
-  overflow-x:hidden;
-}
-
-footer{
-  height:5rem;
-  padding-top:1rem;
-  padding-left:20px;
-  font-size: 0.8rem;
-}
-
-h1{
-  word-break: keep-all;
-  padding-left:10px;
-  padding-right:10px;
+#root{
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
 }
 
 input::-webkit-inner-spin-button {
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-}
-
-@media screen and (max-width:992px) {
-  /* 스마트폰 가로 */
-  header>a>*{
-      position:absolute;
-      left: 50%;
-      transform:translate(-50%);
-  }
-  header img{
-      top: 1vh;
-      height: 8vh;
-  }
-  header .logo{
-      color:#fff;
-      top:10vh;
-      font-size: 4vh;
-      line-height: 4vh;
-  }
-}
-
-@media screen and (min-width:992px) {
-  /* 데스크탑 */
-  header{
-      height: 60px;
-      padding-left:12px;
-      padding-top:12px;
-  }
-  header.main{
-      height: calc(85px + 5vh);
-      padding-left: 20px;
-      padding-top: 20px;
-      padding-bottom: 5vh;
-  }
-  header>a{
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-  }
-  header img{
-      height: 36px;
-      margin-right:10px;
-  }
-  header.main img{
-      height: 65px;
-      margin-right:0px;
-  }
-  header .logo{
-      color:#fff;
-      font-size: 36px;
-      line-height: 36px;
-  }
-  header.main .logo{
-      font-size: 65px;
-      line-height: 65px;
-  }
-  article{
-      margin-top: 5vh;
-      height: calc(95vh - 60px - 5rem);
-  }
-}
-
-@media screen and (min-width:1200px){
-  /* 큰 데스크탑 */
-  header>a{
-      margin-left:calc(50vw - 600px);
-  }
-  article{
-      width: 1200px;
-      margin-left: calc(50vw - 600px);
-  }
 }

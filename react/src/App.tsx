@@ -14,7 +14,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Header cName="main"/>}/>
+        <Route path="/" element={<Header/>}/>
         <Route path="/*" element={<Header/>}/>
       </Routes>
       <Routes>
