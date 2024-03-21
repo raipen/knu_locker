@@ -146,3 +146,11 @@ export const FormContainer = styled.form`
   max-width: 350px;
   margin: 0 auto;
 `;
+
+export const SelectFloorItem = styled.div<{ $isSelect?: boolean }>`
+  ${FlexRowCenter};
+  ${clickable};
+  padding: 10px;
+  border-radius: 5px;
+  ${props => props.$isSelect ? MainColorBackground : lightGrayBackground};
+`;

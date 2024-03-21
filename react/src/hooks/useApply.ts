@@ -19,8 +19,8 @@ export default function useApply() {
         if(name.validation !== InputValidation.COMPLETE) throw new Error("invalid data");
         if(studentId.validation !== InputValidation.COMPLETE) throw new Error("invalid data");
         if(phone.validation !== InputValidation.COMPLETE) throw new Error("invalid data");
-        if(firstSelect.floor === null || firstSelect.height === null) throw new Error("invalid data");
-        if(secondSelect.floor === null || secondSelect.height === null) throw new Error("invalid data");
+        if(!firstSelect.isSelected) throw new Error("invalid data");
+        if(!secondSelect.isSelected) throw new Error("invalid data");
 
         setLoading(true);
         try {

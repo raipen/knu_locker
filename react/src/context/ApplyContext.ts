@@ -1,18 +1,12 @@
 import { createContext } from "react";
 import { InputValidation } from "../utils/enum";
+import { LockerType } from "../hooks/useLocker";
 
 type InputType = {
     value: string;
     validation: InputValidation;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onBlur: () => void;
-}
-
-type LockerType = {
-    floor: number|null;
-    setFloor: (f: number) => void;
-    height: number|null;
-    setHeight: (h: number) => void;
 }
 
 export default createContext({} as {

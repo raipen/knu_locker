@@ -1,4 +1,4 @@
-import { useContext, useRef, useState,useEffect } from "react";
+import { useContext, useState } from "react";
 import ApplyContext from "@context/ApplyContext";
 import Input from "@components/Input";
 import { InputValidation } from "@utils/enum";
