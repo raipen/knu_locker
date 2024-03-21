@@ -19,4 +19,5 @@ export default createContext({} as {
     secondSelect: LockerType;
     loading: boolean;
     apply: () => Promise<void>;
+    error: string;
 });

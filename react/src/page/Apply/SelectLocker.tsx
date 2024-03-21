@@ -1,101 +1,52 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import ApplyContext from "@context/ApplyContext";
-import { FormContainer, SubmitButton, SelectFloorItem } from "@components/index";
+import { FormContainer, SubmitButton, SelectItem, SelectTitle, SelectContainer } from "@components/index";
 import { LockerType } from "@hooks/useLocker";
-import axios from 'axios';
+import { getFloorName, getHeightName } from "@utils/index";
 
-const heightName = {
-    5: ["상","중상","중","중하","하"],
-    4: ["상","중상","중하","하"]
-} as const;
-
-function Tab({text,locker,onClick}: {text:string,locker:LockerType,onClick?:()=>void}){
+function Select({ count, locker }: { locker: LockerType, count: number }) {
     return (
-        <div onClick={onClick}>
-            <div>{text}</div>
-            <div>
-                {!locker.isSelected&&"선택해주세요"}
-                {locker.isSelected&&
-                    (locker.floor===-1?"지하 1":locker.floor)
-                    +"층 "+heightName[locker.floor===-1?5:4][locker.height-1]
-                }
-            </div>
-        </div>
+        <>
+            <SelectTitle>
+                <div>
+                    {count+"지망: "}
+                    {!locker.isSelected && "선택해주세요"}
+                    {locker.isSelected && getFloorName(locker.floor) + " " + getHeightName(locker.floor, locker.height)}
+                </div>
+            </SelectTitle>
+            <SelectContainer>
+                <label>층수</label>
+                {[-1,1,3].map((v, i) => (
+                    <SelectItem key={i} onClick={locker.setFloor(v)} $isSelect={locker.floor === v}>
+                        {getFloorName(v)}
+                    </SelectItem>
+                ))}
+            </SelectContainer>
+            <SelectContainer>
+                <label>높이</label>
+                {locker.floor !== 0 && Array(locker.floor === -1 ? 5 : 4).fill(0).map((_, i) => (
+                    <SelectItem key={i} onClick={locker.setHeight(i + 1)} $isSelect={locker.height === i + 1}>
+                        {getHeightName(locker.floor, i + 1)}
+                    </SelectItem>
+                ))}
+            </SelectContainer>
+        </>
     );
-}
-
-function SelectFloor({locker}:{locker:LockerType}){
-    const handleClick = (i:number)=> () =>{
-        locker.setFloor(i);
-        locker.setHeight(0);
-    }
-
-    return (
-        <div>
-            {[{number:-1,text:"지하 1층"},{number:1,text:"1층"},{number:3,text:"3층"}].map((v,i)=>{
-                return (
-                    <SelectFloorItem key={i} onClick={handleClick(v.number)} $isSelect={locker.floor===v.number}>
-                        {v.text}
-                    </SelectFloorItem>
-                );
-            })}
-        </div>
-    );
-}
-
-function SelectHeight({locker}:{locker:LockerType}){
-    const handleClick = (i:number)=> () => {
-        locker.setHeight(i);
-        locker.setIsSelected(true);
-    }
-    return(
-        <div>
-            {locker.floor===0&&<div>층을 선택해주세요</div>}
-            {locker.floor!==0&&Array(locker.floor===-1?5:4).fill(0).map((_,i)=>(
-                <SelectFloorItem key={i} onClick={handleClick(i+1)} $isSelect={locker.height===i+1}>
-                </SelectFloorItem>
-            ))}
-            <div></div>
-        </div>
-    )
 }
 
 export default function () {
-    const { nextStep, firstSelect, secondSelect, name, studentId, phone } = useContext(ApplyContext);
-    const [loading, setLoading] = useState(false);
-    const onSubmit = async () => {
-        if (loading) return;
-        setLoading(true);
-        try {
-            const { data } = await axios.post("/api/v2/locker/apply", {
-                name: name.value,
-                studentId: studentId.value,
-                phone: phone.value,
-                first_floor: firstSelect.floor,
-                first_height: firstSelect.height,
-                second_floor: secondSelect.floor,
-                second_height: secondSelect.height
-            });
-            if (data.success) {
-                nextStep();
-            } else {
-                alert(data.message);
-            }
-        } catch (e) {
-            alert("에러가 발생했습니다.");
-        }
-        setLoading(false);
-    }
+    const { loading, firstSelect, secondSelect, apply, error } = useContext(ApplyContext);
     return (
         <FormContainer>
-            <Tab text="1지망" locker={firstSelect}/>
-            <SelectFloor locker={firstSelect}/>
-            <SelectHeight locker={firstSelect}/>
-            {firstSelect.isSelected&&[<Tab text="2지망" locker={secondSelect}/>,
-            <SelectFloor locker={secondSelect}/>,
-            <SelectHeight locker={secondSelect}/>]}
-            {!loading&&<SubmitButton onClick={onSubmit} disabled={!firstSelect.isSelected||!secondSelect.isSelected}>다음</SubmitButton>}
-            {loading&&<SubmitButton disabled>로딩중...</SubmitButton>}
+            <Select count={1} locker={firstSelect} />
+            {firstSelect.isSelected && <Select count={2} locker={secondSelect} />}
+            <SubmitButton onClick={apply} disabled={!firstSelect.isSelected || !secondSelect.isSelected || loading}>
+                {loading ? "신청중..." : "신청하기"}
+            </SubmitButton>
+            {error && <div style={{textAlign: "center"}}>
+                <div>{error}</div><br/>
+                <div>문제가 지속될 경우 재정부장(카카오톡 아이디: {import.meta.env.VITE_KAKAO_ID})에게 문의해주세요.</div>
+            </div>}
         </FormContainer>
     );
 }

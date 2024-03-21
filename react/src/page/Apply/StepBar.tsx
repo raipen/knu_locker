@@ -43,7 +43,7 @@ const LineContainer = styled.div`
 const Line = styled.div<{$done:boolean}>`
     height: 100%;
     width: ${({$done})=>$done?"100%": "0%"};
-    transition: width 1s;
+    transition: width 1s ease-in-out;
     background-color: var(--main-color);
     border-radius: 5px;
 `;

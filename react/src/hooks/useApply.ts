@@ -14,7 +14,7 @@ export default function useApply() {
     const secondSelect = useLocker();
 
     const [loading, setLoading] = useState(false);
-
+    const [error, setError] = useState<string>("");
     const apply = async () => {
         if(name.validation !== InputValidation.COMPLETE) throw new Error("invalid data");
         if(studentId.validation !== InputValidation.COMPLETE) throw new Error("invalid data");
@@ -23,6 +23,7 @@ export default function useApply() {
         if(!secondSelect.isSelected) throw new Error("invalid data");
 
         setLoading(true);
+        setError("");
         try {
             await axios.post("/api/v2/locker/apply", {
                 name: name.value,
@@ -33,12 +34,13 @@ export default function useApply() {
                 second_floor: secondSelect.floor,
                 second_height: secondSelect.height,
             });
-        } catch (e) {
-            throw e;
+            nextStep();
+        } catch (e: any) {
+            setError(e.response.data.message);
         } finally {
             setLoading(false);
         }
     }
 
-    return {step, nextStep, name, studentId, phone, firstSelect, secondSelect, loading, apply};
+    return {step, nextStep, name, studentId, phone, firstSelect, secondSelect, loading, error, apply};
 }

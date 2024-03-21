@@ -68,6 +68,7 @@ const GrayBackground = css`
 const clickable = css`
   cursor: pointer;
   user-select: none;
+  word-break: keep-all;
   transition: all 0.3s;
 `;
 
@@ -141,17 +142,29 @@ export const SubmitButton = styled.button`
 `;
 
 export const FormContainer = styled.form`
-  ${FlexColumnCenter};
+  ${FlexColumnLeftStart};
   gap: 20px;
   width: 100%;
   max-width: 350px;
   margin: 0 auto;
 `;
 
-export const SelectFloorItem = styled.div<{ $isSelect?: boolean }>`
+export const SelectItem = styled.div<{ $isSelect?: boolean }>`
   ${FlexRowCenter};
   ${clickable};
   padding: 10px;
   border-radius: 5px;
   ${props => props.$isSelect ? MainColorBackground : lightGrayBackground};
+`;
+
+export const SelectTitle = styled.div`
+  font-size: 1.2rem;
+  font-weight: 600;
+`;
+
+export const SelectContainer = styled.div`
+  ${FlexRowLeftStart};
+  ${clickable};
+  gap: 10px;
+  width: 100%;
 `;

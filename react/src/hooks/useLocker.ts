@@ -1,25 +1,29 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
 
 export default function useLocker() {
-    const [floor, setFloor] = useState<number>(0);
-    const [height, setHeight] = useState<number>(0);
+    const [floor, setFloorTemp] = useState<number>(0);
+    const [height, setHeightTemp] = useState<number>(0);
     const [isSelected, setIsSelected] = useState<boolean>(false);
 
-    const cancle = useCallback(() => {
-        setFloor(0);
-        setHeight(0);
+    const setFloor = useCallback((f: number) => () => {
+        setFloorTemp(f);
+        setHeightTemp(0);
         setIsSelected(false);
-    }, [setFloor, setHeight, setIsSelected]);
+    }, [setFloorTemp, setHeightTemp, setIsSelected]);
 
-    return useMemo(() => ({floor, setFloor, height, setHeight, isSelected, setIsSelected, cancle}), [floor, setFloor, height, setHeight, isSelected, setIsSelected, cancle]);
+    const setHeight = useCallback((h: number) => () => {
+        if(floor === 0) return;
+        setHeightTemp(h);
+        setIsSelected(true);
+    }, [floor, setHeightTemp, setIsSelected]);
+
+    return useMemo(() => ({floor, setFloor, height, setHeight, isSelected}), [floor, setFloor, height, setHeight, isSelected]);
 }
 
 export type LockerType = {
     floor: number;
-    setFloor: (f: number) => void;
+    setFloor: (f: number) => () => void;
     height: number;
-    setHeight: (h: number) => void;
+    setHeight: (h: number) => () => void;
     isSelected: boolean;
-    setIsSelected: (s: boolean) => void;
-    cancle: () => void;
 }
