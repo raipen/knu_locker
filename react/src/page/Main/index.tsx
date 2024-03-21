@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { menuDate } from "@utils/index";
 import { styled, css } from "styled-components";
 
-const Asdf = styled(Link)<{ $disable: boolean }>`
+const MenuCircle = styled(Link)<{ $disable: boolean }>`
   display: inline-flex;
   flex-direction: column;
   background-color: ${props => props.$disable ? "#ccc" : "#fff"};
@@ -41,18 +41,13 @@ const LeftImage = styled.div`
 
 function Menu({ href, icon, iconType = "", text, date,disabled }: { href: string, icon: string, iconType?: string, text: string, date: string, disabled: boolean }) {
   return (
-    <Asdf to={disabled ? "/" : href} $disable={disabled}>
-      <div>
-        <span className={"material-icons" + iconType}>
-          {icon}
-        </span>
-      </div>
-      <div>{text}</div>
-      <div>{date}</div>
-      <span className="material-icons-outlined">
-        arrow_forward_ios
+    <MenuCircle to={disabled ? "/" : href} $disable={disabled}>
+      <span className={"material-icons" + iconType} style={{ fontSize: "40px" }}>
+        {icon}
       </span>
-    </Asdf>
+      <div style={{fontSize:"1.5rem"}}>{text}</div>
+      <div style={{fontWeight:"300"}}>{date}</div>
+    </MenuCircle>
   )
 }
 

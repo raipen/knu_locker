@@ -16,15 +16,14 @@ export default function useApply() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string>("");
     const apply = async () => {
-        if(name.validation !== InputValidation.COMPLETE) throw new Error("invalid data");
-        if(studentId.validation !== InputValidation.COMPLETE) throw new Error("invalid data");
-        if(phone.validation !== InputValidation.COMPLETE) throw new Error("invalid data");
-        if(!firstSelect.isSelected) throw new Error("invalid data");
-        if(!secondSelect.isSelected) throw new Error("invalid data");
-
         setLoading(true);
         setError("");
         try {
+            if(name.validation !== InputValidation.COMPLETE) throw new Error("invalid data");
+            if(studentId.validation !== InputValidation.COMPLETE) throw new Error("invalid data");
+            if(phone.validation !== InputValidation.COMPLETE) throw new Error("invalid data");
+            if(!firstSelect.isSelected) throw new Error("invalid data");
+            if(!secondSelect.isSelected) throw new Error("invalid data");
             await axios.post("/api/v2/locker/apply", {
                 name: name.value,
                 studentId: studentId.value,
@@ -36,7 +35,11 @@ export default function useApply() {
             });
             nextStep();
         } catch (e: any) {
-            setError(e.response.data.message);
+            if(e instanceof Error)
+                return setError(e.message);
+            if(e.response)
+                return setError(e.response.data?.message);
+            setError("알 수 없는 오류가 발생했습니다.");
         } finally {
             setLoading(false);
         }

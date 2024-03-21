@@ -23,7 +23,7 @@ function Select({ count, locker }: { locker: LockerType, count: number }) {
                 ))}
             </SelectContainer>
             <SelectContainer>
-                <label>높이</label>
+                {locker.floor !== 0 &&<label>높이</label>}
                 {locker.floor !== 0 && Array(locker.floor === -1 ? 5 : 4).fill(0).map((_, i) => (
                     <SelectItem key={i} onClick={locker.setHeight(i + 1)} $isSelect={locker.height === i + 1}>
                         {getHeightName(locker.floor, i + 1)}

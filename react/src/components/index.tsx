@@ -133,7 +133,7 @@ export const SubmitButton = styled.button`
   ${ButtonCss};
   ${MainColorBackground};
   width: 100%;
-  margin-top: 20px;
+  margin-top: 10px;
   &:disabled {
     background-color: #888;
     border: 1px solid #888;
