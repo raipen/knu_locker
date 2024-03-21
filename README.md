@@ -65,11 +65,14 @@ git과 docker가 설치되어 있다는 전제하에 서술
    DBdatabase={배포용 데이터베이스 이름}
    DBport={데이터베이스 포트}
    PORT={서비스 포트}
-   NCP_SENS_ACCESS={문자 전송 정보}
-   NCP_SENS_SECRET={문자 전송 정보}
-   NCP_SENS_ID={문자 전송 정보}
-   NCP_SENS_MY_NUMBER={문자 전송 정보}
-   COOKIE_SECRET={쿠키 암호화 값, 아무 값이나 넣어도 됨}
+   VITE_START_DATE
+   DEAD_LINE
+   VITE_DEAD_LINE
+   SEMESTER
+   LAST_SEMESTER
+   VITE_KAKAOID
+   KAKAO_CLIENT_ID
+   KAKAO_REDIRECT_URI
    ```
 
 3. 데이터베이스 설정(하단 참조)
