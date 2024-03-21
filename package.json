@@ -8,8 +8,7 @@
     "dev:client": "vite",
     "dev": "npm-run-all --parallel dev:server dev:client",
     "build": "vite build",
-    "allocate": "tsx src/allocate.ts",
-    "send": "tsx src/sendResult.ts"
+    "allocate": "tsx src/allocate.ts"
   },
   "author": "",
   "license": "ISC",
