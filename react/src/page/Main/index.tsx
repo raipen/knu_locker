@@ -1,13 +1,13 @@
 import Menu from "./Menu";
 import styles from "./Main.module.css";
-import axios from 'axios';
-import { useEffect, useState } from "react";
+import { MainContainer } from "@components/index";
 
 export default function Main() {
+  console.log(import.meta.env.VITE_DEAD_LINE, import.meta.env.VITE_START_DATE)
   const deadline = new Date(import.meta.env.VITE_DEAD_LINE);
   const startDate = new Date(import.meta.env.VITE_START_DATE);
   const nextDayOfDeadline = new Date(deadline.getTime() + 24 * 60 * 60 * 1000);
-
+  console.log(deadline, startDate, nextDayOfDeadline);
   const data =  [{
     isDisabled: new Date() > deadline || new Date() < startDate,
     date: new Date() > deadline || new Date() < startDate ? "신청기간이 아닙니다." : ("~" + import.meta.env.VITE_DEAD_LINE),
@@ -23,7 +23,7 @@ export default function Main() {
 
   let menus = [{
     cName: styles.menu + " " + (data[0]?.isDisabled ? styles.disable : ""),
-    href: data[0]?.isDisabled ? "/" : "/apply",
+    href: data[0]?.isDisabled ? "/" : "/kakao/agree",
     icon: "mouse",
     iconType: "-outlined",
     text: "사물함 1차 신청",
@@ -43,7 +43,7 @@ export default function Main() {
   }];
 
   return (
-    <div style={{ background: "#da2127" }}>
+    <MainContainer $background="#da2127">
       <span className={styles.deco + " material-icons-outlined"}>
         laptop_mac
       </span>
@@ -52,6 +52,6 @@ export default function Main() {
           return <Menu key={index} {...menu} />
         })}
       </article>
-    </div>
+    </MainContainer>
   )
 }

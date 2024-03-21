@@ -125,6 +125,7 @@ export const MainContainer = styled.main<{ $background?: string, $flexdirection?
   background: ${props => props.$background || 'none'};
   gap: 20px;
   flex-wrap: wrap;
+  flex-grow: 1;
 `;
 
 export const SubmitButton = styled.button`

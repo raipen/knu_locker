@@ -61,7 +61,31 @@ function SelectHeight({locker}:{locker:LockerType}){
 }
 
 export default function () {
-    const { nextStep, firstSelect, secondSelect } = useContext(ApplyContext);
+    const { nextStep, firstSelect, secondSelect, name, studentId, phone } = useContext(ApplyContext);
+    const [loading, setLoading] = useState(false);
+    const onSubmit = async () => {
+        if (loading) return;
+        setLoading(true);
+        try {
+            const { data } = await axios.post("/api/v2/locker/apply", {
+                name: name.value,
+                studentId: studentId.value,
+                phone: phone.value,
+                first_floor: firstSelect.floor,
+                first_height: firstSelect.height,
+                second_floor: secondSelect.floor,
+                second_height: secondSelect.height
+            });
+            if (data.success) {
+                nextStep();
+            } else {
+                alert(data.message);
+            }
+        } catch (e) {
+            alert("에러가 발생했습니다.");
+        }
+        setLoading(false);
+    }
     return (
         <FormContainer>
             <Tab text="1지망" locker={firstSelect}/>
@@ -70,7 +94,8 @@ export default function () {
             {firstSelect.isSelected&&[<Tab text="2지망" locker={secondSelect}/>,
             <SelectFloor locker={secondSelect}/>,
             <SelectHeight locker={secondSelect}/>]}
-            <SubmitButton onClick={nextStep} disabled={!firstSelect.isSelected||!secondSelect.isSelected}>다음</SubmitButton>
+            {!loading&&<SubmitButton onClick={onSubmit} disabled={!firstSelect.isSelected||!secondSelect.isSelected}>다음</SubmitButton>}
+            {loading&&<SubmitButton disabled>로딩중...</SubmitButton>}
         </FormContainer>
     );
 }
