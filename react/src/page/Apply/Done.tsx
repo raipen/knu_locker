@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { getFloorName, getHeightName } from "@utils/index";
 import ApplyContext from "@context/ApplyContext";
 import { StudentCard, StudentCardInner, CardImage, CardInfo, SelectCard } from "@components/index";
+import Logout from "@components/Logout";
 
 export default function () {
     const { name, studentId, phone, firstSelect, secondSelect } = useContext(ApplyContext);
@@ -30,13 +31,7 @@ export default function () {
                     </div>
                 </StudentCardInner>
             </StudentCard>
-            <a
-                style={{ display: "block", margin: "0 auto" }}
-                href={`https://kauth.kakao.com/oauth/logout?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&logout_redirect_uri=${redirect_uri}`}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "10px 20px", backgroundColor: "#fee500", color: "#000", borderRadius: "10px"}}>
-                    카카오 로그아웃
-                </div>
-            </a>
+            <Logout />
         </>
     )
 }

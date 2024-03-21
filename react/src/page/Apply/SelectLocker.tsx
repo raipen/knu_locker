@@ -3,6 +3,7 @@ import ApplyContext from "@context/ApplyContext";
 import { FormContainer, SubmitButton, SelectItem, SelectTitle, SelectContainer } from "@components/index";
 import { LockerType } from "@hooks/useLocker";
 import { getFloorName, getHeightName } from "@utils/index";
+import Logout from "@components/Logout";
 
 function Select({ count, locker }: { locker: LockerType, count: number }) {
     return (
@@ -45,13 +46,7 @@ export default function () {
             </SubmitButton>
             {error && <div style={{textAlign: "center"}}>
                 <div>{error}</div><br/>
-                {error==="이미 신청한 카카오 아이디입니다." && <a
-                style={{ display: "block", margin: "0 auto" }}
-                href={`https://kauth.kakao.com/oauth/logout?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&logout_redirect_uri=${window.location.origin + "/"}`}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "10px 20px", backgroundColor: "#fee500", color: "#000", borderRadius: "10px"}}>
-                    카카오 로그아웃
-                </div>
-            </a>}
+                {error==="이미 신청한 카카오 아이디입니다." && <Logout />}
                 <div>문제가 지속될 경우 재정부장(카카오톡 아이디: {import.meta.env.VITE_KAKAO_ID})에게 문의해주세요.</div>
             </div>}
         </FormContainer>

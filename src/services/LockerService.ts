@@ -147,5 +147,6 @@ export const result = async (kakaoAccessToken: string) => {
   return {
     locker: allocate.locker,
     password: allocate.locker_info.pw,
+    studentId: allocate.student_id,
   };
 }

@@ -7,7 +7,10 @@ export default function KakaoLogin() {
   const redirect_uri = window.location.origin + "/api/v2/oauth";
   return (
     <MainContainer>
-      <div style={{textAlign:"center",margin:"30px"}}>사물함을 신청하려면 카카오 로그인을 해주세요.</div>
+      <div style={{textAlign:"center",margin:"30px"}}>
+        {next === "agree" && "사물함 신청을 위해 카카오 로그인을 해주세요."}
+        {next === "result" && "사물함 배정 결과를 확인하기 위해 카카오 로그인을 해주세요."}
+      </div>
       <a
         style={{display: "block", margin: "0 auto"}}
         href={`https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&redirect_uri=${redirect_uri}&response_type=code&state=${next}`}>
