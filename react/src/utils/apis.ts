@@ -11,3 +11,8 @@ export const requestCheckStudent = apiErrorCatchWrapper(async ({name, studentId}
     const res = await axios.post("/api/v2/student/checkStudent", {name, studentId});
     return res.data.isStudent;
 });
+
+export const requestResult = apiErrorCatchWrapper(async () => {
+    const res = await axios.get("/api/v2/locker/result");
+    return res.data;
+});

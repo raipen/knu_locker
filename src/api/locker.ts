@@ -14,7 +14,7 @@ router.post('/apply', errorCatcher(async (req: Request, res: Response) => {
   res.status(200).json(result);
 }));
 
-router.post('/result', errorCatcher(async (req: Request, res: Response) => {
+router.get('/result', errorCatcher(async (req: Request, res: Response) => {
   console.log(`[/api/locker/result] ${req.cookies.access_token}`);
   logger(req,"[/api/locker/result]",{access_token:req.cookies.access_token});
   const result = await LockerService.result(req.cookies.access_token);
