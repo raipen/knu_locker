@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const getFloorName = (floor: number) => {
     if(floor === -1) return "지하 1층";
     return floor + "층";
@@ -23,3 +25,16 @@ export const menuDate =  [{
     isDisabled: new Date() < nextDayOfDeadline,
     date: (new Date(nextDayOfDeadline.getTime() + 9 * 60 * 60 * 1000)).toISOString().substring(0, 19).replace('T', ' ') + "~",
 }];
+
+
+export const apiErrorCatchWrapper = <T extends Array<any>,U>(api: (...a:T) => Promise<U>) => async (...a:T) => {
+  try {
+      return await api(...a);
+  } catch (e: unknown) {
+      if (!(e instanceof Error))
+        throw new Error("알 수 없는 오류가 발생했습니다.");
+      if (!axios.isAxiosError(e) || !e.response) throw new Error(e.message);
+      const { message } = (e.response.data || { message: "알 수 없는 오류가 발생했습니다." }) as {message:string};
+      throw new Error(message);
+  }
+}

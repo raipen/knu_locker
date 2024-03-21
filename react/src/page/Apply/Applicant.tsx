@@ -3,7 +3,7 @@ import ApplyContext from "@context/ApplyContext";
 import Input from "@components/Input";
 import { InputValidation } from "@utils/enum";
 import { SubmitButton,FormContainer } from "@components/index";
-import axios from "axios";
+import { requestCheckStudent } from "@utils/apis";
 
 export default function () {
     const { nextStep, name, studentId, phone } = useContext(ApplyContext);
@@ -14,12 +14,12 @@ export default function () {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await axios.post("/api/v2/student/checkStudent", {name:name.value,studentId:studentId.value});
-            if (res.data.isStudent)
+            const isStudent = await requestCheckStudent({name:name.value,studentId:studentId.value});
+            if (isStudent)
                 return nextStep();
             setError("일치하는 컴퓨터학부 학생이 존재하지 않습니다.");
-        } catch (e) {
-            setError("서버 오류가 발생했습니다.");
+        } catch (e: any) {
+            setError(e.message);
         } finally {
             setLoading(false);
         }

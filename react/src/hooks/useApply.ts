@@ -1,9 +1,9 @@
 import useInput from "./useInput";
 import useLocker from "./useLocker";
 import useStep from "./useStep";
-import axios from "axios";
 import { useState } from "react";
-import { InputValidation } from "../utils/enum";
+import { InputValidation } from "@utils/enum";
+import {requestApply} from "@utils/apis";
 
 export default function useApply() {
     const {step, nextStep} = useStep();
@@ -24,7 +24,7 @@ export default function useApply() {
             if(phone.validation !== InputValidation.COMPLETE) throw new Error("invalid data");
             if(!firstSelect.isSelected) throw new Error("invalid data");
             if(!secondSelect.isSelected) throw new Error("invalid data");
-            await axios.post("/api/v2/locker/apply", {
+            await requestApply({
                 name: name.value,
                 studentId: studentId.value,
                 phone: phone.value,
@@ -35,11 +35,7 @@ export default function useApply() {
             });
             nextStep();
         } catch (e: any) {
-            if(e instanceof Error)
-                return setError(e.message);
-            if(e.response)
-                return setError(e.response.data?.message);
-            setError("알 수 없는 오류가 발생했습니다.");
+            setError(e.message);
         } finally {
             setLoading(false);
         }
