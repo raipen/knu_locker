@@ -168,3 +168,40 @@ export const SelectContainer = styled.div`
   gap: 10px;
   width: 100%;
 `;
+
+export const StudentCard = styled.div`
+  ${FlexColumnCenter};
+  gap: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #ccc;
+  margin: 0 auto;
+  max-width: 350px;
+`;
+
+export const StudentCardInner = styled.div`
+  ${FlexRowCenter};
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+`;
+
+export const CardImage = styled.img`
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+export const CardInfo = styled.div`
+  ${FlexColumnLeftStart};
+  gap: 5px;
+  width: fit-content;
+  margin: auto;
+`;
+
+export const SelectCard = styled.div`
+  margin: 2px 0;
+  &>div:last-child {
+    font-weight: 300;
+  }
+`;

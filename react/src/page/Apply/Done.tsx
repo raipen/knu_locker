@@ -1,33 +1,41 @@
-import Person from "@assets/person.svg";
-import { useContext, useEffect } from "react";
+import hobanu from "@assets/hobanu.svg";
+import { useContext } from "react";
+import { getFloorName, getHeightName } from "@utils/index";
 import ApplyContext from "@context/ApplyContext";
-
-const heightName = {
-    5: ["상","중상","중","중하","하"],
-    4: ["상","중상","중하","하"]
-} as const;
+import { StudentCard, StudentCardInner, CardImage,CardInfo, SelectCard } from "@components/index";
+import kakaologin from "@assets/kakaologin.png";
 
 export default function () {
     const { name,studentId,phone,firstSelect,secondSelect } = useContext(ApplyContext);
+    const redirect_uri = window.location.origin + "/";
     return (
-        <div>
-            <div>
-                <div>사물함 신청 완료!</div>
-                <img src={Person} alt="person"/>
-            </div>
-            <div>
-                <p>{name.value}</p>
-                <div>{studentId.value}</div>
-                <p>{phone.value.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`)}</p>
-                <div>
-                    <div>1지망</div>
-                    <div>{firstSelect.floor===-1?"지하 1":firstSelect.floor}층 {heightName[firstSelect.floor===-1?5:4][firstSelect.height-1]} </div>
+        <>
+        <StudentCard>
+            <div style={{fontWeight:"600"}}>사물함 신청 완료!</div>
+            <StudentCardInner>
+                <CardImage src={hobanu} alt="person" />
+                <div style={{width:"100%"}}>
+                    <CardInfo>
+                        <div>{name.value}</div>
+                        <div style={{fontWeight:"300"}}>{studentId.value}</div>
+                        <div style={{fontWeight:"300"}}>{phone.value.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`)}</div>
+                        <SelectCard>
+                            <div>1지망</div>
+                            <div>{getFloorName(firstSelect.floor) + " " + getHeightName(firstSelect.floor, firstSelect.height)}</div>
+                        </SelectCard>
+                        <SelectCard>
+                            <div>2지망</div>
+                            <div> {getFloorName(secondSelect.floor) + " " + getHeightName(secondSelect.floor, secondSelect.height)}</div>
+                        </SelectCard>
+                    </CardInfo>
                 </div>
-                <div>
-                    <div>2지망</div>
-                    <div>{secondSelect.floor===-1?"지하 1":secondSelect.floor}층 {heightName[secondSelect.floor===-1?5:4][secondSelect.height-1]} </div>
-                </div>
-            </div>
-        </div>
+            </StudentCardInner>
+        </StudentCard>
+        <a
+        style={{display: "block", margin: "0 auto"}}
+        href={`https://kauth.kakao.com/oauth/logout?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&logout_redirect_uri=${redirect_uri}`}>
+          <img src={kakaologin} alt="카카오 로그인" width="200"/>
+        </a>
+        </>
     )
 }
