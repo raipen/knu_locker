@@ -126,3 +126,23 @@ export const MainContainer = styled.main<{ $background?: string, $flexdirection?
   gap: 20px;
   flex-wrap: wrap;
 `;
+
+export const SubmitButton = styled.button`
+  ${ButtonCss};
+  ${MainColorBackground};
+  width: 100%;
+  margin-top: 20px;
+  &:disabled {
+    background-color: #888;
+    border: 1px solid #888;
+    color: white;
+  }
+`;
+
+export const FormContainer = styled.form`
+  ${FlexColumnCenter};
+  gap: 20px;
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+`;
