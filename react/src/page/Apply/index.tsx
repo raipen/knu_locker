@@ -5,6 +5,7 @@ import Applicant from "./Applicant";
 import { MainContainer } from "@components/index";
 import SelectLocker from "./SelectLocker";
 import Done from "./Done";
+import StepBar from "./StepBar";
 
 export default function Apply(){
     const contextValue = useApply();
@@ -17,7 +18,7 @@ export default function Apply(){
     return (
         <ApplyContext.Provider value={contextValue}>
             <MainContainer>
-                {/* <Steps /> */}
+                <StepBar />
                 {applyStep[step]}
             </MainContainer>
         </ApplyContext.Provider>
