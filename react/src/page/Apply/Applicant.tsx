@@ -14,7 +14,7 @@ export default function () {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await axios.post("/API/checkStudent", {name:name.value,studentId:studentId.value});
+            const res = await axios.post("/api/v2/student/checkStudent", {name:name.value,studentId:studentId.value});
             if (res.data.isStudent)
                 return nextStep();
             setError("일치하는 컴퓨터학부 학생이 존재하지 않습니다.");
