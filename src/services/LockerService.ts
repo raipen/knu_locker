@@ -130,21 +130,3 @@ export const result = async (kakaoAccessToken: string) => {
     password: allocate.locker_info.pw,
   };
 }
-
-export const status = async () => {
-  let deadline = new Date(config.DEAD_LINE);
-  let nextDayOfDeadline = new Date(deadline.getTime() + 24 * 60 * 60 * 1000);
-
-  return [{
-    isDisabled: new Date() > deadline || new Date() < new Date(config.START_DATE),
-    date: new Date() > deadline || new Date() < new Date(config.START_DATE) ? "신청기간이 아닙니다." : ("~" + config.DEAD_LINE),
-  },
-  {
-    isDisabled: true /*new Date() > new Date(CLEAN_DEAD_LINE)*/,
-    date: "신청기간이 아닙니다." /*+CLEAN_DEAD_LINE*/,
-  },
-  {
-    isDisabled: new Date() < nextDayOfDeadline,
-    date: (new Date(nextDayOfDeadline.getTime() + 9 * 60 * 60 * 1000)).toISOString().substring(0, 19).replace('T', ' ') + "~",
-  }];
-}

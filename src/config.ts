@@ -31,11 +31,9 @@ const config = {
   DB: ENV_DB,
   KAKAO_CLIENT_ID: process.env.KAKAO_CLIENT_ID,
   KAKAO_REDIRECT_URI: process.env.KAKAO_REDIRECT_URI || `http://localhost:${process.env.PORT}/api/v2/oauth`,
-  START_DATE: process.env.START_DATE,
   DEAD_LINE: process.env.DEAD_LINE,
   SEMESTER: process.env.SEMESTER,
   LAST_SEMESTER: process.env.LAST_SEMESTER,
-  KAKAOID: process.env.KAKAOID,
   NODE_ENV
 }
 
@@ -43,6 +41,6 @@ if(Object.values(config).some((v)=>!v))
   throw new Error('환경변수 설정이 잘못되었습니다.');
 
 export default config as Record<
-  "PORT" | "KAKAO_CLIENT_ID" | "KAKAO_REDIRECT_URI" | "START_DATE" | "DEAD_LINE" | "SEMESTER" | "LAST_SEMESTER" | "KAKAOID" | "NODE_ENV",
+  "PORT" | "KAKAO_CLIENT_ID" | "KAKAO_REDIRECT_URI" | "DEAD_LINE" | "SEMESTER" | "LAST_SEMESTER" | "NODE_ENV",
   string>
 & {DB: Record<"username" | "password" | "database" | "host" , string>&{dialect: "mysql"}};

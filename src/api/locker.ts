@@ -5,14 +5,6 @@ import logger from '../log';
 
 const router = Router();
 
-router.get('/kakaoId', errorCatcher(async (req: Request, res: Response) => {
-  res.status(200).json({kakaoId:process.env.KAKAOID||"경북대학교 학생회 통합공지방 확인"});
-}));
-
-router.get("/status", errorCatcher(async (req: Request, res: Response) => {
-  res.status(200).json(await LockerService.status());
-}));
-
 router.post('/apply', errorCatcher(async (req: Request, res: Response) => {
   const userDTO = req.body;
   const cookies = req.cookies;
