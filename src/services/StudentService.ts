@@ -1,4 +1,5 @@
 import { Students } from '../models';
+import { StudentUpdateError } from '../errors';
 
 export const checkDues = async (userDTO: {
   name: string, number: string
@@ -31,10 +32,10 @@ export const checkStudent = async (userDTO: {
         student_id: null
       }
     });
-    if (noStudentIdResult === null) throw new Error("No results found");
+    if (noStudentIdResult === null) return { isStudent: false };
 
     const update = await Students.update({ student_id: userDTO.studentId }, { where: { name: userDTO.name, student_id: null } });
 
     if (update) return { isStudent: true };
-    throw new Error("Update failed");
+    throw new StudentUpdateError();
 }

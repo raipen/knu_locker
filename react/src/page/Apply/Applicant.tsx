@@ -35,6 +35,7 @@ export default function () {
             <Input label="학번" placeholder="2022123456" type="number" {...studentId} />
             <Input label="전화번호" placeholder="'-'없이 숫자만 입력" type="number" {...phone} />
             {error && <div>{error}</div>}
+            {error && <div>문제가 지속될 경우 재정부장(카카오톡 아이디: {import.meta.env.VITE_KAKAO_ID})에게 문의해주세요.</div>}
             <SubmitButton disabled={!isComplete||loading} type="submit">다음</SubmitButton>
         </FormContainer>
     );

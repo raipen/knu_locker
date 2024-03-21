@@ -8,9 +8,9 @@ const router = Router();
 router.post('/apply', errorCatcher(async (req: Request, res: Response) => {
   const userDTO = req.body;
   const cookies = req.cookies;
-  console.log(`[/api/locker/apply] ${userDTO.name} ${userDTO.studentId} ${cookies.phone}`);
+  console.log(`[/api/locker/apply] ${userDTO.name} ${userDTO.studentId} ${cookies.access_token}`);
   logger(req,"[/api/locker/apply]",userDTO);
-  const result = await LockerService.apply(userDTO,cookies);
+  const result = await LockerService.apply(userDTO,cookies.access_token);
   res.status(200).json(result);
 }));
 

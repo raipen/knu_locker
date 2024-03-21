@@ -4,6 +4,8 @@ import logger from '../log';
 import locker from './locker';
 import oauth from './oauth';
 import student from './student';
+import { ErrorWithStatus }from '../errors';
+import axios from 'axios';
 
 const app = Router();
 app.use('/student/', student);
@@ -14,12 +16,14 @@ app.use('/ping', (req: Request, res: Response) => {
 });
 
 const errorHandling = (error: any, req: Request, res: Response, next: NextFunction) => {
-  console.error(error);
   logger(req,"[Error]",{errror:error.message});
   if(error instanceof Sequelize.Error)
-    return res.status(400).json({success: false, message: "database error" });
-  else
-    res.status(400).json({success: false, message: error.message })
+    return res.status(400).json({message: "데이터베이스 오류" });
+  if(error instanceof ErrorWithStatus)
+    return res.status(error.status).json({message: error.message });
+  if(axios.isAxiosError(error))
+    return res.status(500).json({message: "kakao 로그인 오류" });
+  return res.status(500).json({message: "알 수 없는 오류" });
 }
 app.use(errorHandling);
   

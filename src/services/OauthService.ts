@@ -18,6 +18,5 @@ export const getOauthToken = async ({code,error}:{code:string,error:string}) => 
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
         }
     });
-    console.log(data);
     return data;
 }
