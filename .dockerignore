@@ -7,3 +7,8 @@ README.md
 LICENSE
 .vscode
 *.sql
+build
+dist
+converage
+migrations
+.env
