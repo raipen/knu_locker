@@ -23,10 +23,10 @@ const MenuCircle = styled(Link)<{ $disable: boolean }>`
   }
 `;
 
-function Menu({ href, icon, iconType = "", text, date,disabled }: { href: string, icon: string, iconType?: string, text: string, date: string, disabled: boolean }) {
+function Menu({ href, icon,text, date,disabled }: { href: string, icon: string, text: string, date: string, disabled: boolean }) {
   return (
     <MenuCircle to={disabled ? "/" : href} $disable={disabled}>
-      <span className={"material-icons" + iconType} style={{ fontSize: "40px" }}>
+      <span className={"material-icons-outlined"} style={{ fontSize: "40px" }}>
         {icon}
       </span>
       <div style={{fontSize:"1.5rem"}}>{text}</div>
@@ -40,9 +40,9 @@ export default function Main() {
   return (
     <MainContainer $background="#da2127" style={{position:"relative"}} $flexdirection="row">
       <article style={{ width: "100%", maxWidth: "1200px", textAlign:"center",margin:"auto"}}>
-        <Menu href="/kakao/agree" icon="mouse" iconType="-outlined" text="사물함 1차 신청" date={menuDate[0].date} disabled={menuDate[0].isDisabled} />
-        <Menu href="/" icon="groups" text="사물함 추가 신청" date={menuDate[1].date} disabled={menuDate[1].isDisabled} />
-        <Menu href="/kakao/result" icon="check_circle" text="사물함 신청 결과" date={menuDate[2].date} disabled={menuDate[2].isDisabled} />
+        <Menu href="/kakao/agree" icon="note_alt" text="사물함 1차 신청" date={menuDate[0].date} disabled={menuDate[0].isDisabled} />
+        <Menu href="/" icon="post_add" text="사물함 추가 신청" date={menuDate[1].date} disabled={menuDate[1].isDisabled} />
+        <Menu href="/kakao/result" icon="assignment_turned_in" text="사물함 신청 결과" date={menuDate[2].date} disabled={menuDate[2].isDisabled} />
       </article>
     </MainContainer>
   )
