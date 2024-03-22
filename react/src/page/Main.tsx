@@ -21,8 +21,11 @@ const MenuCircle = styled(Link)<{ $disable: boolean }>`
     width: ${props => props.$disable ? "calc(50% - 30px)" : "calc(50% - 10px)"};
   }
   @media (max-width: 900px) {
-    width: calc(100% - 20px);
+    width: calc(100% - 30px);
     margin: 10px;
+    &:hover{
+      width:  ${props => props.$disable ? "calc(100% - 30px)" : "calc(100% - 20px)"};
+    }
   }
 `;
 
