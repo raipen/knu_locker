@@ -17,10 +17,12 @@ const MenuCircle = styled(Link)<{ $disable: boolean }>`
   transition: all 0.5s ease-in-out;
   user-select: none;
   cursor: ${props => props.$disable ? "default" : "pointer"};
+  max-width: 270px;
   &:hover {
     width: ${props => props.$disable ? "calc(50% - 30px)" : "calc(50% - 10px)"};
+    max-width: 310px;
   }
-  @media (max-width: 900px) {
+  @media (max-width: 660px) {
     width: calc(100% - 30px);
     margin: 10px;
     &:hover{
