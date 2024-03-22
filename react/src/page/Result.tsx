@@ -1,6 +1,7 @@
 import useResult from "@hooks/useResult";
 import Logout from "@components/Logout";
 import { MainContainer } from "@components/index";
+import ErrorContact from "@components/ErrorContact";
 
 export default function Result(){
     const { data, loading, error } = useResult();
@@ -8,7 +9,10 @@ export default function Result(){
         <MainContainer>
             <div style={{width: "fit-content", margin: "0 auto"}}>
                 <h2 style={{textAlign:"center"}}>사물함 배정 결과</h2>
-                {error && <div>{error}</div>}
+                {error && <div>
+                    <div style={{fontWeight:"500"}}>{error}</div>
+                    <ErrorContact type="집행부" />
+                </div>}
                 {loading && "로딩중..."}
                 {!error&&!loading&&
                 <div style={{backgroundColor: "lightgray", padding: "10px", borderRadius: "10px"}}>

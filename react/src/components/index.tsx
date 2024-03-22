@@ -142,7 +142,7 @@ export const SubmitButton = styled.button`
 `;
 
 export const FormContainer = styled.form`
-  ${FlexColumnLeftStart};
+  ${FlexColumnStretchCenter};
   gap: 20px;
   width: 100%;
   max-width: 350px;
@@ -174,7 +174,7 @@ export const StudentCard = styled.div`
   gap: 10px;
   padding: 10px;
   border-radius: 5px;
-  background-color: #ccc;
+  background-color: #eee;
   margin: 0 auto;
   max-width: 350px;
 `;

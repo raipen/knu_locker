@@ -4,6 +4,7 @@ import { FormContainer, SubmitButton, SelectItem, SelectTitle, SelectContainer }
 import { LockerType } from "@hooks/useLocker";
 import { getFloorName, getHeightName } from "@utils/index";
 import Logout from "@components/Logout";
+import ErrorContact from "@components/ErrorContact";
 
 function Select({ count, locker }: { locker: LockerType, count: number }) {
     return (
@@ -45,9 +46,9 @@ export default function () {
                 {loading ? "신청중..." : "신청하기"}
             </SubmitButton>
             {error && <div style={{textAlign: "center"}}>
-                <div>{error}</div><br/>
+                <div style={{fontWeight:"500"}}>{error}</div><br/>
                 {error==="이미 신청한 카카오 아이디입니다." && <Logout />}
-                <div>문제가 지속될 경우 재정부장(카카오톡 아이디: {import.meta.env.VITE_KAKAO_ID})에게 문의해주세요.</div>
+                <ErrorContact type="집행부" />
             </div>}
         </FormContainer>
     );
