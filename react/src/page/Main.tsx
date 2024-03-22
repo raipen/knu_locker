@@ -10,24 +10,16 @@ const MenuCircle = styled(Link)<{ $disable: boolean }>`
   color:#000;
   border-radius: 100%;
   aspect-ratio: 1/1;
-  width: calc(50% - 30px);
+  width: 270px;
   margin: 10px 30px;
   justify-content: center;
   align-items: center;
   transition: all 0.5s ease-in-out;
   user-select: none;
   cursor: ${props => props.$disable ? "default" : "pointer"};
-  max-width: 270px;
   &:hover {
-    width: ${props => props.$disable ? "calc(50% - 30px)" : "calc(50% - 10px)"};
-    max-width: 310px;
-  }
-  @media (max-width: 660px) {
-    width: calc(100% - 30px);
-    margin: 10px;
-    &:hover{
-      width:  ${props => props.$disable ? "calc(100% - 30px)" : "calc(100% - 20px)"};
-    }
+    width: ${props => props.$disable ? "270px" : "310px"};
+    margin: ${props => props.$disable ? "10px 30px" : "10px 10px"};
   }
 `;
 
